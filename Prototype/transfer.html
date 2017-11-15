@@ -526,10 +526,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Between My Accounts at Devonshire Lending</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Within Devonshire Lending</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">To/from My Accounts at Other Banks</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">To Other Banks</a>
+                                      </li>
+                                      <li role="presentation">
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">To Third Party</a>
                                       </li>
                                     <!--  <li role="presentation">
                                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">To Someone else or a Business</a>
@@ -542,60 +545,134 @@
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
                                             <form action="#" class="form-theme">
-                                                <label>From:</label>
-                                                <input type="number" placeholder="45272839040" class="input">
+                                                <div class="form-group">
+                                                    <label>From:</label>
+                                                    <select class="form-control" id="account1" style="width: 300px">
+                                                        <option>Savings - 1262</option>
+                                                        <option>Savings - 1628</option>
+                                                        <option>Savings - 2367</option>
+                                                    </select>
+                                                </div>
 
-                                                <label>To:</label>
-                                                <input type="number" placeholder="10239939220" class="input">
+                                                <div class="form-group">
+                                                    <label>To:</label>
+                                                    <select class="form-control" id="account2" style="width: 300px">
+                                                        <option>Savings - 1628</option>
+                                                        <option>Savings - 2367</option>
+                                                        <option>Savings - 1262</option>
+                                                    </select>
+                                                </div>
 
-                                                <label>Amount: $</label>
-                                                <input type="number" placeholder="800" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Amount:</label>
+                                                    <input type="number" placeholder="800" class="input" style="width: 300px">
+                                                    <label><b>$</b></label>
+                                                </div>
+                                                </div>
 
-                                                <label>Frequency:</label>
-                                                <input type="number" placeholder="One time, immediately" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Date of Transfer:</label>
+                                                    <input type="date" class="input" style="width: 300px">
+                                                </div>
+                                                </div>
 
-                                                <input type="submit" class="btn" value="Continue Transfer">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="submit" class="btn" value="Continue Transfer" style="width: 300px">
+                                                </div>
+                                                </div>
                                             </form>
                                         </div>
                                         <!-- tab-Item-1-->
 
                                         <!-- tab-Item-2-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab1">
+                                        <div role="tabpanel" class="tab-pane fade in" id="tab2">
                                             <form action="#" class="form-theme">
-                                                <label>From:</label>
-                                                <input type="number" placeholder="45272839040" class="input">
+                                                <div class="form-group">
+                                                    <label>From:</label>
+                                                    <select class="form-control" id="account2" style="width: 300px">
+                                                        <option>Savings - 1262</option>
+                                                        <option>Savings - 1628</option>
+                                                        <option>Savings - 2367</option>
+                                                    </select>
+                                                </div>
 
-                                                <label>To:</label>
-                                                <input type="number" placeholder="10239939220" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>To (Account No.):</label>
+                                                    <input type="number" placeholder="10239939220" class="input" style="width: 300px">
+                                                </div>
+                                                </div>
 
-                                                <label>Amount: $</label>
-                                                <input type="number" placeholder="800" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Routing No. / SWIFT Code / IBAN:</label>
+                                                    <input type="number" placeholder="0430006" class="input" style="width: 300px">
+                                                </div>
+                                                </div>
 
-                                                <label>Frequency:</label>
-                                                <input type="number" placeholder="One time, immediately" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Amount:</label>
+                                                    <input type="number" placeholder="800" class="input" style="width: 300px">
+                                                    <label><b>$</b></label>
+                                                </div>
+                                                </div>
 
-                                                <input type="submit" class="btn" value="Continue Transfer">
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Date of Transfer:</label>
+                                                    <input type="date" class="input" style="width: 300px">
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="submit" class="btn" value="Continue Transfer" style="width: 300px">
+                                                </div>
+                                                </div>
                                             </form>
                                         </div>
                                         <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab1">
+                                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
                                             <form action="#" class="form-theme">
-                                                <label>From:</label>
-                                                <input type="number" placeholder="45272839040" class="input">
+                                                <br>
+                                                <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label><b>Third Partys:</b></label>
+                                                </div>
+                                                </div>
+                                                <br>
+                                                <br>
 
-                                                <label>To:</label>
-                                                <input type="number" placeholder="10239939220" class="input">
+                                                <div class="row">
+                                                <div class="col-sm-4">
+                                                    <a href="https://venmo.com/">
+                                                        <img src="img/venmo.jpg" alt="venmo" height="80px" width="80px">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <a href="https://www.chase.com/digital/digital-payments/chase-pay">
+                                                        <img src="img/chasepay.jpg" alt="chasepay" height="80px" width="80px">
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <a href="https://www.paypal.com/us/home">
+                                                        <img src="img/paypal.png" alt="paypal" height="80px" width="160px">
+                                                    </a>
+                                                </div>
+                                                </div>
 
-                                                <label>Amount: $</label>
-                                                <input type="number" placeholder="800" class="input">
+<!--                                                 <img src="img/chasepay.jpg" alt="chasepay" height="80px" width="80px">
+                                                <label>ChasePay</label>
 
-                                                <label>Frequency:</label>
-                                                <input type="number" placeholder="One time, immediately" class="input">
-
-                                                <input type="submit" class="btn" value="Continue Transfer">
-                                            </form>
+                                                <img src="img/paypal.png" alt="paypal" height="80px" width="160px">
+                                                <label>PayPal</label> -->
+                                            </form>   
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>
