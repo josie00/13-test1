@@ -276,14 +276,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">Our Services</a>
+                                <a href="#">Home</a>
                             </li>
                             <li>
                             <li>
                                 /
                             </li>
                             <li>
-                                User Area
+                                Transfers
                             </li>
                         </ul>
                     </div>
@@ -332,9 +332,6 @@
                                       <li role="presentation">
                                         <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">To Third Party</a>
                                       </li>
-                                    <!--  <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">To Someone else or a Business</a>
-                                      </li>-->
                                     </ul>
                                     <!-- End Nav tabs -->
 
@@ -342,63 +339,123 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                    <label>From:</label>
-                                                    <select class="form-control" id="account1">
-                                                        <option>Savings -1262</option>
-                                                        <option>Savings -1628</option>
-                                                        <option>Checking -2367</option>
-                                                    </select>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <br>
+                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
+                                                <li class="active">
+                                                    <a href="#mine" style="width:180px; height: 35px; font-size: 15px; color: black" data-toggle="tab">Within My Accounts</a> 
+                                                </li>
+                                                <li>
+                                                    <a href="#others" data-toggle="tab" style="width:180px; height: 35px; font-size: 15px; color: black">To Other Account</a>
+                                                </li>
+                                            </ul> 
+                                            <div class="tab-content"> 
+                                                <div class="tab-pane fade in active" id="mine">
+                                                <form action="confirm-transfer.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Savings -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>To:</label>
+                                                            <select class="form-control" id="account2">
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                               <option>Savings -1262</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                    <label>To:</label>
-                                                    <select class="form-control" id="account2">
-                                                        <option>Savings -1628</option>
-                                                        <option>Checking -2367</option>
-                                                        <option>Savings -1262</option>
-                                                    </select>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="800">
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                    <label>Amount: $</label>
-                                                    <input type="text" class="form-control" placeholder="800">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Transfer:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
                                                     </div>
-                                                    <br>
                                                 </div>
-                                                <br>
+                                                </form>
+                                                <div class="tab-pane fade in" id="others">
+                                                <form action="confirm-transfer.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Savings -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>To (Account No.):</label>
+                                                            <input type="text" class="form-control" placeholder="10239939220">
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                    <label>Date of Transfer:</label>
-                                                    <input type="date" class="form-control">
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="800">
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <button type="button" class="btn btn-success">Continue Transfer</button>
-                                                    </div>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Transfer:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                     </div>
+                                                </form>
                                                 </div>
-                                                <br>
                                             </div>
                                         </div>
                                         <!-- tab-Item-1-->
 
                                         <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
+                                        <form action="confirm-transfer.html">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-sm-4">
@@ -422,7 +479,23 @@
 
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label>Routing No. / SWIFT Code / IBAN:</label>
+                                                        <label>Routing Number :</label>
+                                                        <input type="text" class="form-control" placeholder="0430006">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>SWIFT Code:</label>
+                                                        <input type="text" class="form-control" placeholder="0430006">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>IBAN:</label>
                                                         <input type="text" class="form-control" placeholder="0430006">
                                                     </div>
                                                 </div>
@@ -446,11 +519,12 @@
 
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <button type="button" class="btn btn-success">Continue Transfer</button>
+                                                        <button type="submit" class="btn btn-success">Continue Transfer</button>
                                                     </div>
                                                 </div>
                                                 <br>
                                             </div>
+                                        </form>
                                         </div>
                                         <!-- tab-Item-2-->
 
