@@ -16,10 +16,10 @@ public class AccountTypeController {
 	AccountTypeRepository atp;
 	
 	@GetMapping("/api")
-	public void test(Model model) {
+	public String test(Model model) {
 		AccountType at = new AccountType("checking", 0.1);	
 		atp.save(at);
-		
+		return "index";
 	}
 	
 	
