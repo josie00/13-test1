@@ -16,8 +16,7 @@ public class TransactionType {
 	
 	protected TransactionType() {}
 
-	public TransactionType(long transactionTypeId, double transactionFee, String transactionTypeName) {
-		this.transactionTypeId = transactionTypeId;
+	public TransactionType(double transactionFee, String transactionTypeName) {
 		this.transactionFee = transactionFee;
 		this.transactionTypeName = transactionTypeName;
 	}

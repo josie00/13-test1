@@ -20,8 +20,7 @@ public class Loan {
 	
 	protected Loan() {}
 	
-	public Loan(long loanId, double loanInterestRate, Date startDate, double duePayment, double loanDurationbyMonth) {
-		this.loanId = loanId;
+	public Loan(double loanInterestRate, Date startDate, double duePayment, double loanDurationbyMonth) {
 		this.loanInterestRate = loanInterestRate;
 		this.startDate = startDate;
 		this.duePayment = duePayment;
