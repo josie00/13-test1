@@ -20,9 +20,8 @@ public class Employee {
     
     protected Employee() {}
 
-	public Employee(Long employeeId, String firstName, String lastName, String title, String userName, String password,
+	public Employee(String firstName, String lastName, String title, String userName, String password,
 			String email) {
-		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.title = title;

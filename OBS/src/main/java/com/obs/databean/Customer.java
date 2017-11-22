@@ -27,10 +27,9 @@ public class Customer {
     
     protected Customer() {}
 
-	public Customer(Long customerId, String userName, String email, String password, String firstName, String lastName,
+	public Customer(String userName, String email, String password, String firstName, String lastName,
 			String street, String city, String zip, String phone, String dateOfBirth, String ssn,
 			String driverLicense) {
-		this.customerId = customerId;
 		this.userName = userName;
 		this.email = email;
 		this.password = password;

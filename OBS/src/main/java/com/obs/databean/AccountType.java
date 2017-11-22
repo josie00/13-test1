@@ -15,8 +15,7 @@ public class AccountType {
 	
 	protected AccountType() {}
 	
-	public AccountType(long accountTypeId, String name, double rate) {
-		this.accountTypeId = accountTypeId;
+	public AccountType(String name, double rate) {
 		this.name = name;
 		this.rate = rate;
 	}
