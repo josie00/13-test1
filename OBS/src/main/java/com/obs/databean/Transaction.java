@@ -1,8 +1,13 @@
 package com.obs.databean;
+import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Transaction {
@@ -11,17 +16,19 @@ public class Transaction {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private long transactionId;
 	private long transactionTypeId;
+	
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
 	private long accountId;
-	private String timeStamp;
+	private Date timeStamp;
 	private long loanId;
 	private double amount;
 	private String description;
 	
 	protected Transaction() {}
 
-	public Transaction(long transactionId, long transactionTypeId, long accountId, String timeStamp, long loanId,
+	public Transaction(long transactionTypeId, long accountId, Date timeStamp, long loanId,
 			double amount, String description) {
-		this.transactionId = transactionId;
 		this.transactionTypeId = transactionTypeId;
 		this.accountId = accountId;
 		this.timeStamp = timeStamp;
