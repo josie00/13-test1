@@ -17,8 +17,6 @@ public class Transaction {
 	private long transactionId;
 	private long transactionTypeId;
 	
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
 	private long accountId;
 	private Date timeStamp;
 	private long loanId;

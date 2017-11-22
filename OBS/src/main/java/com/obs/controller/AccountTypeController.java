@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.obs.databean.Account;
 import com.obs.databean.AccountType;
+import com.obs.repository.AccountRepository;
 import com.obs.repository.AccountTypeRepository;
 
 
@@ -17,7 +19,7 @@ public class AccountTypeController {
 	
 	@GetMapping("/api")
 	public String test(Model model) {
-		AccountType at = new AccountType("checking", 0.1);	
+		AccountType at = new AccountType("checking", 0.1);
 		atp.save(at);
 		return "index";
 	}

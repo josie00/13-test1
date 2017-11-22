@@ -14,15 +14,10 @@ public class Account {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@OneToMany(mappedBy = "account")
 	private long accountId;
     
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "accountType_id")
 	private AccountType accountType;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
 	private long customerId;
 	private double balance;
 	private String status;

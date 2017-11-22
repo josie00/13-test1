@@ -17,15 +17,11 @@ public class AccountType {
 	private String name;
 	private double rate;
 	
-	@OneToMany(mappedBy = "accountType", cascade = CascadeType.ALL)
-	private Set<Account> accounts;
-	
 	protected AccountType() {}
 
-	public AccountType(String name, double rate, Set<Account> accounts) {
+	public AccountType(String name, double rate) {
 		this.name = name;
 		this.rate = rate;
-		this.accounts = accounts;
 	}
 
 	@Override
