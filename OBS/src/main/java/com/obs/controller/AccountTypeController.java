@@ -19,7 +19,7 @@ public class AccountTypeController {
 	
 	@GetMapping("/api")
 	public String test(Model model) {
-		AccountType at = new AccountType("checking", 0.1);
+		AccountType at = new AccountType("checking", 0.1, null);
 		atp.save(at);
 		return "index";
 	}

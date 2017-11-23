@@ -17,12 +17,17 @@ public class Account {
 	private long accountId;
 	private double balance;
 	private String status;
+
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "account_type_id")
+	private AccountType accountType;
 	
 	protected Account() {}
 
-	public Account(double balance, String status) {
+	public Account(double balance, String status, AccountType accountType) {
 		this.balance = balance;
 		this.status = status;
+		this.accountType = accountType;
 	}
 
 	@Override
