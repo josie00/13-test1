@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,7 +16,6 @@ public class Transaction {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private long transactionId;
-	private long transactionTypeId;
 	
 	private long accountId;
 	private Date timeStamp;
@@ -23,11 +23,15 @@ public class Transaction {
 	private double amount;
 	private String description;
 	
+	@ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "transaction_type_id")
+	private TransactionType transactionType;
+	
 	protected Transaction() {}
 
-	public Transaction(long transactionTypeId, long accountId, Date timeStamp, long loanId,
+	public Transaction(TransactionType transactionType, long accountId, Date timeStamp, long loanId,
 			double amount, String description) {
-		this.transactionTypeId = transactionTypeId;
+		this.transactionType = transactionType;
 		this.accountId = accountId;
 		this.timeStamp = timeStamp;
 		this.loanId = loanId;
@@ -37,7 +41,7 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", transactionTypeId=" + transactionTypeId
+		return "Transaction [transactionId=" + transactionId + ", transactionType=" + transactionType
 				+ ", accountId=" + accountId + ", timeStamp=" + timeStamp + ", loanId=" + loanId + ", amount=" + amount
 				+ ", description=" + description + "]";
 	}
