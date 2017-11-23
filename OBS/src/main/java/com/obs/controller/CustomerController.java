@@ -36,13 +36,14 @@ public class CustomerController {
 	
 	@GetMapping("/register")
 	public String registerPage(Model model) {
-		model.addAttribute("customer", new LoginForm());
+		model.addAttribute("registerForm", new RegisterForm());
 		return "register";
 	}
 	
 	@PostMapping("/register")
 	public String registerCustomer(@ModelAttribute RegisterForm registerForm) {
-		
+		System.out.println(registerForm.getFirstName());
+		System.out.println(registerForm.getEmail());
 		return "register";
 	}
 
