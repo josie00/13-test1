@@ -40,7 +40,7 @@ public class CustomerController {
 			System.out.println(c.getUserName());
 			if (loginForm.getPassword().equals(c.getPassword())) {
 				 session.setAttribute("customer", c);
-				return "loginConfirmation";
+				 return "redirect:loginConfirmation";
 			} else {
 				return "home";
 			}

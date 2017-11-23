@@ -158,7 +158,7 @@
                                 </span>
                             </div>
                             <div class="form-theme">
-                                <form action="login-confirmation.html" th:action="@{/login}" th:object="${loginForm}" method="post">
+                                <form th:action="@{/login}" th:object="${loginForm}" method="post">
                                     <input type="text" placeholder="Username" th:field="*{userName}" class="input">
                                     <input type="password" placeholder="Password" th:field="*{password}" class="input">
                                     <input type="submit" class="btn" value="Login">
