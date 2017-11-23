@@ -23,6 +23,7 @@ public class Customer {
     private String lastName;
     private String street;
     private String city;
+    private String state;
     private String zip;
     private String phone;
     private String dateOfBirth;
@@ -32,12 +33,11 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Account> accounts;
     
-    
     protected Customer() {}
 
-	public Customer(String userName, String email, String password, String firstName, String lastName,
-			String street, String city, String zip, String phone, String dateOfBirth, String ssn,
-			String driverLicense) {
+	public Customer(String userName, String email, String password, String firstName, String lastName, String street,
+			String city, String state, String zip, String phone, String dateOfBirth, String ssn, String driverLicense,
+			Set<Account> accounts) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -45,26 +45,21 @@ public class Customer {
 		this.lastName = lastName;
 		this.street = street;
 		this.city = city;
+		this.state = state;
 		this.zip = zip;
 		this.phone = phone;
 		this.dateOfBirth = dateOfBirth;
 		this.ssn = ssn;
 		this.driverLicense = driverLicense;
+		this.accounts = accounts;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + customerId + ", userName=" + userName + ", email=" + email + ", password=" + password
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street + ", city=" + city
-				+ ", zip=" + zip + ", phone=" + phone + ", dateOfBirth=" + dateOfBirth + ", ssn=" + ssn
-				+ ", driverLicense=" + driverLicense + "]";
+		return "Customer [customerId=" + customerId + ", userName=" + userName + ", email=" + email + ", password="
+				+ password + ", firstName=" + firstName + ", lastName=" + lastName + ", street=" + street + ", city="
+				+ city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", dateOfBirth=" + dateOfBirth
+				+ ", ssn=" + ssn + ", driverLicense=" + driverLicense + ", accounts=" + accounts + "]";
 	}
-	
-	
-    
-  
-    
-    
     
 }

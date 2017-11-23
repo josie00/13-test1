@@ -25,17 +25,21 @@ public class Loan {
 	private Set<Transaction> transactions;
 	
 	protected Loan() {}
-	
-	public Loan(double loanInterestRate, Date startDate, double duePayment, double loanDurationbyMonth) {
+
+	public Loan(double loanInterestRate, Date startDate, double duePayment, double loanDurationbyMonth,
+			Set<Transaction> transactions) {
 		this.loanInterestRate = loanInterestRate;
 		this.startDate = startDate;
 		this.duePayment = duePayment;
 		this.loanDurationbyMonth = loanDurationbyMonth;
+		this.transactions = transactions;
 	}
 
 	@Override
 	public String toString() {
 		return "Loan [loanId=" + loanId + ", loanInterestRate=" + loanInterestRate + ", startDate=" + startDate
-				+ ", duePayment=" + duePayment + ", loanDurationbyMonth=" + loanDurationbyMonth + "]";
+				+ ", duePayment=" + duePayment + ", loanDurationbyMonth=" + loanDurationbyMonth + ", transactions="
+				+ transactions + "]";
 	}
+
 }

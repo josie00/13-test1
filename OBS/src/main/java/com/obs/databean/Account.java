@@ -23,35 +23,29 @@ public class Account {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
 	private AccountType accountType;
-    
-
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    private Set<Transaction> transactions;
-	
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
 	private Customer customer;
-    
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Transaction> transactions;
 
 	protected Account() {}
 
-	public Account(double balance, String status, AccountType accountType, Set<Transaction> transactions) {
+	public Account(double balance, String status, AccountType accountType, Customer customer,
+			Set<Transaction> transactions) {
 		this.balance = balance;
 		this.status = status;
 		this.accountType = accountType;
+		this.customer = customer;
 		this.transactions = transactions;
 	}
 
 	@Override
 	public String toString() {
 		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", accountType="
-				+ accountType + ", transactions=" + transactions + "]";
+				+ accountType + ", customer=" + customer + ", transactions=" + transactions + "]";
 	}
-
-	
-
-
-	
 	
 }

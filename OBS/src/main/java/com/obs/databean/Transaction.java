@@ -19,16 +19,14 @@ public class Transaction {
 
 	private Date timeStamp;
 	private double amount;
-	private String description;
 	
 	@ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "transaction_type_id")
 	private TransactionType transactionType;
 	
-
-	 @ManyToOne(cascade= CascadeType.ALL)
-	    @JoinColumn(name = "account_id")
-	 private Account account;
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "account_id")
+	private Account account;
 
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "employee_id")
@@ -37,24 +35,27 @@ public class Transaction {
 	@ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "loan_id")
 	private Loan loan;
+
+	private String description;
 	
 	protected Transaction() {}
 
-	public Transaction(TransactionType transactionType, Date timeStamp, double amount, String description, Account account) {
-		this.transactionType = transactionType;
+	public Transaction(Date timeStamp, double amount, TransactionType transactionType, Account account,
+			Employee employee, Loan loan, String description) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
-		this.description = description;
+		this.transactionType = transactionType;
 		this.account = account;
+		this.employee = employee;
+		this.loan = loan;
+		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp
-				 + ", amount=" + amount + ", description=" + description + ", transactionType="
-				+ transactionType + ", account=" + account + "]";
+		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
+				+ ", transactionType=" + transactionType + ", account=" + account + ", employee=" + employee + ", loan="
+				+ loan + ", description=" + description + "]";
 	}
-
-	
 	
 }
