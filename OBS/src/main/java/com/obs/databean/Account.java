@@ -1,4 +1,6 @@
 package com.obs.databean;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,19 +23,26 @@ public class Account {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
 	private AccountType accountType;
+    
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Transaction> transactions;
 	
 	protected Account() {}
 
-	public Account(double balance, String status, AccountType accountType) {
+	public Account(double balance, String status, AccountType accountType, Set<Transaction> transactions) {
 		this.balance = balance;
 		this.status = status;
 		this.accountType = accountType;
+		this.transactions = transactions;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + "]";
+		return "Account [accountId=" + accountId + ", balance=" + balance + ", status=" + status + ", accountType="
+				+ accountType + ", transactions=" + transactions + "]";
 	}
+
+	
 
 
 	
