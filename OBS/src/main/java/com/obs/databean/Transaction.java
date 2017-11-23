@@ -36,18 +36,92 @@ public class Transaction {
     @JoinColumn(name = "loan_id")
 	private Loan loan;
 
+	private String confirmationNumber;
 	private String description;
 	
 	protected Transaction() {}
 
 	public Transaction(Date timeStamp, double amount, TransactionType transactionType, Account account,
-			Employee employee, Loan loan, String description) {
+			Employee employee, Loan loan, String confirmationNumber, String description) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
 		this.transactionType = transactionType;
 		this.account = account;
 		this.employee = employee;
 		this.loan = loan;
+		this.confirmationNumber=confirmationNumber;
+		this.description = description;
+	}
+
+	public long getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(long transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public TransactionType getTransactionType() {
+		return transactionType;
+	}
+
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+	public String getConfirmationNumber() {
+		return confirmationNumber;
+	}
+
+	public void setConfirmationNumber(String confirmationNumber) {
+		this.confirmationNumber = confirmationNumber;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -55,7 +129,8 @@ public class Transaction {
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
 				+ ", transactionType=" + transactionType + ", account=" + account + ", employee=" + employee + ", loan="
-				+ loan + ", description=" + description + "]";
+				+ loan + ", confirmationNumber=" + confirmationNumber + ", description=" + description + "]";
 	}
+
 	
 }
