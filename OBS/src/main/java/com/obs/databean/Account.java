@@ -1,7 +1,9 @@
 package com.obs.databean;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +25,14 @@ public class Account {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
 	private AccountType accountType;
+    
+    @Column(unique=true)
+    private String accountNumber;
+    private String peRoutingNumber;
+    private String wireRoutingNumber;
+    private Date openDate;
+    
+    
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
