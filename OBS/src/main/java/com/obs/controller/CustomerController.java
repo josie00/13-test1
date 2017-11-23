@@ -23,7 +23,7 @@ public class CustomerController {
 	
 	@GetMapping("/home")
 	public String home(Model model) {
-		model.addAttribute("login", new LoginForm());
+		model.addAttribute("loginForm", new LoginForm());
 		return "index";
 	}
 	
