@@ -33,6 +33,10 @@ public class Transaction {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private Employee employee;
+    
+	@ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "loan_id")
+	private Loan loan;
 	
 	protected Transaction() {}
 
