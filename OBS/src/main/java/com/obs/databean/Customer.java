@@ -1,5 +1,6 @@
 package com.obs.databean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Customer {
+public class Customer implements Serializable {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
