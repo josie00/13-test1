@@ -1,16 +1,21 @@
 package com.obs.databean;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long customerId;
+    private long customerId;
 	private String userName;
 	private String email;
 	private String password;
@@ -23,6 +28,9 @@ public class Customer {
     private String dateOfBirth;
     private String ssn;
     private String driverLicense;
+
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Account> accounts;
     
     
     protected Customer() {}

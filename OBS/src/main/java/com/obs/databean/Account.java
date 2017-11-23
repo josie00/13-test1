@@ -21,7 +21,11 @@ public class Account {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
 	private AccountType accountType;
-	
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+	private Customer customer;
+    
 	protected Account() {}
 
 	public Account(double balance, String status, AccountType accountType) {
