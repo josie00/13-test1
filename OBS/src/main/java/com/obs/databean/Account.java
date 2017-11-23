@@ -24,9 +24,16 @@ public class Account {
     @JoinColumn(name = "account_type_id")
 	private AccountType accountType;
     
+
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private Set<Transaction> transactions;
 	
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+	private Customer customer;
+    
+
 	protected Account() {}
 
 	public Account(double balance, String status, AccountType accountType, Set<Transaction> transactions) {

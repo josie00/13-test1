@@ -25,9 +25,14 @@ public class Transaction {
     @JoinColumn(name = "transaction_type_id")
 	private TransactionType transactionType;
 	
+
 	 @ManyToOne(cascade= CascadeType.ALL)
 	    @JoinColumn(name = "account_id")
-	private Account account;
+	 private Account account;
+
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 	
 	protected Transaction() {}
 
