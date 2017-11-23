@@ -44,6 +44,7 @@ public class CustomerController {
 	public String registerCustomer(@ModelAttribute RegisterForm registerForm) {
 		System.out.println(registerForm.getFirstName());
 		System.out.println(registerForm.getEmail());
+		System.out.println(registerForm.getState());
 		return "register";
 	}
 

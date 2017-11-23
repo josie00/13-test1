@@ -334,13 +334,13 @@
                                           <p class="col-md-6"><input type="text" th:field="*{password}" placeholder="Password" name="password" id="password" required=""></p>
                                         </div>
                                         <div class="row">
-                                          <p class="col-md-6"><input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" name="phoneNumber" id="phoneNumber" required=""></p>
-                                          <p class="col-md-6"><input type="date" th:field="*{dateOfBirth}" placeholder="Date of Birth" name="dateOfBirth" iddateOfBirth required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{phone}" placeholder="Phone Number" name="phone" id="phone" required=""></p>
+                                          <p class="col-md-6"><input type="date" th:field="*{dateOfBirth}" placeholder="Date of Birth" name="dateOfBirth" id="dateOfBirth" required=""></p>
                                         </div>
 
                                         <div class="row">
                                           <p class="col-md-6"><input type="text" th:field="*{email}" placeholder="Email" name="email" id="email" required=""></p>
-                                          <p class="col-md-6"><input type="text" th:field="*{driverLicense}" placeholder="Driver's License" name="driverLicense" id="driverLicense" required="driverLicense"></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{driverLicense}" placeholder="Driver's License" name="driverLicense" id="driverLicense" required=""></p>
                                         </div>
 
                                         <div class="row">
@@ -352,7 +352,7 @@
                                         <div class="row">
                                           <p class="col-md-4"><input type="text" th:field="*{city}" placeholder="City" name="city" id="city" required=""></p>
                                           <p class="col-md-4 gender-wrap">
-                                            <select>
+                                            <select th:field="*{state}">
                                               <option value="0" selected="" disabled="">Choose State</option>
                                               <option value="PA">PA</option>
                                               <option value="CA">CA</option>
