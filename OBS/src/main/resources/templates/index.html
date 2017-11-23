@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -158,9 +158,9 @@
                                 </span>
                             </div>
                             <div class="form-theme">
-                                <form action="login-confirmation.html">
-                                    <input type="text" placeholder="Username" class="input">
-                                    <input type="password" placeholder="Password" class="input">
+                                <form action="login-confirmation.html" th:action="@{/login}" th:object="${loginForm}" method="post">
+                                    <input type="text" placeholder="Username" th:field="*{userName}" class="input">
+                                    <input type="password" placeholder="Password" th:field="*{password}" class="input">
                                     <input type="submit" class="btn" value="Login">
                                 </form>
                             </div>

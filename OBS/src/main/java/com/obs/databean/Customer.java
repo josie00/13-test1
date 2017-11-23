@@ -1,8 +1,10 @@
 package com.obs.databean;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,8 @@ public class Customer {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long customerId;
+	
+	@Column(unique=true)
 	private String userName;
 	private String email;
 	private String password;
@@ -26,7 +30,7 @@ public class Customer {
     private String state;
     private String zip;
     private String phone;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String ssn;
     private String driverLicense;
 
@@ -36,7 +40,7 @@ public class Customer {
     protected Customer() {}
 
 	public Customer(String userName, String email, String password, String firstName, String lastName, String street,
-			String city, String state, String zip, String phone, String dateOfBirth, String ssn, String driverLicense,
+			String city, String state, String zip, String phone, Date dateOfBirth, String ssn, String driverLicense,
 			Set<Account> accounts) {
 		this.userName = userName;
 		this.email = email;
