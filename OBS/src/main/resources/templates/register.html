@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -323,43 +323,43 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form action="#non" method="post" class="fcorn-register container">
+                                    <form action="#" th:action="@{/register}" th:object="${registerForm}" method="post" class="fcorn-register container">
                                         <p class="register-info">Note: All fields are required.</p>
                                         <div class="row">
-                                          <p class="col-md-6"><input type="text" placeholder="First Name" name="firstName" id="firstName" required=""></p>
-                                          <p class="col-md-6"><input type="text" placeholder="Last Name" name="lastName" id="lastName" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{firstName}" placeholder="First Name" name="firstName" id="firstName" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{lastName}" placeholder="Last Name" name="lastName" id="lastName" required=""></p>
                                         </div>
                                         <div class="row">
-                                          <p class="col-md-6"><input type="text" placeholder="User Name" name="userName" id="userName" required=""></p>
-                                          <p class="col-md-6"><input type="text" placeholder="Password" name="password" id="password" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{userName}" placeholder="User Name" name="userName" id="userName" required=""></p>
+                                          <p class="col-md-6"><input type="password" th:field="*{password}" placeholder="Password" name="password" id="password" required=""></p>
                                         </div>
                                         <div class="row">
-                                          <p class="col-md-6"><input type="text" placeholder="Phone Number" name="phoneNumber" id="phoneNumber" required=""></p>
-                                          <p class="col-md-6"><input type="date" placeholder="Date of Birth" name="dateOfBirth" iddateOfBirth required=""></p>
-                                        </div>
-
-                                        <div class="row">
-                                          <p class="col-md-6"><input type="text" placeholder="Email" name="email" id="email" required=""></p>
-                                          <p class="col-md-6"><input type="text" placeholder="Driver's License" name="driverLicense" id="" required="driverLicense"></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{phone}" placeholder="Phone Number" name="phone" id="phone" required=""></p>
+                                          <p class="col-md-6"><input type="date" th:field="*{dateOfBirth}" placeholder="Date of Birth" name="dateOfBirth" id="dateOfBirth" required=""></p>
                                         </div>
 
                                         <div class="row">
-                                          <p class="col-md-6"><input type="text" placeholder="SSN" name="ssn" id="ssn" required=""></p>
-                                          <p class="col-md-6"><input type="text" placeholder="Street" name="street" id="street" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{email}" placeholder="Email" name="email" id="email" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{driverLicense}" placeholder="Driver's License" name="driverLicense" id="driverLicense" required=""></p>
+                                        </div>
+
+                                        <div class="row">
+                                          <p class="col-md-6"><input type="text" th:field="*{ssn}" placeholder="SSN" name="ssn" id="ssn" required=""></p>
+                                          <p class="col-md-6"><input type="text" th:field="*{street}" placeholder="Street" name="street" id="street" required=""></p>
 
                                         </div>
 
                                         <div class="row">
-                                          <p class="col-md-4"><input type="text" placeholder="City" required=""></p>
+                                          <p class="col-md-4"><input type="text" th:field="*{city}" placeholder="City" name="city" id="city" required=""></p>
                                           <p class="col-md-4 gender-wrap">
-                                            <select>
+                                            <select th:field="*{state}">
                                               <option value="0" selected="" disabled="">Choose State</option>
                                               <option value="PA">PA</option>
                                               <option value="CA">CA</option>
                                               <option value="NY">NY</option>
                                             </select>
                                           </p>
-                                          <p class="col-md-4"><input type="text" placeholder="Zip" required=""></p>
+                                          <p class="col-md-4"><input type="text" th:field="*{zip}" placeholder="Zip" name="zip" id="zip" required=""></p>
                                         </div>
 
                                         <p class="register-toggle">
