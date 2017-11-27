@@ -250,6 +250,7 @@
                   </div>
               </nav>
               <!-- End Nav-->
+
                 <!-- Info Content - Section Title-->
                 <div class="content_info">
                     <!-- Info Section title-->
@@ -257,7 +258,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Accounts</h3>
+                                    <h3>Loan</h3>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +283,6 @@
                             <li>
                                 Accounts
                             </li>
-                            
                         </ul>
                     </div>
                     <!-- End breadcrumbs-->
@@ -305,8 +305,8 @@
                                     <div class="panel panel-default">
                                       <!-- List group -->
                                       <ul class="list-group">
-                                        <li class="list-group-item"><a href="#">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="#">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
@@ -322,13 +322,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Banking Accounts</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Overview</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Mortgage/Loan Plans</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Submit Application</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Budgeting/Spending Analysis</a>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Track Applications</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -337,41 +337,173 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class="container">
-                                            <b>Checking Account</b>-2333<br>
-                                            Balance: $2,343
+                                          <div class = "container">
+                                            <h3>Account Details </h3>
+                                            <br>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Loan Name: </b></div>
+                                              <div class="col-sm-5">48-Month Loan Plan</div>
+                                            </div>
                                             <br><br>
-                                            <a href="checking.html" type="button" class="btn btn-success">View Details</a>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Loan Number: </b></div>
+                                              <div class="col-sm-5">123456782520</div>
+                                            </div>
                                             <br><br>
-                                            <b>Saving Account</b>-1414<br>
-                                            Balance: $5,234
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Interest Rate: </b></div>
+                                              <div class="col-sm-5">5%</div>
+                                            </div>
                                             <br><br>
-                                            <a href="saving.html" type="button" class="btn btn-success">View Details</a>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Current Due: </b></div>
+                                              <div class="col-sm-5">$332</div>
+                                            </div>
+                                            <br><br>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Due Date: </b></div>
+                                              <div class="col-sm-5">12/28/2017</div>
+                                            </div>
+                                            <br><br>
+                                            <button type="button" class="btn btn-success">Pay Due Now</button>
+                                            <button type="button" class="btn btn-warning">Set Up Auto Payment</button>
+                                            <br><br>
                                           </div>
                                         </div>
                                         <!-- tab-Item-1-->
 
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class="container">
-                                            Budgeting/ Spending Analysis
+                                          <div class = "container">
+                                            <h3>New Application</h3>
+                                            <br>
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Amount Requested:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Purpose:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>First Name:</label>
+                                                  <input type="text" class="form-control" id="Amount" value="Federick">
+                                              </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Last Name:</label>
+                                                  <input type="text" class="form-control" id="Amount" value="Gordon">
+                                              </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Driver's License:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Driver's License:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Employer's Name:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Your Title:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Company Contact:</label>
+                                                  <input type="text" class="form-control" id="Amount" placeholder="xxx-xxx-xxxx">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Starting Date:</label>
+                                                  <input type="date" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <div class="row">
+                                              <div class="col-sm-4">
+                                                  <label>Your Salary:</label>
+                                                  <input type="text" class="form-control" id="Amount">
+                                              </div>
+                                            </div>
+                                            <br><br>
+
+                                            <button type="button" class="btn btn-success">Submit New Application</button>
+                                            <br><br>
+
                                           </div>
                                         </div>
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <div class="container">
-                                            <b>48-Month Loan Plan</b>-2520<br>
-                                            Due Payment: <b>$332</b> by Dec 28th, 2017
-                                            <br><br>
-                                            <a href="loan.html" type="button" class="btn btn-success">View Details</a>
-                                            <br><br>
-                                            <b>360-Month Mortgage</b>-7321<br>
-                                            Due Payment: <b>$1,000</b> by Dec 26th, 2017
-                                            <br><br>
-                                            <a href="mortgage.html" type="button" class="btn btn-success">View Details</a>
-                                          </div>
+                                          <table class="table table-striped">
+                                            <thead>
+                                               <tr>
+                                                 <td><b>Application ID</b></td>
+                                                 <td><b>Description</b></td>
+                                                 <td><b>Date<b></td>
+                                                 <td><b>Status<b></td>
+                                               </tr>
+                                              <thead>
+                                              <tr>
+                                                <td>23451232</td>
+                                                <td>36-Month Auto Loan </td>
+                                                <td>10/03/2017</td>
+                                                <td><span class="label label-warning">Processing</span></td>
+                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
+                                              </tr>
+                                              <tr>
+                                                <td>13454382</td>
+                                                <td>12-Month Personal Loan </td>
+                                                <td>09/27/2017</td>
+                                                <td><span class="label label-danger">Declined</span></td>
+                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
+                                              </tr>
+                                              <tr>
+                                                <td>23404382</td>
+                                                <td>48-Month Education Loan </td>
+                                                <td>09/02/2017</td>
+                                                <td><span class="label label-success">Approved</span></td>
+                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
+                                              </tr>
+                                          </table>
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>

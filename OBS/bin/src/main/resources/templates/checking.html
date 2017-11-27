@@ -250,6 +250,7 @@
                   </div>
               </nav>
               <!-- End Nav-->
+
                 <!-- Info Content - Section Title-->
                 <div class="content_info">
                     <!-- Info Section title-->
@@ -257,7 +258,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Accounts</h3>
+                                    <h3>Checking</h3>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +283,6 @@
                             <li>
                                 Accounts
                             </li>
-                            
                         </ul>
                     </div>
                     <!-- End breadcrumbs-->
@@ -305,8 +305,8 @@
                                     <div class="panel panel-default">
                                       <!-- List group -->
                                       <ul class="list-group">
-                                        <li class="list-group-item"><a href="#">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="#">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
@@ -322,13 +322,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Banking Accounts</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Activity</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Mortgage/Loan Plans</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Statements & Documents</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Budgeting/Spending Analysis</a>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Information & Services</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -337,41 +337,237 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class="container">
-                                            <b>Checking Account</b>-2333<br>
-                                            Balance: $2,343
-                                            <br><br>
-                                            <a href="checking.html" type="button" class="btn btn-success">View Details</a>
-                                            <br><br>
-                                            <b>Saving Account</b>-1414<br>
-                                            Balance: $5,234
-                                            <br><br>
-                                            <a href="saving.html" type="button" class="btn btn-success">View Details</a>
-                                          </div>
+                                          <table class="table table-striped">
+                                            <thead>
+                                               <tr>
+                                                 <td><b>Date</b></td>
+                                                 <td><b>Description</b></td>
+                                                 <td><b>Type<b></td>
+                                                 <td style="width: 100px"><b>Status<b></td>
+                                                 <td><b>Amount<b></td>
+                                                  <td><b>Balance<b></td>
+                                               </tr>
+                                              <thead>
+                                               <tr>
+                                                 <td>11/13/2017</td>
+                                                 <td>	VENMO DES:PAYMENT ID:XXXXX1456 INDN:JOSIE LIU CO ID:XXXXX81992 WEB</td>
+                                                 <td>Other</td>
+                                                 <td><span class="label label-warning">Processing</span></td>
+                                                 <td>-30.00</td>
+                                                 <td>2,884.64</td>
+                                               </tr>
+                                               <tr>
+                                                 <td>11/12/2017</td>
+                                                 <td>BARCLAYCARD US DES:CREDITCARD ID:XXXXX3972 INDN:JOSIE LIU CO ID:XXXXX07970 WEB</td>
+                                                 <td>Other</td>
+                                                 <td><span class="label label-success">Clear</span></td>
+                                                 <td>-284.19</td>
+                                                 <td>2,914.64</td>
+                                               </tr>
+                                               <tr>
+                                                 <td>11/12/2017</td>
+                                                 <td>Online Banking transfer from SAV 3038 Confirmation# 2541880513</td>
+                                                 <td>Transfer</td>
+                                                 <td><span class="label label-success">Clear</span></td>
+                                                 <td>+1,000.00</td>
+                                                 <td>3,198.83</td>
+                                               </tr>
+                                           </table>
+                                           &nbsp;&nbsp;&nbsp;&nbsp;<b>Statement as of 11/09/2017</b>
+                                           <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                  <td><b>Date</b></td>
+                                                  <td><b>Description</b></td>
+                                                  <td><b>Type<b></td>
+                                                  <td style="width: 100px"><b>Status<b></td>
+                                                  <td><b>Amount<b></td>
+                                                   <td><b>Balance<b></td>
+                                                </tr>
+                                               <thead>
+                                                <tr>
+                                                  <td>11/08/2017</td>
+                                                  <td>BKOFAMERICA MOBILE 11/08 3615725985 DEPOSIT *MOBILE VA</td>
+                                                  <td>Deposit</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>-30.00</td>
+                                                  <td>2,210.83</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>11/06/2017</td>
+                                                  <td>VENMO DES:PAYMENT ID:XXXXX8738 INDN:JOSIE LIU CO ID:XXXXX81992 WEB</td>
+                                                  <td>Other</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>-89.94</td>
+                                                  <td>2,182.30</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>11/05/2017</td>
+                                                  <td>VENMO DES:CASHOUT ID:XXXXX3351 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                  <td>Deposit</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>+500.00</td>
+                                                  <td>2,682.30</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>10/30/2017</td>
+                                                  <td>Mobile/Email Transfer Conf# 000084573; AMY WANG</td>
+                                                  <td>Transfer</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>+5.00</td>
+                                                  <td>2,687.30</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>10/23/2017</td>
+                                                  <td>BARCLAYCARD US DES:CREDITCARD ID:XXXXX2339 INDN:XIAOXI LIU CO ID:XXXXX07970 WEB</td>
+                                                  <td>Other</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>-800.00</td>
+                                                  <td>1,887.30</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>10/20/2017</td>
+                                                  <td>VENMO DES:CASHOUT ID:XXXXX1330 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                  <td>Deposit</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>+200.00</td>
+                                                  <td>2,087.30</td>
+                                                </tr>
+                                            </table>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<b>Statement as of 10/11/2017 </b>
+                                            <table class="table table-striped">
+                                              <thead>
+                                                 <tr>
+                                                   <td><b>Date</b></td>
+                                                   <td><b>Description</b></td>
+                                                   <td><b>Type<b></td>
+                                                   <td style="width: 100px"><b>Status<b></td>
+                                                   <td><b>Amount<b></td>
+                                                    <td><b>Balance<b></td>
+                                                 </tr>
+                                                <thead>
+                                                 <tr>
+                                                   <td>10/08/2017</td>
+                                                   <td>BKOFAMERICA MOBILE 11/08 3615725985 DEPOSIT *MOBILE VA</td>
+                                                   <td>Deposit</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>-30.00</td>
+                                                   <td>2,210.83</td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td>10/07/2017</td>
+                                                   <td>VENMO DES:PAYMENT ID:XXXXX8738 INDN:JOSIE LIU CO ID:XXXXX81992 WEB</td>
+                                                   <td>Other</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>-89.94</td>
+                                                   <td>2,182.30</td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td>09/27/2017</td>
+                                                   <td>VENMO DES:CASHOUT ID:XXXXX3351 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                   <td>Deposit</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>+500.00</td>
+                                                   <td>2,682.30</td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td>09/21/2017</td>
+                                                   <td>Mobile/Email Transfer Conf# 000084573; AMY WANG</td>
+                                                   <td>Transfer</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>+5.00</td>
+                                                   <td>2,687.30</td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td>09/17/2017</td>
+                                                   <td>BARCLAYCARD US DES:CREDITCARD ID:XXXXX2339 INDN:XIAOXI LIU CO ID:XXXXX07970 WEB</td>
+                                                   <td>Other</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>-800.00</td>
+                                                   <td>1,887.30</td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td>09/15/2017</td>
+                                                   <td>VENMO DES:CASHOUT ID:XXXXX1330 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                   <td>Deposit</td>
+                                                   <td><span class="label label-success">Clear</span></td>
+                                                   <td>+200.00</td>
+                                                   <td>2,087.30</td>
+                                                 </tr>
+                                             </table>
                                         </div>
                                         <!-- tab-Item-1-->
 
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class="container">
-                                            Budgeting/ Spending Analysis
-                                          </div>
+                                          <table class="table table-striped">
+                                            <thead>
+                                               <tr>
+                                                 <td><b>Received</b></td>
+                                                 <td><b>Name</b></td>
+                                               </tr>
+                                              <thead>
+                                                <tr>
+                                                  <td>11/08/2017</td>
+                                                  <td>November 08, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>10/10/2017</td>
+                                                  <td>October 10, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>09/11/2017</td>
+                                                  <td>September 11, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>08/12/2017</td>
+                                                  <td>August 12, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>07/12/2017</td>
+                                                  <td>July 12, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>06/13/2017</td>
+                                                  <td>June 13, 2017 Statement</td>
+                                                  <td><button type="button" class="btn btn-success btn-sm">View Statement</button></td>
+                                                </tr>
+                                          </table>
+
                                         </div>
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <div class="container">
-                                            <b>48-Month Loan Plan</b>-2520<br>
-                                            Due Payment: <b>$332</b> by Dec 28th, 2017
+                                          <div class = "container">
+                                            <h3>Account Details </h3>
+                                            <br>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Type: </b></div>
+                                              <div class="col-sm-5">Core Checking</div>
+                                            </div>
                                             <br><br>
-                                            <a href="loan.html" type="button" class="btn btn-success">View Details</a>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Account Number: </b></div>
+                                              <div class="col-sm-5">123456789012</div>
+                                            </div>
                                             <br><br>
-                                            <b>360-Month Mortgage</b>-7321<br>
-                                            Due Payment: <b>$1,000</b> by Dec 26th, 2017
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Routing Number: </b></div>
+                                              <div class="col-sm-5">023450017 (paper & electronic)<br>056780023 (wires)</div>
+                                            </div>
                                             <br><br>
-                                            <a href="mortgage.html" type="button" class="btn btn-success">View Details</a>
+                                            <div class = "row">
+                                              <div class="col-sm-5"><b>Account Opened Date: </b></div>
+                                              <div class="col-sm-5">08/16/2011</div>
+                                            </div>
                                           </div>
+                                          <br><br>
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>
