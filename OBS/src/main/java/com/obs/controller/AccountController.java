@@ -1,9 +1,7 @@
 package com.obs.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,10 +48,11 @@ public class AccountController {
 	}
 	
 	@GetMapping("accounts/{accountId}")
-	public Account getAccount(@PathVariable String accountId) {
+	public String getAccount(@PathVariable String accountId) {
 		long id = Long.parseLong(accountId.trim());
 		Account account = ar.findOne(id);	
-		return account;
+		System.out.println(account.getAccountNumber());
+		return "checking";
 	}
 	
 	
