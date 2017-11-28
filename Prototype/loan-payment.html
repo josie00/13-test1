@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -258,7 +259,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Bill Payment</h3>
+                                    <h3>Loan/Mortgage Payment</h3>
                                 </div>
                             </div>
                         </div>
@@ -306,8 +307,8 @@
                                       <!-- List group -->
                                       <ul class="list-group">
                                         <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
-                                        <li class="list-group-item"><a href="loan-payment.html">Mortgage/Loan Payment</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="loan.html">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
                                         <li class="list-group-item"><a href="personal-info.html">Update Personal Info</a></li>
@@ -322,7 +323,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Confirmation</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">One Time Payment</a>
+                                      </li>
+                                      <li role="presentation">
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Auto-Payment</a>
+                                      </li>
+                                      <li role="presentation">
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Payment History</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -331,41 +338,241 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                            <form action="success-bill-payment.html">
-                                            <div class = "container">
-                                                <h3>Are you sure you want to make this tranfer?</h3>
-                                                <br>
-                                                <div class = "row">
-                                                    <div class="col-sm-4"><b>From: </b></div>
-                                                    <div class="col-sm-4">Checking -1262</div>
-                                                </div>
-                                                <br>
+                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
+                                                
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="mine">
+                                                <form action="confirm-loan-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="myaccount">
+                                                                <option>Checking - 1262</option>
+                                                                <option>Savings - 1628</option>
+                                                                <option>Checking - 2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Loan/Mortgage Plan:</label>
+                                                            <select class="form-control" id="loanid">
+                                                                <option>48-Month Loan Plan-2520</option>
+                                                                <option>360-Month Mortgage-7321</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class = "row">
-                                                    <div class="col-sm-4"><b>To: </b></div>
-                                                    <div class="col-sm-4">Cr. Card Amex -1624</div>
-                                                </div>
-                                                <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="332.00">
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class = "row">
-                                                    <div class="col-sm-4"><b>Amount:</b></div>
-                                                    <div class="col-sm-4">$ 800</div>
-                                                </div>
-                                                <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Payment:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <div class = "row">
-                                                    <div class="col-sm-4"><b>Date:</b></div>
-                                                    <div class="col-sm-4">11/17/2017</div>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                    </div>
                                                 </div>
-                                                <br>
+                                                </form>
+                                                <div class="tab-pane fade in" id="others">
+                                                <form action="confirm-loan-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Checking -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
 
-                                                <button type="submit" class="btn btn-success">  Make Transfer  </button>
-                                                <button type="button" class="btn btn-warning">Don't Make Transfer</button>
-                                                <br><br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Loan/Mortgage Plan:</label>
+                                                            <select class="form-control" id="loanid">
+                                                                <option>48-Month Loan Plan-2520</option>
+                                                                <option>360-Month Mortgage-7321</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="332.00">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Payment:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                     </div>
+                                                </form>
+                                                </div>
                                             </div>
-                                            </form>
                                         </div>
                                         <!-- tab-Item-1-->
+
+                                        <!-- tab-Item-2-->
+                                        <div role="tabpanel" class="tab-pane fade in" id="tab2">
+                                        <form action="confirm-loan-payment.html">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                    <label>From:</label>
+                                                    <select class="form-control" id="account2">
+                                                        <option>Checking - 1262</option>
+                                                        <option>Savings - 1628</option>
+                                                        <option>Checking - 2367</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Loan/Mortgage Plan:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>48-Month Loan Plan-2520</option>
+                                                            <option>360-Month Mortgage-7321</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="10239939220"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Frequency:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>Monthly</option>
+                                                            <option>Seasonally</option>
+                                                            <option>Semiannually</option>
+                                                            <option>Annually</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="0430006"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Amount: $</label>
+                                                        <input type="text" class="form-control"  placeholder="332.00">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Date of First Payment:</label>
+                                                        <input type="date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Total Number of Payments:</label>
+                                                        <input type="number" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </form>
+                                        </div>
+                                        <!-- tab-Item-2-->
+
+                                        <!-- tab-Item-3-->
+                                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
+                                            <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                  <td><b>Date</b></td>
+                                                  <td><b>Description</b></td>
+                                                  <td><b>Account<b></td>
+                                                  <td style="width: 100px"><b>Status<b></td>
+                                                  <td><b>Amount<b></td>
+                                                   
+                                                </tr>
+                                               <thead>
+                                                <tr>
+                                                  <td>11/28/2017</td>
+                                                  <td>48-Month Loan Plan-2520</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>332.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>11/26/2017</td>
+                                                  <td>360-Month Mortgage-7321</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>1000.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/28/2017</td>
+                                                  <td>48-Month Loan Plan-2520</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>332.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/26/2017</td>
+                                                  <td>360-Month Mortgage-7321</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>1000.00</td>
+                                                  
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!-- tab-Item-3-->
                                     </div>
                                     <!-- End tab-content -->
                                 </div>
