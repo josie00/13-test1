@@ -15,7 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Account implements Serializable{
+
+public class Account implements Serializable {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

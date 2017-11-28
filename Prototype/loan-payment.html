@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -258,7 +259,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Loan</h3>
+                                    <h3>Loan/Mortgage Payment</h3>
                                 </div>
                             </div>
                         </div>
@@ -281,7 +282,7 @@
                                 /
                             </li>
                             <li>
-                                Accounts
+                                Bill Payment
                             </li>
                         </ul>
                     </div>
@@ -306,8 +307,8 @@
                                       <!-- List group -->
                                       <ul class="list-group">
                                         <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
-                                        <li class="list-group-item"><a href="#">Mortgage/Loan Payment</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="loan.html">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
                                         <li class="list-group-item"><a href="personal-info.html">Update Personal Info</a></li>
@@ -322,13 +323,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Overview</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">One Time Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Submit Application</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Auto-Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Track Applications</a>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Payment History</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -337,169 +338,239 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class = "container">
-                                            <h3>Account Details </h3>
-                                            <br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Loan Name: </b></div>
-                                              <div class="col-sm-5">48-Month Loan Plan</div>
+                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
+                                                
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="mine">
+                                                <form action="confirm-loan-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="myaccount">
+                                                                <option>Checking - 1262</option>
+                                                                <option>Savings - 1628</option>
+                                                                <option>Checking - 2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Loan/Mortgage Plan:</label>
+                                                            <select class="form-control" id="loanid">
+                                                                <option>48-Month Loan Plan-2520</option>
+                                                                <option>360-Month Mortgage-7321</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="332.00">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Payment:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                <div class="tab-pane fade in" id="others">
+                                                <form action="confirm-loan-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Checking -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Loan/Mortgage Plan:</label>
+                                                            <select class="form-control" id="loanid">
+                                                                <option>48-Month Loan Plan-2520</option>
+                                                                <option>360-Month Mortgage-7321</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="332.00">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Payment:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                     </div>
+                                                </form>
+                                                </div>
                                             </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Loan Number: </b></div>
-                                              <div class="col-sm-5">123456782520</div>
-                                            </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Interest Rate: </b></div>
-                                              <div class="col-sm-5">5%</div>
-                                            </div>
-                                            <br><br>
-                                              <div class = "row">
-                                                  <div class="col-sm-5"><b>Total Remaining Due: </b></div>
-                                                  <div class="col-sm-5">$15,000</div>
-                                              </div>
-                                              <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Current Due: </b></div>
-                                              <div class="col-sm-5">$332</div>
-                                            </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Next Due Date: </b></div>
-                                              <div class="col-sm-5">12/28/2017</div>
-                                            </div>
-                                            <br><br>
-                                              <a href="loan-payment.html" type="button" class="btn btn-success">Make a Payment</a>
-                                            <br><br>
-                                          </div>
                                         </div>
                                         <!-- tab-Item-1-->
 
                                         <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class = "container">
-                                            <h3>New Application</h3>
-                                            <br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Amount Requested:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Purpose:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
+                                        <form action="confirm-loan-payment.html">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                    <label>From:</label>
+                                                    <select class="form-control" id="account2">
+                                                        <option>Checking - 1262</option>
+                                                        <option>Savings - 1628</option>
+                                                        <option>Checking - 2367</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <br>
 
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>First Name:</label>
-                                                  <input type="text" class="form-control" id="Amount" value="Federick">
-                                              </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Loan/Mortgage Plan:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>48-Month Loan Plan-2520</option>
+                                                            <option>360-Month Mortgage-7321</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="10239939220"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Frequency:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>Monthly</option>
+                                                            <option>Seasonally</option>
+                                                            <option>Semiannually</option>
+                                                            <option>Annually</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="0430006"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Amount: $</label>
+                                                        <input type="text" class="form-control"  placeholder="332.00">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Date of First Payment:</label>
+                                                        <input type="date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Total Number of Payments:</label>
+                                                        <input type="number" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                    </div>
+                                                </div>
+                                                <br>
                                             </div>
-
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Last Name:</label>
-                                                  <input type="text" class="form-control" id="Amount" value="Gordon">
-                                              </div>
-                                            </div>
-
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Loan Type:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Employer's Name:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Your Title:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Company Contact:</label>
-                                                  <input type="text" class="form-control" id="Amount" placeholder="xxx-xxx-xxxx">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Starting Date:</label>
-                                                  <input type="date" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Your Salary:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <button type="button" class="btn btn-success">Submit New Application</button>
-                                            <br><br>
-
-                                          </div>
+                                        </form>
                                         </div>
                                         <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <table class="table table-striped">
-                                            <thead>
-                                               <tr>
-                                                 <td><b>Application ID</b></td>
-                                                 <td><b>Description</b></td>
-                                                 <td><b>Date<b></td>
-                                                 <td><b>Status<b></td>
-                                               </tr>
-                                              <thead>
-                                              <tr>
-                                                <td>23451232</td>
-                                                <td>36-Month Auto Loan </td>
-                                                <td>10/03/2017</td>
-                                                <td><span class="label label-warning">Processing</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                              <tr>
-                                                <td>13454382</td>
-                                                <td>12-Month Personal Loan </td>
-                                                <td>09/27/2017</td>
-                                                <td><span class="label label-danger">Declined</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                              <tr>
-                                                <td>23404382</td>
-                                                <td>48-Month Education Loan </td>
-                                                <td>09/02/2017</td>
-                                                <td><span class="label label-success">Approved</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                          </table>
+                                            <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                  <td><b>Date</b></td>
+                                                  <td><b>Description</b></td>
+                                                  <td><b>Account<b></td>
+                                                  <td style="width: 100px"><b>Status<b></td>
+                                                  <td><b>Amount<b></td>
+                                                   
+                                                </tr>
+                                               <thead>
+                                                <tr>
+                                                  <td>11/28/2017</td>
+                                                  <td>48-Month Loan Plan-2520</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>332.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>11/26/2017</td>
+                                                  <td>360-Month Mortgage-7321</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>1000.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/28/2017</td>
+                                                  <td>48-Month Loan Plan-2520</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>332.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/26/2017</td>
+                                                  <td>360-Month Mortgage-7321</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>1000.00</td>
+                                                  
+                                                </tr>
+                                            </table>
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>

@@ -1,4 +1,5 @@
 package com.obs.databean;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,7 +11,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class AccountType {
+public class AccountType implements Serializable {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,7 +32,7 @@ public class AccountType {
 
 	@Override
 	public String toString() {
-		return "AccountType [accountTypeId=" + accountTypeId + ", name=" + name + ", rate=" + rate + "]";
+		return name;
 	}
 	
 }
