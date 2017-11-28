@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -298,8 +298,9 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4>Federick Gordon</h4>
-                                        <span class="country"> Pittsburgh, US</span>
+                                      
+                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
+                                        <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
                                     </div>
 
                                     <div class="panel panel-default">
@@ -338,15 +339,18 @@
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
                                           <div class="container">
-                                            <b>Checking Account</b>-2333<br>
-                                            Balance: $2,343
-                                            <br><br>
-                                            <a href="checking.html" type="button" class="btn btn-success">View Details</a>
-                                            <br><br>
-                                            <b>Saving Account</b>-1414<br>
-                                            Balance: $5,234
-                                            <br><br>
-                                            <a href="saving.html" type="button" class="btn btn-success">View Details</a>
+                                          	<div th:each="account : ${accounts}">
+	                                            <b><div th:text="${account.accountType}"></div> Account</b>-2333<br>
+	                                            Balance: <div th:text="'$' + ${#numbers.formatDecimal(account.balance, 0, 'COMMA', 2, 'POINT')}"></div>
+	                                            <br><br>
+	                                            <a href="checking.html" type="button" class="btn btn-success">View Details</a>
+	                                            <br><br>
+	                                            <!-- <b>Saving Account</b>-1414<br>
+	                                            Balance: $5,234
+	                                            <br><br>
+	                                            <a href="saving.html" type="button" class="btn btn-success">View Details</a> -->
+                                            </div>
+                                            
                                           </div>
                                         </div>
                                         <!-- tab-Item-1-->

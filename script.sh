@@ -18,3 +18,5 @@ INSERT INTO transaction_type VALUES(3, 0, 'Transfer');
 INSERT INTO transaction_type VALUES(4, 0, 'Bill Pay');
 INSERT INTO transaction_type VALUES(5, 0, 'Loan Pay');
 INSERT INTO transaction_type VALUES(6, 0, 'Other');
+
+INSERT INTO transaction VALUES(1, 0, '', 'active', '2017-08-23',1, NULL, NULL, 2);

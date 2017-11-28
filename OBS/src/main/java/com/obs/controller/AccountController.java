@@ -1,5 +1,8 @@
 package com.obs.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,16 +33,18 @@ public class AccountController {
 	public String showAccount(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Customer c = (Customer) session.getAttribute("customer");
-
-		Set<Account> accounts = c.getAccounts();
+		System.out.println(c.getFirstName());
+		List<Account> accounts =  ar.findByCustomer_CustomerId(c.getCustomerId());
+		System.out.println(accounts.size());
+		List<Account> activeAccounts = new ArrayList<>();
 		for (Account account: accounts) {
-			if ("inactive".equals(account.getStatus())) {
-				accounts.remove(account);
+			if ("active".equals(account.getStatus())) {
+				activeAccounts.add(account);
 			}
 		}
 
 		model.addAttribute("customer", c);
-		model.addAttribute("accounts", accounts);
+		model.addAttribute("accounts", activeAccounts);
 		
 		return "accounts";
 	}
