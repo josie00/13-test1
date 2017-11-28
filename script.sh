@@ -13,8 +13,8 @@ INSERT INTO account VALUES(2, '584022343768',1300, '2016-04-23', '012902033','ac
 INSERT INTO account VALUES(3, '324532542148',0, '2015-05-12','034532345','inactive', '053213453', 1, 1);
 
 INSERT INTO transaction_type VALUES(1, 0, 'Withdraw');
-INSERT INTO transaction_type VALUES(1, 0, 'Deposit');
-INSERT INTO transaction_type VALUES(1, 0, 'Transfer');
-INSERT INTO transaction_type VALUES(1, 0, 'Bill Pay');
-INSERT INTO transaction_type VALUES(1, 0, 'Loan Pay');
-INSERT INTO transaction_type VALUES(1, 0, 'Other');
+INSERT INTO transaction_type VALUES(2, 0, 'Deposit');
+INSERT INTO transaction_type VALUES(3, 0, 'Transfer');
+INSERT INTO transaction_type VALUES(4, 0, 'Bill Pay');
+INSERT INTO transaction_type VALUES(5, 0, 'Loan Pay');
+INSERT INTO transaction_type VALUES(6, 0, 'Other');
