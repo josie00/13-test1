@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -250,6 +251,7 @@
                   </div>
               </nav>
               <!-- End Nav-->
+
                 <!-- Info Content - Section Title-->
                 <div class="content_info">
                     <!-- Info Section title-->
@@ -257,7 +259,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Accounts</h3>
+                                    <h3>Bill Payment</h3>
                                 </div>
                             </div>
                         </div>
@@ -280,9 +282,8 @@
                                 /
                             </li>
                             <li>
-                                Accounts
+                                Bill Payment
                             </li>
-                            
                         </ul>
                     </div>
                     <!-- End breadcrumbs-->
@@ -305,8 +306,8 @@
                                     <div class="panel panel-default">
                                       <!-- List group -->
                                       <ul class="list-group">
-                                        <li class="list-group-item"><a href="#">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="#">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
@@ -322,13 +323,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Banking Accounts</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">One Time Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Mortgage/Loan Plans</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Recurring Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Budgeting/Spending Analysis</a>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Payment History</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -337,41 +338,254 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class="container">
-                                            <b>Checking Account</b>-2333<br>
-                                            Balance: $2,343
-                                            <br><br>
-                                            <a href="checking.html" type="button" class="btn btn-success">View Details</a>
-                                            <br><br>
-                                            <b>Saving Account</b>-1414<br>
-                                            Balance: $5,234
-                                            <br><br>
-                                            <a href="saving.html" type="button" class="btn btn-success">View Details</a>
-                                          </div>
+                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
+                                                
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="mine">
+                                                <form action="confirm-bill-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Checking -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>To:</label>
+                                                            <select class="form-control" id="account2">
+                                                                <option>Cr. Card Amex -1624</option>
+                                                                <option>Cr. Card Discover -2359</option>
+                                                               <option>Verizon -9386</option>
+                                                               <option>People's Gas -9872</option>
+                                                               <option>Cr. Card Citi -6011</option>
+                                                               <option>Verizon -9910</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="800">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Transfer:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                <div class="tab-pane fade in" id="others">
+                                                <form action="confirm-bill-payment.html">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select class="form-control" id="account1">
+                                                                <option>Checking -1262</option>
+                                                                <option>Savings -1628</option>
+                                                                <option>Checking -2367</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>To (Account No.):</label>
+                                                            <input type="text" class="form-control" placeholder="10239939220">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" class="form-control" placeholder="800">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Transfer:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                     </div>
+                                                </form>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- tab-Item-1-->
 
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class="container">
-                                            Budgeting/ Spending Analysis
-                                          </div>
+                                        <form action="confirm-bill-payment.html">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                    <label>From:</label>
+                                                    <select class="form-control" id="account2">
+                                                        <option>Checking - 1262</option>
+                                                        <option>Savings - 1628</option>
+                                                        <option>Checking - 2367</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>To:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>Cr. Card Amex -1624</option>
+                                                            <option>Cr. Card Discover -2359</option>
+                                                            <option>Verizon -9386</option>
+                                                            <option>People's Gas -9872</option>
+                                                            <option>Cr. Card Citi -6011</option>
+                                                            <option>Add new bill</option>   
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="10239939220"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Frequency:</label>
+                                                        <select class="form-control" id="account2">
+                                                            <option>Daily</option>
+                                                            <option>Monthly</option>
+                                                            <option>Seasonally</option>
+                                                            <option>Semiannually</option>
+                                                            <option>Annually</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="0430006"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Amount: $</label>
+                                                        <input type="text" class="form-control"  placeholder="800">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Date of Transfer:</label>
+                                                        <input type="date" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <button type="submit" class="btn btn-success">Continue Transfer</button>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </form>
                                         </div>
-                                        <!-- tab-Item-3-->
+                                        <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <div class="container">
-                                            <b>48-Month Loan Plan</b>-2520<br>
-                                            Due Payment: <b>$332</b> by Dec 28th, 2017
-                                            <br><br>
-                                            <a href="loan.html" type="button" class="btn btn-success">View Details</a>
-                                            <br><br>
-                                            <b>360-Month Mortgage</b>-7321<br>
-                                            Due Payment: <b>$1,000</b> by Dec 26th, 2017
-                                            <br><br>
-                                            <a href="mortgage.html" type="button" class="btn btn-success">View Details</a>
-                                          </div>
+                                            <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                  <td><b>Date</b></td>
+                                                  <td><b>Description</b></td>
+                                                  <td><b>Account<b></td>
+                                                  <td style="width: 100px"><b>Status<b></td>
+                                                  <td><b>Amount<b></td>
+                                                   
+                                                </tr>
+                                               <thead>
+                                                <tr>
+                                                  <td>11/08/2017</td>
+                                                  <td>BKOFAMERICA MOBILE 11/08 3615725985 DEPOSIT *MOBILE VA</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>30.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>11/06/2017</td>
+                                                  <td>VENMO DES:PAYMENT ID:XXXXX8738 INDN:JOSIE LIU CO ID:XXXXX81992 WEB</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>89.94</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>11/05/2017</td>
+                                                  <td>VENMO DES:CASHOUT ID:XXXXX3351 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>500.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/30/2017</td>
+                                                  <td>Mobile/Email Transfer Conf# 000084573; AMY WANG</td>
+                                                  <td>Saving Account-1414</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>5.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/23/2017</td>
+                                                  <td>BARCLAYCARD US DES:CREDITCARD ID:XXXXX2339 INDN:XIAOXI LIU CO ID:XXXXX07970 WEB</td>
+                                                  <td>Other</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>800.00</td>
+                                                  
+                                                </tr>
+                                                <tr>
+                                                  <td>10/20/2017</td>
+                                                  <td>VENMO DES:CASHOUT ID:XXXXX1330 INDN:JOSIE LIU CO ID:XXXXX81992 PPD</td>
+                                                  <td>Checking Account-2333</td>
+                                                  <td><span class="label label-success">Clear</span></td>
+                                                  <td>200.00</td>
+                                                  
+                                                </tr>
+                                            </table>
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>
