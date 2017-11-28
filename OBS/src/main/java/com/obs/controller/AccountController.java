@@ -29,7 +29,7 @@ public class AccountController {
 	
 	
 	
-	@GetMapping("/account")
+	@GetMapping("/accounts")
 	public String showAccount(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Customer c = (Customer) session.getAttribute("customer");
