@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
@@ -47,13 +48,16 @@ public class AccountController {
 		return "accounts";
 	}
 	
-	@GetMapping("accounts/{accountId}")
-	public String getAccount(@PathVariable String accountId) {
+	@GetMapping("/account")
+	public String getAccount(@RequestParam(value="accountId", defaultValue="0") String accountId) {
+		System.out.println("accountId: " + accountId);
 		long id = Long.parseLong(accountId.trim());
 		Account account = ar.findOne(id);	
 		System.out.println(account.getAccountNumber());
 		return "checking";
 	}
+	
+	
 	
 	
 }
