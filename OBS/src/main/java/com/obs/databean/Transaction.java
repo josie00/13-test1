@@ -36,21 +36,22 @@ public class Transaction {
     @JoinColumn(name = "loan_id")
 	private Loan loan;
 
-	private String confirmationNumber;
 	private String description;
+	
+	private String status;
 	
 	protected Transaction() {}
 
 	public Transaction(Date timeStamp, double amount, TransactionType transactionType, Account account,
-			Employee employee, Loan loan, String confirmationNumber, String description) {
+			Employee employee, Loan loan, String description, String status) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
 		this.transactionType = transactionType;
 		this.account = account;
 		this.employee = employee;
 		this.loan = loan;
-		this.confirmationNumber=confirmationNumber;
 		this.description = description;
+		this.status = status;
 	}
 
 	public long getTransactionId() {
@@ -109,13 +110,7 @@ public class Transaction {
 		this.loan = loan;
 	}
 
-	public String getConfirmationNumber() {
-		return confirmationNumber;
-	}
 
-	public void setConfirmationNumber(String confirmationNumber) {
-		this.confirmationNumber = confirmationNumber;
-	}
 
 	public String getDescription() {
 		return description;
@@ -124,13 +119,24 @@ public class Transaction {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
 				+ ", transactionType=" + transactionType + ", account=" + account + ", employee=" + employee + ", loan="
-				+ loan + ", confirmationNumber=" + confirmationNumber + ", description=" + description + "]";
+				+ loan + ", description=" + description + ", status=" + status + "]";
 	}
+
+	
 
 	
 }

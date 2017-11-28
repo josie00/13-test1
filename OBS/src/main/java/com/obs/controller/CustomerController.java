@@ -36,9 +36,6 @@ public class CustomerController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute LoginForm loginForm, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println("login");
-		System.out.println(loginForm.getUserName());
-		System.out.println(loginForm.getPassword());
 		List<Customer> customers = cr.findByUserName(loginForm.getUserName());
 		Customer c = customers.get(0);
 		if (c != null) {
@@ -82,8 +79,7 @@ public class CustomerController {
 	public String loginConfirmation(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Customer c = (Customer) session.getAttribute("customer");
-		System.out.println("login confirmation");
-		System.out.println(c.getEmail());
+		
 		return "login-confirmation";
 	}
 
