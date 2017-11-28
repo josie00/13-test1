@@ -38,10 +38,12 @@ public class Transaction {
 
 	private String description;
 	
+	private String status;
+	
 	protected Transaction() {}
 
 	public Transaction(Date timeStamp, double amount, TransactionType transactionType, Account account,
-			Employee employee, Loan loan, String description) {
+			Employee employee, Loan loan, String description, String status) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
 		this.transactionType = transactionType;
@@ -49,6 +51,7 @@ public class Transaction {
 		this.employee = employee;
 		this.loan = loan;
 		this.description = description;
+		this.status = status;
 	}
 
 	public long getTransactionId() {
@@ -116,13 +119,24 @@ public class Transaction {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
 				+ ", transactionType=" + transactionType + ", account=" + account + ", employee=" + employee + ", loan="
-				+ loan  + ", description=" + description + "]";
+				+ loan + ", description=" + description + ", status=" + status + "]";
 	}
+
+	
 
 	
 }

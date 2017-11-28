@@ -9,15 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
+import com.obs.repository.AccountRepository;
 import com.obs.repository.CustomerRepository;
 
 @Controller
 public class AccountController {
 	@Autowired
 	CustomerRepository cr;
+	
+	@Autowired
+	AccountRepository ar;
+	
 	
 	
 	@GetMapping("/account")
@@ -37,5 +43,13 @@ public class AccountController {
 		
 		return "accounts";
 	}
+	
+	@GetMapping("accounts/{accountId}")
+	public Account getAccount(@PathVariable String accountId) {
+		long id = Long.parseLong(accountId.trim());
+		Account account = ar.findOne(id);	
+		return account;
+	}
+	
 	
 }
