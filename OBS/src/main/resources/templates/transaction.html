@@ -323,7 +323,7 @@
 									<!-- tab-Item-1-->
 									<div role="tabpanel" class="tab-pane fade in active" id="tab1">
 										<table class="table table-striped">
-											<th:block th:each="transaction : ${transactions}">
+											
 												<thead>
 													<tr>
 														<td><b>Date</b></td>
@@ -334,6 +334,7 @@
 														<td><b>Balance<b></td>
 													</tr>
 												<thead>
+												<th:block th:each="transaction : ${transactions}">
 													<tr>
 														<td th:text="${#dates.format(transaction.timeStamp, 'MM/dd/yyyy')}"></td>
 														<td th:text="${transaction.description}"></td>
