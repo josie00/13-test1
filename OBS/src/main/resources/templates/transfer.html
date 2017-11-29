@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -348,15 +347,14 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade in active" id="mine">
-                                                <form action="confirm-transfer.html">
+                                                <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
                                                     <div class="container">
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>From:</label>
-                                                            <select class="form-control" id="account1">
-                                                                <option>Checking -1262</option>
-                                                                <option>Savings -1628</option>
-                                                                <option>Checking -2367</option>
+                                                            <select th:field="*{fromAccountId}" class="form-control" id="account1">
+                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
+                                                                 </option>
                                                             </select>
                                                         </div>
                                                         </div>
@@ -364,10 +362,9 @@
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>To:</label>
-                                                            <select class="form-control" id="account2">
-                                                                <option>Savings -1628</option>
-                                                                <option>Checking -2367</option>
-                                                               <option>Checking -1262</option>
+                                                            <select th:field="*{toAccountId}" class="form-control" id="account2">
+                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
+                                                                 </option>
                                                             </select>
                                                         </div>
                                                         </div>
@@ -376,7 +373,7 @@
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>Amount: $</label>
-                                                            <input type="text" class="form-control" placeholder="800">
+                                                            <input type="text" th:field="*{amount}" class="form-control">
                                                         </div>
                                                         </div>
                                                         <br>
@@ -384,7 +381,7 @@
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>Date of Transfer:</label>
-                                                            <input type="date" class="form-control">
+                                                            <input type="date" th:field="*{dateOfTransfer}" class="form-control">
                                                         </div>
                                                         </div>
                                                         <br>

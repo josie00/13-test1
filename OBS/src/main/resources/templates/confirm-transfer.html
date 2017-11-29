@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -331,39 +331,43 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                            <form action="success-transfer.html">
+<!--                                             <form th:action="@{/process}" method="post"> -->
                                             <div class = "container">
-                                                <h3>Are you sure you want to make this tranfer?</h3>
+                                            <form th:action="@{/process}" method="post">
+                                                <h3>Are you sure you want to make this transfer?</h3>
                                                 <br>
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>From: </b></div>
-                                                    <div class="col-sm-4">Checking -1262</div>
+                                                    <div class="col-sm-4"><b><label>From:</label></b></div>
+                                                    <div class="col-sm-4">
+                                                        <span th:text="${from.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(from.accountNumber,8,12)}"></span>
+                                                    </div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>To: </b></div>
-                                                    <div class="col-sm-4">Savings -1628</div>
+                                                    <div class="col-sm-4"><b><label>To:</label></b></div>
+                                                    <div class="col-sm-4">
+                                                        <span th:text="${to.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(to.accountNumber,8,12)}"></span>
+                                                    </div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>Amount:</b></div>
-                                                    <div class="col-sm-4">$ 800</div>
+                                                    <div class="col-sm-4"><b><label>Amount:</label></b></div>
+                                                    <div class="col-sm-4" th:text="${transferForm.amount}"></div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>Date:</b></div>
-                                                    <div class="col-sm-4">11/17/2017</div>
+                                                    <div class="col-sm-4"><b><label>Date:</label></b></div>
+                                                    <div class="col-sm-4" th:text="${transferForm.dateOfTransfer}"></div>
                                                 </div>
                                                 <br>
-
                                                 <button type="submit" class="btn btn-success">  Make Transfer  </button>
-                                                <button type="button" class="btn btn-warning">Don't Make Transfer</button>
+                                                <button type="submit" class="btn btn-warning">Don't Make Transfer</button>
+                                            </form>
                                                 <br><br>
                                             </div>
-                                            </form>
                                         </div>
                                         <!-- tab-Item-1-->
                                     </div>
