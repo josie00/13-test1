@@ -31,7 +31,6 @@ public class TransactionType {
 
 	@Override
 	public String toString() {
-		return "TransactionType [transactionTypeId=" + transactionTypeId + ", transactionFee=" + transactionFee
-				+ ", transactionTypeName=" + transactionTypeName + "]";
+		return transactionTypeName;
 	}
 }

@@ -1,4 +1,5 @@
 package com.obs.databean;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -8,10 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Transaction {
+public class Transaction implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,6 +24,7 @@ public class Transaction {
 
 	private Date timeStamp;
 	private double amount;
+	private double timeStampBalance;
 	
 	@ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "transaction_type_id")
@@ -40,12 +46,16 @@ public class Transaction {
 	
 	private String status;
 	
+	
 	protected Transaction() {}
 
-	public Transaction(Date timeStamp, double amount, TransactionType transactionType, Account account,
-			Employee employee, Loan loan, String description, String status) {
+	
+
+	public Transaction(Date timeStamp, double amount, double timeStampBalance, TransactionType transactionType,
+			Account account, Employee employee, Loan loan, String description, String status) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
+		this.timeStampBalance = timeStampBalance;
 		this.transactionType = transactionType;
 		this.account = account;
 		this.employee = employee;
@@ -53,6 +63,8 @@ public class Transaction {
 		this.description = description;
 		this.status = status;
 	}
+
+
 
 	public long getTransactionId() {
 		return transactionId;
@@ -62,6 +74,7 @@ public class Transaction {
 		this.transactionId = transactionId;
 	}
 
+	
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
@@ -76,6 +89,16 @@ public class Transaction {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+	
+	
+
+	public double getTimeStampBalance() {
+		return timeStampBalance;
+	}
+
+	public void setTimeStampBalance(double timeStampBalance) {
+		this.timeStampBalance = timeStampBalance;
 	}
 
 	public TransactionType getTransactionType() {
@@ -129,12 +152,17 @@ public class Transaction {
 		this.status = status;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
-				+ ", transactionType=" + transactionType + ", account=" + account + ", employee=" + employee + ", loan="
-				+ loan + ", description=" + description + ", status=" + status + "]";
+				+ ", timeStampBalance=" + timeStampBalance + ", transactionType=" + transactionType + ", account="
+				+ account + ", employee=" + employee + ", loan=" + loan + ", description=" + description + ", status="
+				+ status + "]";
 	}
+
+	
 
 	
 

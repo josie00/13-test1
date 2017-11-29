@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
+import com.obs.databean.Transaction;
 import com.obs.repository.AccountRepository;
 import com.obs.repository.CustomerRepository;
+import com.obs.repository.TransactionRepository;
 
 @Controller
 public class AccountController {
@@ -26,8 +27,10 @@ public class AccountController {
 	@Autowired
 	AccountRepository ar;
 	
-	
-	
+	@Autowired
+	TransactionRepository tr;
+
+	//Get all accounts for current user
 	@GetMapping("/accounts")
 	public String showAccount(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -48,16 +51,23 @@ public class AccountController {
 		return "accounts";
 	}
 	
+	//Restful Controller Example: Get all transactions based on accountId
+	//eg. Request uri should be /account?accountId=1
 	@GetMapping("/account")
-	public String getAccount(@RequestParam(value="accountId", defaultValue="0") String accountId) {
-		System.out.println("accountId: " + accountId);
+	public String getAccount(@RequestParam(value="accountId", defaultValue="0") String accountId, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Customer c = (Customer) session.getAttribute("customer");
+		
 		long id = Long.parseLong(accountId.trim());
-		Account account = ar.findOne(id);	
-		System.out.println(account.getAccountNumber());
-		return "checking";
+		Account account = ar.findOne(id);
+		
+		List<Transaction> transactions = tr.findByAccount_AccountId(id);
+		transactions.sort((t1,t2) -> t2.getTimeStamp().compareTo(t1.getTimeStamp()));
+		model.addAttribute("transactions", transactions);
+		model.addAttribute("customer", c);
+		model.addAttribute("account", account);
+	
+		return "transaction";
 	}
-	
-	
-	
 	
 }

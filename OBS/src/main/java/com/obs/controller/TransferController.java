@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
-import com.obs.formbean.ActionForm;
 import com.obs.formbean.TransferForm;
 import com.obs.repository.AccountRepository;
 
