@@ -59,8 +59,7 @@ public class LoanType {
 
 	@Override
 	public String toString() {
-		return "LoanType [loanTypeId=" + loanTypeId + ", loanTypeName=" + loanTypeName + ", interestRate="
-				+ interestRate + ", durationByMonth=" + durationByMonth + ", loans=" + loans + "]";
+		return loanTypeName;
 	}
 	
 	

@@ -335,7 +335,7 @@
 													</tr>
 												<thead>
 													<tr>
-														<td th:text="${#dates.format(transaction.timeStamp, 'dd/MM/yyyy')}"></td>
+														<td th:text="${#dates.format(transaction.timeStamp, 'MM/dd/yyyy')}"></td>
 														<td th:text="${transaction.description}"></td>
 														<td th:text="${transaction.transactionType}"></td>
 														<div th:switch="${transaction.status}"> 

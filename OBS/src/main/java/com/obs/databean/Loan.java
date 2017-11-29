@@ -40,7 +40,34 @@ public class Loan {
 	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
 	private Set<Transaction> transactions;
 	
+	
+	
+	public Loan(Date startDate, Date nextDueDate, String status, double duePayment, double totalAmount,
+			String loanNumber, LoanType loanType, Customer customer, Set<Transaction> transactions) {
+		super();
+		this.startDate = startDate;
+		this.nextDueDate = nextDueDate;
+		this.status = status;
+		this.duePayment = duePayment;
+		this.totalAmount = totalAmount;
+		this.loanNumber = loanNumber;
+		this.loanType = loanType;
+		this.customer = customer;
+		this.transactions = transactions;
+	}
+
+
 	protected Loan() {}
+
+	
+	public long getLoanId() {
+		return loanId;
+	}
+
+
+	public void setLoanId(long loanId) {
+		this.loanId = loanId;
+	}
 
 
 	public Date getStartDate() {

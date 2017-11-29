@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
+import com.obs.databean.Loan;
 import com.obs.databean.Transaction;
 import com.obs.repository.AccountRepository;
 import com.obs.repository.CustomerRepository;
+import com.obs.repository.LoanRepository;
 import com.obs.repository.TransactionRepository;
 
 @Controller
@@ -29,6 +31,9 @@ public class AccountController {
 	
 	@Autowired
 	TransactionRepository tr;
+	
+	@Autowired
+	LoanRepository lr;
 
 	//Get all accounts for current user
 	@GetMapping("/accounts")
@@ -44,9 +49,18 @@ public class AccountController {
 				activeAccounts.add(account);
 			}
 		}
+		
+		List<Loan> loans = lr.findByCustomer_CustomerId(c.getCustomerId());
+		List<Loan> activeLoans = new ArrayList<>();
+		for (Loan loan: loans) {
+			if ("active".equals(loan.getStatus())) {
+				activeLoans.add(loan);
+			}
+		}
 
 		model.addAttribute("customer", c);
 		model.addAttribute("accounts", activeAccounts);
+		model.addAttribute("loans", activeLoans);
 		
 		return "accounts";
 	}
@@ -69,5 +83,7 @@ public class AccountController {
 	
 		return "transaction";
 	}
+	
+	
 	
 }

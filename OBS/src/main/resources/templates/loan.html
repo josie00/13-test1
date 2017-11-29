@@ -342,27 +342,27 @@
                                             <br>
                                             <div class = "row">
                                               <div class="col-sm-5"><b>Loan Name: </b></div>
-                                              <div class="col-sm-5">48-Month Loan Plan</div>
+                                              <div class="col-sm-5"><span th:text="${loanType.loanTypeName}"></span></div>
                                             </div>
                                             <br><br>
                                             <div class = "row">
                                               <div class="col-sm-5"><b>Loan Number: </b></div>
-                                              <div class="col-sm-5">123456782520</div>
+                                              <div class="col-sm-5"><span th:text="${loan.loanNumber}"></div>
                                             </div>
                                             <br><br>
                                             <div class = "row">
                                               <div class="col-sm-5"><b>Interest Rate: </b></div>
-                                              <div class="col-sm-5">5%</div>
+                                              <div class="col-sm-5"><span th:text="${loanType.interestRate} + '%'"></div>
                                             </div>
                                             <br><br>
                                             <div class = "row">
                                               <div class="col-sm-5"><b>Current Due: </b></div>
-                                              <div class="col-sm-5">$332</div>
+                                              <div class="col-sm-5">$<span th:text="${#numbers.formatDecimal(loan.duePayment, 0, 'COMMA', 2, 'POINT')}"></div>
                                             </div>
                                             <br><br>
                                             <div class = "row">
                                               <div class="col-sm-5"><b>Due Date: </b></div>
-                                              <div class="col-sm-5">12/28/2017</div>
+                                              <div class="col-sm-5"><span th:text="${#dates.format(loan.nextDueDate, 'MM/dd/yyyy')}"></span></div>
                                             </div>
                                             <br><br>
                                             <button type="button" class="btn btn-success">Pay Due Now</button>
