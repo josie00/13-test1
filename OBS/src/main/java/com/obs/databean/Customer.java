@@ -41,6 +41,9 @@ public class Customer implements Serializable {
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Account> accounts;
+	
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Loan> loans;
     
     protected Customer() {}
 

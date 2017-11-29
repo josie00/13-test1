@@ -34,9 +34,6 @@ public class Transaction implements Serializable {
 	@JoinColumn(name = "account_id")
 	private Account account;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
     
 	@ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "loan_id")
@@ -52,13 +49,12 @@ public class Transaction implements Serializable {
 	
 
 	public Transaction(Date timeStamp, double amount, double timeStampBalance, TransactionType transactionType,
-			Account account, Employee employee, Loan loan, String description, String status) {
+			Account account, Loan loan, String description, String status) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
 		this.timeStampBalance = timeStampBalance;
 		this.transactionType = transactionType;
 		this.account = account;
-		this.employee = employee;
 		this.loan = loan;
 		this.description = description;
 		this.status = status;
@@ -117,13 +113,6 @@ public class Transaction implements Serializable {
 		this.account = account;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
 
 	public Loan getLoan() {
 		return loan;
@@ -158,7 +147,7 @@ public class Transaction implements Serializable {
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", timeStamp=" + timeStamp + ", amount=" + amount
 				+ ", timeStampBalance=" + timeStampBalance + ", transactionType=" + transactionType + ", account="
-				+ account + ", employee=" + employee + ", loan=" + loan + ", description=" + description + ", status="
+				+ account + ", loan=" + loan + ", description=" + description + ", status="
 				+ status + "]";
 	}
 
