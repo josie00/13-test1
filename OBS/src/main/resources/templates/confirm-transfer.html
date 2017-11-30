@@ -333,10 +333,11 @@
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
 <!--                                             <form th:action="@{/process}" method="post"> -->
                                             <div class = "container">
-                                            <form th:action="@{/process}" method="post">
+                                            <form th:action="@{/process}" th:object="${confirmTransfer}" method="post">
                                                 <h3>Are you sure you want to make this transfer?</h3>
                                                 <br>
                                                 <div class = "row">
+                                                    <input type="hidden" th:attr="name='fromAccountId'" th:value="${from.accountId}">
                                                     <div class="col-sm-4"><b><label>From:</label></b></div>
                                                     <div class="col-sm-4">
                                                         <span th:text="${from.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(from.accountNumber,8,12)}"></span>
@@ -345,6 +346,7 @@
                                                 <br>
 
                                                 <div class = "row">
+                                                    <input type="hidden" th:attr="name='toAccountId'" th:value="${to.accountId}">
                                                     <div class="col-sm-4"><b><label>To:</label></b></div>
                                                     <div class="col-sm-4">
                                                         <span th:text="${to.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(to.accountNumber,8,12)}"></span>
@@ -353,14 +355,16 @@
                                                 <br>
 
                                                 <div class = "row">
+                                                    <input type="hidden" th:attr="name='amount'" th:value="${transferForm.amount}">
                                                     <div class="col-sm-4"><b><label>Amount:</label></b></div>
                                                     <div class="col-sm-4" th:text="${transferForm.amount}"></div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b><label>Date:</label></b></div>
-                                                    <div class="col-sm-4" th:text="${transferForm.dateOfTransfer}"></div>
+                                                    <input type="hidden" th:attr="name='frequency'" th:value="${transferForm.frequency}" >
+                                                    <div class="col-sm-4"><b><label>Frequency:</label></b></div>
+                                                    <div class="col-sm-4" th:text="${transferForm.frequency}"></div>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-success">  Make Transfer  </button>

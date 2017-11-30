@@ -380,8 +380,15 @@
 
                                                         <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label>Date of Transfer:</label>
-                                                            <input type="date" th:field="*{dateOfTransfer}" class="form-control">
+                                                            <label>Frequency:</label>
+                                                            <select th:field="*{frequency}" class="form-control" id="frequency">
+                                                            <option value="oneTime">One time, immediately</option>
+                                                            <option value="weekly">Weekly</option>
+                                                            <option value="monthly">Monthly</option>
+                                                            <option value="sixMonths">Every six months</option>
+                                                            <option value="annually">Annually</option>
+                                                            </select>
+<!--                                                             <input type="date" th:field="*{dateOfTransfer}" class="form-control"> -->
                                                         </div>
                                                         </div>
                                                         <br>

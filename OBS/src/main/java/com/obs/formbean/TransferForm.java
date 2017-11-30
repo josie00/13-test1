@@ -7,7 +7,7 @@ public class TransferForm {
 //	private String fromAccountNum;
 //	private String toAccountNum;
 	private String amount;
-	private String dateOfTransfer;
+	private String frequency;
 
 	public TransferForm(){}
 
@@ -33,11 +33,13 @@ public class TransferForm {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
-	public String getDateOfTransfer() {
-		return dateOfTransfer;
+
+	public String getFrequency() {
+		return frequency;
 	}
-	public void setDateOfTransfer(String dateOfTransfer) {
-		this.dateOfTransfer = dateOfTransfer;
+
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
 	}
 	
 }

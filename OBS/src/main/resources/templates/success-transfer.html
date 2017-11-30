@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -335,26 +335,31 @@
                                                 <h3> You have made a transfer successfully !</h3>
                                                 <br>
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>From: </b></div>
-                                                    <div class="col-sm-4">Checking -1262</div>
+                                                    <div class="col-sm-4"><b><label>From:</label></b></div>
+                                                    <div class="col-sm-4">
+                                                        <span th:text="${from.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(from.accountNumber,8,12)}"></span>
+                                                    </div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>To: </b></div>
-                                                    <div class="col-sm-4">Savings -1628</div>
+                                                    <div class="col-sm-4"><b><label>To:</label></b></div>
+                                                    <div class="col-sm-4">
+                                                        <span th:text="${to.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(to.accountNumber,8,12)}"></span>
+                                                    </div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>Amount:</b></div>
-                                                    <div class="col-sm-4">$ 800</div>
+                                          
+                                                    <div class="col-sm-4"><b><label>Amount:</label></b></div>
+                                                     <div class="col-sm-4" th:text="${confirmTransfer.amount}"></div>
                                                 </div>
                                                 <br>
 
                                                 <div class = "row">
-                                                    <div class="col-sm-4"><b>Date:</b></div>
-                                                    <div class="col-sm-4">11/17/2017</div>
+                                                    <div class="col-sm-4"><b><label>Frequency:</label></b></div>
+                                                    <div class="col-sm-4" th:text="${confirmTransfer.frequency}"></div>
                                                 </div>
                                                 <br>
                                                 <br>
