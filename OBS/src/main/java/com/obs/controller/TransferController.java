@@ -18,28 +18,47 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
+import com.obs.databean.Loan;
+import com.obs.databean.RecurringPayment;
+import com.obs.databean.Transaction;
+import com.obs.databean.TransactionType;
 import com.obs.formbean.TransferForm;
 import com.obs.repository.AccountRepository;
+import com.obs.repository.RecurPaymentRepository;
+import com.obs.repository.TransactionRepository;
+import com.obs.repository.TransactionTypeRepository;
 
 @Controller
 public class TransferController {
 	@Autowired
 	AccountRepository ar;
 	
-	@PersistenceContext
-	private EntityManager em;
+	@Autowired
+	TransactionTypeRepository ttr;
+	
+	@Autowired
+	TransactionRepository tr;
+	
+	@Autowired
+	RecurPaymentRepository rpr;
+	
+//	@PersistenceContext
+//	private EntityManager em;
 	
 	@GetMapping("/transfer")
 	public String transferPage(Model model, HttpSession session) {
 		List<Account> accounts=new ArrayList<>();
+		List<RecurringPayment> recurringPayments=new ArrayList<>();
 		Object obj=session.getAttribute("customer");
 		if(obj instanceof Customer) {
 			Customer customer=(Customer) obj;
 			//System.out.println(customer.getCustomerId());
 			accounts=ar.findByCustomer_CustomerId(customer.getCustomerId());
+			recurringPayments=rpr.findByCustomer_CustomerId(customer.getCustomerId());
 		}
 		model.addAttribute("transferForm", new TransferForm());
 		model.addAttribute("accounts", accounts);
+		model.addAttribute("recurringPayments", recurringPayments);
 		return "transfer";
 	}
 	
@@ -68,12 +87,24 @@ public class TransferController {
 		double amount=Double.parseDouble(confirmTransfer.getAmount());
 		String frequency=confirmTransfer.getFrequency();
 		if(from.getBalance()>=amount) {
-			if(frequency.equals("oneTime")) {
+			if(frequency.equals("One time, immediately")||frequency==null) {
 				from.setBalance(from.getBalance()-amount);
 				to.setBalance(to.getBalance()+amount);
 				//SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 				Date d = new Date();
 				//String today = sdf.format(d);
+				String description="Transfer"+amount+"from"+from.getAccountNumber()+"to"+to.getAccountNumber();
+				long typeTransfer=3;
+				TransactionType type=ttr.findOne(typeTransfer);
+				Transaction transaction=new Transaction(d, amount, from.getBalance(), type,
+			                                             from, null, description, "clear");
+				tr.save(transaction);
+			}else {
+				Customer c=from.getCustomer();
+				RecurringPayment recurringPayment=new RecurringPayment(c, fromId, toId, from.getAccountNumber(),
+						                          to.getAccountNumber(),from.getAccountType().toString(), to.getAccountType().toString(),
+						                          amount,frequency);
+			    rpr.save(recurringPayment);
 			}
 			return "success-transfer";
 		}else {
