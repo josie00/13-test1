@@ -58,7 +58,7 @@ public class CustomerController {
 	}
 
 	@PostMapping("/register")
-	public String registerCustomer(@ModelAttribute RegisterForm registerForm) {
+	public String registerCustomer(@ModelAttribute RegisterForm registerForm,HttpSession session) {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
 		String dstr=registerForm.getDateOfBirth();  
 		Date dateOfBirth=null;
@@ -72,7 +72,8 @@ public class CustomerController {
 				                       registerForm.getCity(), registerForm.getState(), registerForm.getZip(),registerForm.getPhone(),
 				                       dateOfBirth, registerForm.getSsn(),registerForm.getDriverLicense(), null);
 		cr.save(customer);
-		return "register";
+		session.setAttribute("customer", customer);
+		return "redirect:accounts";
 	}
 	
 	@GetMapping("/loginConfirmation")
