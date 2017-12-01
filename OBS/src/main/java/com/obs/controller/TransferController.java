@@ -108,7 +108,7 @@ public class TransferController {
 						+ to.getAccountNumber();
 				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
 				Transaction transaction = new Transaction(d, amount, from.getBalance(), t, from, null, description,
-						"clear");
+						"Clear");
 				tr.save(transaction);
 			} else {
 //				Customer c = from.getCustomer();

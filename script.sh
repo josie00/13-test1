@@ -3,6 +3,7 @@ cd /usr/local/mysql/bin
 create database obs;
 
 INSERT INTO customer VALUES(1, 'Pittsburgh', '1993-05-01', 'abcd', 'josie@gmail.com', 'Josie', 'Liu', '123456', '123-3455-1234', '123-345-1234', 'PA', 'Forbs Ave', 'josie', '15213');
+INSERT INTO customer VALUES(3, 'Pittsburgh', '1993-05-01', 'abcd', 'yuhan@gmail.com', 'Irene', 'Fu', '123456', '123-3455-1234', '123-345-1234', 'PA', 'Irene', 'irene', '15213');
 
 INSERT INTO account_type VALUES(1, 'Checking', 0.1);
 INSERT INTO account_type VALUES(2, 'Saving', 0.2);
@@ -11,6 +12,7 @@ INSERT INTO account_type VALUES(2, 'Saving', 0.2);
 INSERT INTO account VALUES(1, '123443211123', 800,'2017-01-02','234213453', 'active','323453012', 1, 1);
 INSERT INTO account VALUES(2, '584022343768',1300, '2016-04-23', '012902033','active', '234513450', 2, 1);
 INSERT INTO account VALUES(3, '324532542148',0, '2015-05-12','034532345','inactive', '053213453', 1, 1);
+INSERT INTO account VALUES(4, '674022343799',100, '2016-04-23', '012902033','active', '234513450', 2, 2);
 
 INSERT INTO transaction_type VALUES(1, 0, 'Withdraw');
 INSERT INTO transaction_type VALUES(2, 0, 'Deposit');
