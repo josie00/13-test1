@@ -104,15 +104,15 @@ public class TransferController {
 				// SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 				Date d = new Date();
 				// String today = sdf.format(d);
-				String description = "Transfer" + amount + "from" + from.getAccountNumber() + "to"
+				String description = "Transfer " + amount + " from " + from.getAccountNumber() + " to "
 						+ to.getAccountNumber();
 				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
 				Transaction transaction = new Transaction(d, amount, from.getBalance(), t, from, null, description,
 						"Clear");
 				tr.save(transaction);
 			} else {
-//				Customer c = from.getCustomer();
-				RecurringPayment recurringPayment = new RecurringPayment(c, fromId, toId, from.getAccountNumber(),
+				Customer customer = from.getCustomer();
+				RecurringPayment recurringPayment = new RecurringPayment(customer, fromId, toId, from.getAccountNumber(),
 						to.getAccountNumber(), from.getAccountType().toString(), to.getAccountType().toString(), amount,
 						frequency);
 				rpr.save(recurringPayment);
