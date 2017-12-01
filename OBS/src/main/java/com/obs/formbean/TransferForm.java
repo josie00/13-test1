@@ -5,9 +5,10 @@ public class TransferForm {
 	private String fromAccountId;
 	private String toAccountId;
 //	private String fromAccountNum;
-//	private String toAccountNum;
+	private String toAccountNum;
 	private String amount;
 	private String frequency;
+	private String type;
 
 	public TransferForm(){}
 
@@ -41,5 +42,20 @@ public class TransferForm {
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
-	
+
+	public String getToAccountNum() {
+		return toAccountNum;
+	}
+
+	public void setToAccountNum(String toAccountNum) {
+		this.toAccountNum = toAccountNum;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

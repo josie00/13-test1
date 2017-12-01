@@ -298,8 +298,8 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4>Federick Gordon</h4>
-                                        <span class="country"> Pittsburgh, US</span>
+                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"></h4>
+                                        <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
                                     </div>
 
                                     <div class="panel panel-default">
@@ -352,6 +352,7 @@
                                                 <div class="tab-pane fade in active" id="mine">
                                                 <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
                                                     <div class="container">
+                                                        <input type="hidden" th:attr="name='type'" value="withinMyAccounts" >
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>From:</label>
@@ -409,6 +410,7 @@
                                                 <div class="tab-pane fade in" id="others">
                                                 <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
                                                     <div class="container">
+                                                        <input type="hidden" th:attr="name='type'" value="toOtherAccount" >
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>From:</label>
@@ -423,7 +425,7 @@
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>To (Account No.):</label>
-                                                            <input type="text" class="form-control" th:field="*{toAccountId}">
+                                                            <input type="text" class="form-control" th:field="*{toAccountNum}">
                                                         </div>
                                                         </div>
                                                         <br>
@@ -570,6 +572,7 @@
                                         <!-- tab-Item-4-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab4">
                                             <div class = "container">
+                                            <form action="#">
                                                 <div class = "row">
                                                     <div class="col-sm-2"><b><label>From</label></b></div>
                                                     <div class="col-sm-2"><b><label>To</label></b></div>
@@ -588,6 +591,10 @@
                                                         <span th:if="${payment}" th:text="'$' + ${#numbers.formatDecimal(payment.amount, 0, 'COMMA', 2, 'POINT')}"></span>
                                                     </div>
                                                     <div class="col-sm-2" th:text="${payment.frequency}"></div>
+                                                    <div class="col-sm-2">
+                                                        <button type="submit" class="btn btn-success">Cancel</button>
+                                                    </div>
+                                                    <br>
                                                 </div>
       <!--                                       <div th:each="payment : ${recurringPayments}">
 	                                            from:<b><span th:text="${payment.fromAccountType}"></span> Account</b>-<span th:if="${payment}" th:text="${#strings.substring(payment.fromAccountNum,8,12)}"></span><br>
@@ -595,6 +602,7 @@
 	                                            <br><br>
 	                                            <a th:href="#"  type="button" class="btn btn-success">Cancel</a> -->
 	                                            <br><br>
+	                                        </form>
                                             </div>
                                             </div>
                                         </div>

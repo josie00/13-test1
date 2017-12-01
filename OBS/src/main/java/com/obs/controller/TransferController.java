@@ -32,82 +32,93 @@ import com.obs.repository.TransactionTypeRepository;
 public class TransferController {
 	@Autowired
 	AccountRepository ar;
-	
+
 	@Autowired
 	TransactionTypeRepository ttr;
-	
+
 	@Autowired
 	TransactionRepository tr;
-	
+
 	@Autowired
 	RecurPaymentRepository rpr;
-	
-//	@PersistenceContext
-//	private EntityManager em;
-	
+
+	// @PersistenceContext
+	// private EntityManager em;
+
 	@GetMapping("/transfer")
 	public String transferPage(Model model, HttpSession session) {
-		List<Account> accounts=new ArrayList<>();
-		List<RecurringPayment> recurringPayments=new ArrayList<>();
-		Object obj=session.getAttribute("customer");
-		if(obj instanceof Customer) {
-			Customer customer=(Customer) obj;
-			//System.out.println(customer.getCustomerId());
-			accounts=ar.findByCustomer_CustomerId(customer.getCustomerId());
-			recurringPayments=rpr.findByCustomer_CustomerId(customer.getCustomerId());
+		List<Account> accounts = new ArrayList<>();
+		List<RecurringPayment> recurringPayments = new ArrayList<>();
+		Object obj = session.getAttribute("customer");
+		if (obj instanceof Customer) {
+			Customer customer = (Customer) obj;
+			// System.out.println(customer.getCustomerId());
+			accounts = ar.findByCustomer_CustomerId(customer.getCustomerId());
+			recurringPayments = rpr.findByCustomer_CustomerId(customer.getCustomerId());
+			model.addAttribute("customer", customer);
 		}
 		model.addAttribute("transferForm", new TransferForm());
 		model.addAttribute("accounts", accounts);
 		model.addAttribute("recurringPayments", recurringPayments);
 		return "transfer";
 	}
-	
+
 	@PostMapping("/confirm")
-	public String confirmTransfer(@ModelAttribute TransferForm transferForm, Model model) {
-		long fromId=Long.parseLong(transferForm.getFromAccountId());
-		long toId=Long.parseLong(transferForm.getToAccountId());
-		Account from=ar.findOne(fromId);
-		Account to=ar.findOne(toId);
+	public String confirmTransfer(@ModelAttribute TransferForm transferForm, Model model, HttpSession session) {
+		long fromId = Long.parseLong(transferForm.getFromAccountId());
+		Account from = ar.findOne(fromId);
+		Account to;
+		String type = transferForm.getType();
+		if (type.equals("withinMyAccounts")) {
+			long toId = Long.parseLong(transferForm.getToAccountId());
+			to = ar.findOne(toId);
+		} else {
+			String toNum = transferForm.getToAccountNum();
+			to = ar.findByAccountNumber(toNum).get(0);
+		}
+		Customer c = (Customer) session.getAttribute("customer");
+		model.addAttribute("customer", c);
 		model.addAttribute("confirmTransfer", new TransferForm());
 		model.addAttribute("from", from);
 		model.addAttribute("to", to);
 		return "confirm-transfer";
 	}
-	
+
 	@PostMapping("/process")
-	public String transfer(@ModelAttribute TransferForm confirmTransfer, Model model) {
-		System.out.println(confirmTransfer.getAmount());
-		long fromId=Long.parseLong(confirmTransfer.getFromAccountId());
-		long toId=Long.parseLong(confirmTransfer.getToAccountId());
-		Account from=ar.findOne(fromId);
-		Account to=ar.findOne(toId);
+	public String transfer(@ModelAttribute TransferForm confirmTransfer, Model model, HttpSession session) {
+		Customer c = (Customer) session.getAttribute("customer");
+		model.addAttribute("customer", c);
+		long fromId = Long.parseLong(confirmTransfer.getFromAccountId());
+		long toId = Long.parseLong(confirmTransfer.getToAccountId());
+		Account from = ar.findOne(fromId);
+		Account to = ar.findOne(toId);
 		model.addAttribute("from", from);
 		model.addAttribute("to", to);
 		model.addAttribute("confirmTransfer", confirmTransfer);
-		double amount=Double.parseDouble(confirmTransfer.getAmount());
-		String frequency=confirmTransfer.getFrequency();
-		if(from.getBalance()>=amount) {
-			if(frequency.equals("One time, immediately")||frequency==null) {
-				from.setBalance(from.getBalance()-amount);
-				to.setBalance(to.getBalance()+amount);
-				//SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		double amount = Double.parseDouble(confirmTransfer.getAmount());
+		String frequency = confirmTransfer.getFrequency();
+		if (from.getBalance() >= amount) {
+			if (frequency == null || frequency.equals("One time, immediately")) {
+				from.setBalance(from.getBalance() - amount);
+				to.setBalance(to.getBalance() + amount);
+				// SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 				Date d = new Date();
-				//String today = sdf.format(d);
-				String description="Transfer"+amount+"from"+from.getAccountNumber()+"to"+to.getAccountNumber();
-				long typeTransfer=3;
-				TransactionType type=ttr.findOne(typeTransfer);
-				Transaction transaction=new Transaction(d, amount, from.getBalance(), type,
-			                                             from, null, description, "clear");
+				// String today = sdf.format(d);
+				String description = "Transfer" + amount + "from" + from.getAccountNumber() + "to"
+						+ to.getAccountNumber();
+				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
+				Transaction transaction = new Transaction(d, amount, from.getBalance(), t, from, null, description,
+						"clear");
 				tr.save(transaction);
-			}else {
-				Customer c=from.getCustomer();
-				RecurringPayment recurringPayment=new RecurringPayment(c, fromId, toId, from.getAccountNumber(),
-						                          to.getAccountNumber(),from.getAccountType().toString(), to.getAccountType().toString(),
-						                          amount,frequency);
-			    rpr.save(recurringPayment);
+			} else {
+//				Customer c = from.getCustomer();
+				RecurringPayment recurringPayment = new RecurringPayment(c, fromId, toId, from.getAccountNumber(),
+						to.getAccountNumber(), from.getAccountType().toString(), to.getAccountType().toString(), amount,
+						frequency);
+				rpr.save(recurringPayment);
 			}
 			return "success-transfer";
-		}else {
+		} else {
 			model.addAttribute("error", "Not enough money");
 			return "redirect:transfer";
 		}

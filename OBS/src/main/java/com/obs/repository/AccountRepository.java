@@ -9,6 +9,5 @@ import com.obs.databean.Customer;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
 	List<Account> findByCustomer_CustomerId(long customerId);
-
-
+	List<Account> findByAccountNumber(String accountNumber);
 }

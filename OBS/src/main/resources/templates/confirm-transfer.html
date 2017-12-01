@@ -298,17 +298,18 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4>Federick Gordon</h4>
-                                        <span class="country"> Pittsburgh, US</span>
+                                        
+                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
+                                        <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
                                     </div>
 
                                     <div class="panel panel-default">
                                       <!-- List group -->
                                       <ul class="list-group">
-                                        <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
+                                        <li class="list-group-item"><a href="accounts">Accounts</a></li>
                                         <li class="list-group-item"><a href="#">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="#">Mortgage/Loan Payment</a></li>
-                                        <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
+                                        <li class="list-group-item"><a href="transfer">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
                                         <li class="list-group-item"><a href="personal-info.html">Update Personal Info</a></li>
 
@@ -337,6 +338,7 @@
                                                 <h3>Are you sure you want to make this transfer?</h3>
                                                 <br>
                                                 <div class = "row">
+                                                    <input type="hidden" th:attr="name='type'" th:value="${transferForm.type}" >
                                                     <input type="hidden" th:attr="name='fromAccountId'" th:value="${from.accountId}">
                                                     <div class="col-sm-4"><b><label>From:</label></b></div>
                                                     <div class="col-sm-4">
@@ -362,9 +364,9 @@
                                                 <br>
 
                                                 <div class = "row">
-                                                    <input type="hidden" th:attr="name='frequency'" th:value="${transferForm.frequency}" >
-                                                    <div class="col-sm-4"><b><label>Frequency:</label></b></div>
-                                                    <div class="col-sm-4" th:text="${transferForm.frequency}"></div>
+                                                    <input type="hidden" th:attr="name='frequency'" th:if="${transferForm.frequency}" th:value="${transferForm.frequency}" >
+                                                    <div class="col-sm-4" th:if="${transferForm.frequency}"><b><label>Frequency:</label></b></div>
+                                                    <div class="col-sm-4" th:if="${transferForm.frequency}" th:text="${transferForm.frequency}"></div>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-success">  Make Transfer  </button>
