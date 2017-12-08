@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -258,7 +259,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Loan</h3>
+                                    <h3>Loan/Mortgage Payment</h3>
                                 </div>
                             </div>
                         </div>
@@ -281,7 +282,7 @@
                                 /
                             </li>
                             <li>
-                                Loan
+                                Bill Payment
                             </li>
                         </ul>
                     </div>
@@ -322,13 +323,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Overview</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">One Time Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Submit Application</a>
+                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Auto-Payment</a>
                                       </li>
                                       <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Track Applications</a>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Payment History</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -337,173 +338,168 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class = "container">
-                                            <h3>Plan Details </h3>
-                                            <br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Plan Name: </b></div>
-                                              <div class="col-sm-5"><span th:text="${loanType.loanTypeName}"></span></div>
+                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
+                                                
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="mine">
+                                                <form th:action="@{/confirmLoan}" th:object="${loanForm}" method="post">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>From:</label>
+                                                            <select th:field="*{fromAccountId}" class="form-control" id="account">
+                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}">
+                                                                 <span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
+                                                                 </option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Loan/Mortgage Plan:</label>
+                                                            <select th:field="*{toLoanId}" class="form-control">
+                                                                 <option th:each="loan:${loans}" th:value="${loan.loanId}">
+                                                                 <span th:text="${loan.loanType}"></span>&nbsp;-<span th:text="${#strings.substring(loan.loanNumber,8,12)}"></span>
+                                                                 </option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Amount: $</label>
+                                                            <input type="text" th:field="*{amount}" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label>Date of Payment:</label>
+                                                            <input type="date" th:field="*{dateOfLoanPay}" class="form-control">
+                                                        </div>
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                        </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                
                                             </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Plan Number: </b></div>
-                                              <div class="col-sm-5"><span th:text="${loan.loanNumber}"></span></div>
-                                            </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Interest Rate: </b></div>
-                                              <div class="col-sm-5"><span th:text="${loanType.interestRate} + '%'"></span></div>
-                                            </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Current Due: </b></div>
-                                              <div class="col-sm-5">$<span th:text="${#numbers.formatDecimal(loan.duePayment, 0, 'COMMA', 2, 'POINT')}"></span></div>
-                                            </div>
-                                            <br><br>
-                                            <div class = "row">
-                                              <div class="col-sm-5"><b>Due Date: </b></div>
-                                              <div class="col-sm-5"><span th:text="${#dates.format(loan.nextDueDate, 'MM/dd/yyyy')}"></span></div>
-                                            </div>
-                                            <br><br>
-                                            <a th:href="@{loan-payment(loanId=${loan.loanId})}"  type="button" class="btn btn-success">Pay Due Now</a>
-                                            <a th:href="@{loan-payment(loanId=${loan.loanId})}"  type="button" class="btn btn-warning">Set Up Auto Payment</a>
-                                            <br><br>
-                                          </div>
                                         </div>
                                         <!-- tab-Item-1-->
 
                                         <!-- tab-Item-2-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class = "container">
-                                            <h3>New Application</h3>
-                                            <br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Amount Requested:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Purpose:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
+                                        <form th:action="@{/confirmLoan}" th:object="${loanForm}" method="post">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                    <label>From:</label>
+                                                    <select th:field="*{fromAccountId}" class="form-control" id="account1">
+                                                         <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
+                                                         </option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <br>
 
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>First Name:</label>
-                                                  <input type="text" class="form-control" id="Amount" value="Federick">
-                                              </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Loan/Mortgage Plan:</label>
+                                                        <select th:field="*{toLoanId}" class="form-control" id="account2">
+                                                            <option th:each="loan:${loans}" th:value="${loan.loanId}"><span th:text="${loan.loanType}"></span>&nbsp;-<span th:text="${#strings.substring(loan.loanNumber,8,12)}"></span>
+                                                            </option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="10239939220"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Frequency:</label>
+                                                        <select th:field="*{frequency}" class="form-control" id="frequency">
+                                                            <option value="Weekly">Weekly</option>
+                                                            <option value="Monthly">Monthly</option>
+                                                            <option value="Every six months">Every six months</option>
+                                                            <option value="Annually">Annually</option>
+                                                        </select>
+                                                        <!--input type="text" class="form-control" placeholder="0430006"-->
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Amount: $</label>
+                                                        <input type="text" th:field="*{amount}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Date of First Payment:</label>
+                                                        <input type="date" th:field="*{dateOfFirstPay}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label>Total Number of Payments:</label>
+                                                        <input type="number" th:field="*{numOfPay}" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <button type="submit" class="btn btn-success">Continue Payment</button>
+                                                    </div>
+                                                </div>
+                                                <br>
                                             </div>
-
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Last Name:</label>
-                                                  <input type="text" class="form-control" id="Amount" value="Gordon">
-                                              </div>
-                                            </div>
-
-                                            <br><br>
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Driver's License:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Driver's License:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Employer's Name:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Your Title:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Company Contact:</label>
-                                                  <input type="text" class="form-control" id="Amount" placeholder="xxx-xxx-xxxx">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Starting Date:</label>
-                                                  <input type="date" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <div class="row">
-                                              <div class="col-sm-4">
-                                                  <label>Your Salary:</label>
-                                                  <input type="text" class="form-control" id="Amount">
-                                              </div>
-                                            </div>
-                                            <br><br>
-
-                                            <button type="button" class="btn btn-success">Submit New Application</button>
-                                            <br><br>
-
-                                          </div>
+                                        </form>
                                         </div>
                                         <!-- tab-Item-2-->
 
                                         <!-- tab-Item-3-->
                                         <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <table class="table table-striped">
-                                            <thead>
-                                               <tr>
-                                                 <td><b>Application ID</b></td>
-                                                 <td><b>Description</b></td>
-                                                 <td><b>Date<b></td>
-                                                 <td><b>Status<b></td>
-                                               </tr>
-                                              <thead>
-                                              <tr>
-                                                <td>23451232</td>
-                                                <td>36-Month Auto Loan </td>
-                                                <td>10/03/2017</td>
-                                                <td><span class="label label-warning">Processing</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                              <tr>
-                                                <td>13454382</td>
-                                                <td>12-Month Personal Loan </td>
-                                                <td>09/27/2017</td>
-                                                <td><span class="label label-danger">Declined</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                              <tr>
-                                                <td>23404382</td>
-                                                <td>48-Month Education Loan </td>
-                                                <td>09/02/2017</td>
-                                                <td><span class="label label-success">Approved</span></td>
-                                                <td><button type="button" class="btn btn-info btn-sm">View Details</button></td>
-                                              </tr>
-                                          </table>
+                                            <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                  <td><b>Date</b></td>
+                                                  <td><b>Description</b></td>
+                                                  <td style="width: 100px"><b>Status</b></td>
+                                                  <td><b>Amount</b></td>
+                                                   
+                                                </tr>
+                                               <thead>
+                                               
+                                               <th:block th:each="transaction : ${transactions}"
+                                               th:if="${not #lists.isEmpty(transactions)}">
+                                                <tr>
+                                                  <td th:text="${#dates.format(transaction.timeStamp, 'MM-dd-yyyy')}"></td>
+                                                  <td th:text="${transaction.description}"></td>
+                                                  <div th:switch="${transaction.status}"> 
+													<td th:case="Processing"><span class="label label-warning">Processing</span></td>
+													<td th:case="Clear"><span class="label label-success">Clear</span></td>
+												</div>
+                                                  <td th:text="${#numbers.formatDecimal(transaction.amount, 0, 'COMMA', 2, 'POINT')}"></td>
+                                                </tr>
+                                               </th:block>
+                                            </table>
                                         </div>
                                         <!-- tab-Item-3-->
                                     </div>

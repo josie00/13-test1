@@ -1,7 +1,5 @@
 package com.obs.formbean;
 
-import java.util.Date;
-
 public class RegisterForm {
 	private String userName;
 	private String email;

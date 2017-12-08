@@ -164,7 +164,7 @@ public class Loan {
 	public String toString() {
 		return "Loan [loanId=" + loanId + ", startDate=" + startDate + ", nextDueDate=" + nextDueDate + ", status="
 				+ status + ", duePayment=" + duePayment + ", totalAmount=" + totalAmount + ", loanNumber=" + loanNumber
-				+ ", loanType=" + loanType + ", customer=" + customer + ", transactions=" + transactions + "]";
+				+ ", loanType=" + loanType + ", customer=" + customer + "]";
 	}
 	
 	

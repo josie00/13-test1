@@ -1,12 +1,9 @@
 package com.obs.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.obs.databean.Account;
 import com.obs.databean.Customer;
-import com.obs.databean.Loan;
 import com.obs.databean.RecurringPayment;
 import com.obs.databean.Transaction;
 import com.obs.databean.TransactionType;
