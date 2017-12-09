@@ -300,7 +300,9 @@
                                         <img src="img/team/2.jpg" alt="">
                                         
                                         <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
-                                        <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
+                                        <form th:action="@{/logout}" method="get">
+                                            <span class="country" th:text="${customer.city} +', '+ ${customer.state}"></span>&nbsp;&nbsp;<span><input type="submit" value="Logout"></span>
+                                        </form>
                                     </div>
 
                                     <div class="panel panel-default">

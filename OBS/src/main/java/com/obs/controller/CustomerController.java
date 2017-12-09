@@ -80,5 +80,12 @@ public class CustomerController {
 		
 		return "login-confirmation";
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		session.setAttribute("customer", null);
+		return "redirect:home";
+	}
 
 }
