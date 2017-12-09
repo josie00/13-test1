@@ -46,7 +46,7 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private Set<Transaction> transactions;
 
-	protected Account() {}
+	public Account() {}
 
 	public Account(double balance, String status, AccountType accountType, String accountNumber, String peRoutingNumber,
 			String wireRoutingNumber, Date openDate, Customer customer, Set<Transaction> transactions) {

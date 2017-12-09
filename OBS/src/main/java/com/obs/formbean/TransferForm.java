@@ -9,6 +9,10 @@ public class TransferForm {
 	private String amount;
 	private String frequency;
 	private String type;
+	private String routingNumber;
+	private String swiftCode;
+	private String iban;
+	private String action;
 
 	public TransferForm(){}
 
@@ -58,4 +62,37 @@ public class TransferForm {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public String getRoutingNumber() {
+		return routingNumber;
+	}
+
+	public void setRoutingNumber(String routingNumber) {
+		this.routingNumber = routingNumber;
+	}
+
+	public String getSwiftCode() {
+		return swiftCode;
+	}
+
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 }

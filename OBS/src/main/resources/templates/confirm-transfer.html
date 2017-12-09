@@ -332,7 +332,6 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-<!--                                             <form th:action="@{/process}" method="post"> -->
                                             <div class = "container">
                                             <form th:action="@{/process}" th:object="${confirmTransfer}" method="post">
                                                 <h3>Are you sure you want to make this transfer?</h3>
@@ -348,11 +347,14 @@
                                                 <br>
 
                                                 <div class = "row">
-                                                    <input type="hidden" th:attr="name='toAccountId'" th:value="${to.accountId}">
+                                                    <input type="hidden" th:attr="name='toAccountId'" th:value="${to.accountId}" th:if="${to.accountId}">
+                                                    <input type="hidden" th:attr="name='toAccountNum'" th:value="${toAccountNum}" th:unless="${to.accountId}">
                                                     <div class="col-sm-4"><b><label>To:</label></b></div>
                                                     <div class="col-sm-4">
-                                                        <span th:text="${to.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(to.accountNumber,8,12)}"></span>
+                                                        <span th:text="${to.accountType}" th:if="${to.accountType}"></span><span th:text="' -'+${#strings.substring(to.accountNumber,8,12)}" th:if="${to.accountNumber}"></span>
+                                                        <span th:text="${toAccountNum}" th:unless="${to.accountType}"></span>
                                                     </div>
+                                                   
                                                 </div>
                                                 <br>
 
@@ -369,8 +371,8 @@
                                                     <div class="col-sm-4" th:if="${transferForm.frequency}" th:text="${transferForm.frequency}"></div>
                                                 </div>
                                                 <br>
-                                                <button type="submit" class="btn btn-success">  Make Transfer  </button>
-                                                <button type="submit" class="btn btn-warning">Don't Make Transfer</button>
+                                                <button type="submit" class="btn btn-success" name="action" value="Make Transfer">Make Transfer</button>
+                                                <button type="submit" class="btn btn-warning" name="action" value="Don't Make Transfer">Don't Make Transfer</button>
                                             </form>
                                                 <br><br>
                                             </div>
