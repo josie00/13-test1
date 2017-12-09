@@ -250,6 +250,7 @@
                   </div>
               </nav>
               <!-- End Nav-->
+
                 <!-- Info Content - Section Title-->
                 <div class="content_info">
                     <!-- Info Section title-->
@@ -257,7 +258,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Accounts</h3>
+                                    <h3>Loan/Mortgage Payment</h3>
                                 </div>
                             </div>
                         </div>
@@ -280,9 +281,8 @@
                                 /
                             </li>
                             <li>
-                                Accounts
+                                Loan/Mortgage Payment
                             </li>
-                            
                         </ul>
                     </div>
                     <!-- End breadcrumbs-->
@@ -298,8 +298,7 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                      
-                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
+                                       <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
                                         <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
                                     </div>
 
@@ -307,8 +306,7 @@
                                       <!-- List group -->
                                       <ul class="list-group">
                                         <li class="list-group-item"><a href="accounts">Accounts</a></li>
-
-                                        <li class="list-group-item"><a href="billpay">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="#">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="accounts">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer">Transfers</a></li>
                                         <li class="list-group-item"><a href="#">Deposit</a></li>
@@ -324,13 +322,7 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Banking Accounts</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Mortgage/Loan Plans</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Budgeting/Spending Analysis</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Confirmation</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -339,47 +331,54 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                          <div class="container">
-                                          	<div th:each="account : ${accounts}">
-	                                            <b><span th:text="${account.accountType}"></span> Account</b>-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span><br>
-	                                            Balance: <span th:text="'$' + ${#numbers.formatDecimal(account.balance, 0, 'COMMA', 2, 'POINT')}"></span>
-	                                            <br><br>
-	                                            <a th:href="@{account(accountId=${account.accountId})}"  type="button" class="btn btn-success">View Details</a>
-	                                            <br><br>
-	                                       
+                                            <div class = "container">
+                                                <h3> You have made a payment successfully !</h3>
+                                                <br>
+                                                <div class = "row">
+                                                <div class="col-sm-4"><b><label>From:</label></b></div>
+                                                	   <div class="col-sm-4">
+                                                    <span th:text="${from.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(from.accountNumber,8,12)}"></span>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class = "row">
+                                                <div class="col-sm-4"><b><label>To:</label></b></div>
+                                                 <div class="col-sm-4">
+                                                    <span th:text="${to.loanType}"></span>&nbsp;-<span th:text="${#strings.substring(to.loanNumber,8,12)}"></span>
+                                                 </div>
+                                                </div>
+                                                <br>
+
+                                                <div class = "row">
+                                                    <div class="col-sm-4"><b>Amount:</b></div>
+                                                    <div class="col-sm-4" th:text="${confirmLoanPay.amount}"></div>
+                                                </div>
+                                                <br>
+
+                                                <div class = "row">
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.dateOfLoanPay}"><b>Date:</b></div>
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.dateOfLoanPay}" th:text="${confirmLoanPay.dateOfLoanPay}"></div>
+                                                </div>
+                                                <br>
+                                                
+                                                <div class = "row">
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.dateOfFirstPay}"><b>Date:</b></div>
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.dateOfFirstPay}" th:text="${confirmLoanPay.dateOfFirstPay}"></div>
+                                                </div>
+                                                <br>
+                                                
+                                                <div class = "row">
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.numOfPay}"><b>Total Number of Payments:</b></div>
+                                                    <div class="col-sm-4" th:if="${confirmLoanPay.numOfPay}" th:text="${confirmLoanPay.numOfPay}"></div>
+                                                </div>
+                                                <br>
+                                                <a href="accounts.html" type="button" class="btn btn-success">Go Back Home</a>
+                                                <br><br>
+                                                <br>
                                             </div>
-                                            
-                                          </div>
                                         </div>
                                         <!-- tab-Item-1-->
-                                        
-                                        <!-- tab-Item-2-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                          <div class="container">
-                                          	<div th:each="loan : ${loans}">
-                                         	   <b><span th:text="${loan.loanType}"></b>-<span th:text="${#strings.substring(loan.loanNumber,8,12)}"></span><br>
-	                                            Due Payment: <b>$<span th:text="${#numbers.formatDecimal(loan.duePayment, 0, 'COMMA', 2, 'POINT')}"></b> by <span th:text="${#dates.format(loan.nextDueDate, 'MM/dd/yyyy')}"></span>
-	                                            <br><br>
-	                                            <a th:href="@{loan(loanId=${loan.loanId})}"  type="button" class="btn btn-success">View Details</a>
-	                                            <br><br>
-	                                            
-                                          	</div>
-                                          
-                                          
-                                            
-                                          </div>
-                                        </div>
-                                        <!-- tab-Item-2-->
-
-                                        <!-- tab-Item-3-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                          <div class="container">
-                                            Budgeting/ Spending Analysis
-                                          </div>
-                                        </div>
-                                        <!-- tab-Item-3-->
-
-                                        
                                     </div>
                                     <!-- End tab-content -->
                                 </div>
