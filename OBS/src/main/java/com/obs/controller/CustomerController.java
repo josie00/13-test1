@@ -6,12 +6,14 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.obs.databean.Customer;
@@ -31,21 +33,30 @@ public class CustomerController {
 	}
 
 	@PostMapping("/login")
-	public String login(@ModelAttribute LoginForm loginForm, HttpServletRequest request) {
+	public String login(@Valid LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) {
+		if (bindingResult.hasErrors()) {
+            return "index";
+        }
 		HttpSession session = request.getSession();
 		List<Customer> customers = cr.findByUserName(loginForm.getUserName());
-		Customer c = customers.get(0);
-		if (c != null) {
+/*		if (customers == null) {
+			bindingResult.addError(new ObjectError("userNameError", "Username is incorrect."));
+			return "index";
+		}*/ 
+		if (customers.size() != 0) {
+			Customer c = customers.get(0);
 			System.out.println(c.getUserName());
 			if (loginForm.getPassword().equals(c.getPassword())) {
-				 session.setAttribute("customer", c);
-				 return "redirect:loginConfirmation";
+				session.setAttribute("customer", c);
+				return "redirect:loginConfirmation";
 			} else {
-				return "home";
+				bindingResult.addError(new ObjectError("passwordError", "Password is incorrect."));
+				return "index";
 			}
+		} else {
+			bindingResult.addError(new ObjectError("userNameError", "Username is incorrect."));
+			return "index";
 		}
-
-		return "index";
 	}
 
 	@GetMapping("/register")
@@ -55,7 +66,10 @@ public class CustomerController {
 	}
 
 	@PostMapping("/register")
-	public String registerCustomer(@ModelAttribute RegisterForm registerForm,HttpSession session) {
+	public String registerCustomer(@Valid RegisterForm registerForm,BindingResult bindingResult, HttpSession session) {
+		if (bindingResult.hasErrors()) {
+            return "register";
+        }
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
 		String dstr=registerForm.getDateOfBirth();  
 		Date dateOfBirth=null;

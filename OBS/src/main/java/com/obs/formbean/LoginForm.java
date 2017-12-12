@@ -1,8 +1,12 @@
 package com.obs.formbean;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class LoginForm {
-	
+	@NotEmpty
 	private String userName;
+	
+	@NotEmpty
 	private String password;
 	
 	public LoginForm() {

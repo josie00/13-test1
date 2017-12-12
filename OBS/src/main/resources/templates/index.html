@@ -159,9 +159,14 @@
                             </div>
                             <div class="form-theme">
                                 <form th:action="@{/login}" th:object="${loginForm}" method="post">
+<!--                                     <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">User Name Error</p> -->
+<!--                                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p> -->
+                                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
                                     <input type="text" placeholder="Username" th:field="*{userName}" class="input">
                                     <input type="password" placeholder="Password" th:field="*{password}" class="input">
                                     <input type="submit" class="btn" value="Login">
+                                           
+                                        
                                 </form>
                             </div>
                         </div>

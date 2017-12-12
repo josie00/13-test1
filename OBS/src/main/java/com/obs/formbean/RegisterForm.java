@@ -1,6 +1,7 @@
 package com.obs.formbean;
 
 public class RegisterForm {
+
 	private String userName;
 	private String email;
 	private String password;
