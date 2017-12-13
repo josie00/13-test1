@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <!-- Basic -->
 <meta charset="utf-8">
@@ -151,7 +151,7 @@
 						<div class="icon-logo">
 							<i class="fa fa-university"></i>
 						</div>
-						<a href="index.html"> Devonshire Lending <span>Your
+						<a href="#"> Devonshire Lending <span>Your
 								money is safe.</span>
 						</a>
 					</div>
@@ -180,37 +180,55 @@
 								<!-- Nav Bar Items -->
 								<ul class="nav navbar-nav">
 									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="index.html"
-										class="dropdown-toggle"> Home </a></li>
-									<!-- End Contact Us Nav Item -->
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">
+                                        Home
+                                      </a>
+                                    </li>
+                                    <!-- End Contact Us Nav Item -->
 
-									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="template-contact.html"
-										class="dropdown-toggle"> Transaction </a></li>
-									<!-- End Contact Us Nav Item -->
+                                    <!-- Contact Us Nav Item -->
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">
+                                        Checking
+                                      </a>
+                                    </li>
+                                    <!-- End Contact Us Nav Item -->
 
-									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="template-contact.html"
-										class="dropdown-toggle"> Savings </a></li>
-									<!-- End Contact Us Nav Item -->
+                                    <!-- Contact Us Nav Item -->
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">
+                                        Savings
+                                      </a>
+                                    </li>
+                                    <!-- End Contact Us Nav Item -->
 
-									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="template-contact.html"
-										class="dropdown-toggle"> Mortgage </a></li>
-									<!-- End Contact Us Nav Item -->
+                                    <!-- Contact Us Nav Item -->
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">
+                                        Mortgage
+                                      </a>
+                                    </li>
+                                    <!-- End Contact Us Nav Item -->
 
-									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="template-contact.html"
-										class="dropdown-toggle"> Auto Loans </a></li>
-									<!-- End Contact Us Nav Item -->
+                                    <!-- Contact Us Nav Item -->
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle">
+                                        Auto Loans
+                                      </a>
+                                    </li>
+                                    <!-- End Contact Us Nav Item -->
 
 
-									<!-- Contact Us Nav Item -->
-									<li class="dropdown"><a href="template-contact.html"
-										class="dropdown-toggle"> Contact Us </a></li>
-									<!-- End Contact Us Nav Item -->
-								</ul>
-								<!-- End Nav Bar Items -->
+                                      <!-- Contact Us Nav Item -->
+                                      <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle">
+                                          Contact Us
+                                        </a>
+                                      </li>
+                                      <!-- End Contact Us Nav Item -->
+                                  </ul>
+                                  <!-- End Nav Bar Items -->
 
 								<!-- Search Form -->
 								<ul class="nav navbar-nav navbar-right">
@@ -273,33 +291,35 @@
 			<!-- End Info Content - Section Title-->
 
 			<!-- Info Content - User Area-->
-			<div class="content_info">
-				<div class="paddings">
-					<div class="container">
-						<div class="row user-area">
-							<!-- Left User Area-->
-							<div class="col-md-4">
-								<div class="item-team">
-									<img src="img/team/2.jpg" alt="">
-									<h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
-                                       <span class="country"><div th:text="${customer.city} +', '+ ${customer.state}"> </div></span>
-								</div>
+                <div class="content_info">
+                    <div class="paddings">
+                        <div class="container">
+                            <div class="row user-area">
+                                <!-- Left User Area-->
+                                <div class="col-md-4">
+                                    <div class="item-team">
+                                        <img src="img/team/2.jpg" alt="">
+                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"></h4>
+                                        <form th:action="@{/logout}" method="get">
+                                            <span class="country" th:text="${customer.city} +', '+ ${customer.state}"></span>&nbsp;&nbsp;<span><input type="submit" value="Logout"></span>
+                                        </form>
+                                    </div>
 
-								<div class="panel panel-default">
-									<!-- List group -->
-									<ul class="list-group">
+                                    <div class="panel panel-default">
+                                      <!-- List group -->
+                                      <ul class="list-group">
                                         <li class="list-group-item"><a href="accounts">Accounts</a></li>
 
                                         <li class="list-group-item"><a href="billpay">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="accounts">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer">Transfers</a></li>
-                                        <li class="list-group-item"><a href="#">Deposit</a></li>
-                                        <li class="list-group-item"><a href="personal-info.html">Update Personal Info</a></li>
+                                        <li class="list-group-item"><a href="deposit">Deposit</a></li>
+                                        <li class="list-group-item"><a href="personal-info">Update Personal Info</a></li>
 
                                       </ul>
-								</div>
-							</div>
-							<!-- End Left User Area-->
+                                    </div>
+                                </div>
+                                <!-- End Left User Area-->
 
 							<!-- Content Tabs Section-->
 							<div class="col-md-8">
@@ -479,7 +499,7 @@
 								<div class="icon-logo">
 									<i class="fa fa-university"></i>
 								</div>
-								<a href="index.html"> Devonshire Lending <span>Your
+								<a href="#"> Devonshire Lending <span>Your
 										money is safe.</span>
 								</a>
 							</div>
