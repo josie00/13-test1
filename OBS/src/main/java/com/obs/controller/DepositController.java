@@ -63,7 +63,7 @@ public class DepositController {
 		Date d = new Date();
 		String description = "Deposit " + amount + " to " + to.getAccountNumber();
 		TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
-		Transaction transaction = new Transaction(d, amount, to.getBalance(), t, to, null, description,
+		Transaction transaction = new Transaction(d, amount, to.getBalance(), t, to, null, null, description,
 				"Clear");
 		Transaction t1=tr.save(transaction);
 		if(t1 == null) {
