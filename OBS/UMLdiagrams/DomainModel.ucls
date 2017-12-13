@@ -120,7 +120,7 @@
   </interface>  
   <class id="14" language="java" name="com.obs.controller.TransferController" project="OBS" 
     file="/OBS/src/main/java/com/obs/controller/TransferController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="56" width="147" x="526" y="283"/>    
+    <position height="56" width="147" x="563" y="280"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="com.obs.formbean.LoanForm" project="OBS" 
     file="/OBS/src/main/java/com/obs/formbean/LoanForm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="57" width="119" x="644" y="-58"/>    
+    <position height="57" width="119" x="610" y="-56"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -262,360 +262,597 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="30">    
-    <bendpoint x="770" y="23"/>    
-    <bendpoint x="302" y="23"/>    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="31" name="accounts">        
-        <position height="19" width="57" x="230" y="1"/>      
-      </attribute>      
-      <multiplicity id="32" minimum="0" maximum="2147483647">        
-        <position height="17" width="24" x="253" y="14"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="33">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="34" name="atp"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="36">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="37" name="customer">        
-        <position height="19" width="58" x="-148" y="28"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
+  <class id="30" language="java" name="com.obs.controller.DepositController" project="OBS" 
+    file="/OBS/src/main/java/com/obs/controller/DepositController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="57" width="143" x="638" y="29"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.obs.formbean.DepositForm" project="OBS" 
+    file="/OBS/src/main/java/com/obs/formbean/DepositForm.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="57" width="111" x="750" y="-59"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="32" language="java" name="com.obs.repository.BillPayeeRepository" project="OBS" 
+    file="/OBS/src/main/java/com/obs/repository/BillPayeeRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="58" width="168" x="54" y="337"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="33" language="java" name="com.obs.repository.BillPayeeTypeRepository" project="OBS" 
+    file="/OBS/src/main/java/com/obs/repository/BillPayeeTypeRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="505" y="380"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="34" language="java" name="com.obs.databean.BillPayee" project="OBS" 
+    file="/OBS/src/main/java/com/obs/databean/BillPayee.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="58" width="103" x="-265" y="161"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="35">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="40" name="tr"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="43" name="transactions">        
-        <position height="19" width="73" x="142" y="-164"/>      
+      <attribute id="36" name="ttr">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="44" minimum="0" maximum="2147483647">        
-        <position height="17" width="24" x="155" y="-146"/>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <bendpoint x="-122" y="81"/>    
-    <bendpoint x="-128" y="426"/>    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="46" name="recurringPayments">        
-        <position height="19" width="109" x="-118" y="408"/>      
-      </attribute>      
-      <multiplicity id="47" minimum="0" maximum="2147483647">        
-        <position height="17" width="24" x="3" y="411"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="26" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="48">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="49" name="cr"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="51">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="52" name="tr"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <bendpoint x="-144" y="442"/>    
-    <bendpoint x="-139" y="62"/>    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="55" name="customer"/>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="17" width="26" x="-129" y="56"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="58" name="rbpr"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="61" name="account">        
-        <position height="19" width="51" x="98" y="-129"/>      
-      </attribute>      
-      <multiplicity id="62" minimum="0" maximum="1">        
-        <position height="17" width="26" x="113" y="-110"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="63">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="64" name="loan"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="67" name="transactions"/>      
-      <multiplicity id="68" minimum="0" maximum="2147483647">        
-        <position height="17" width="24" x="-19" y="-134"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="69">    
-    <bendpoint x="252" y="-123"/>    
-    <bendpoint x="101" y="-92"/>    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="70" name="loans"/>      
-      <multiplicity id="71" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="72">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="73" name="tr"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="75">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="76" name="customer">        
-        <position height="19" width="58" x="141" y="6"/>      
-      </attribute>      
-      <multiplicity id="77" minimum="0" maximum="1">        
-        <position height="17" width="26" x="162" y="-7"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="79" name="cr"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="81">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="82" name="transactionType"/>      
-      <multiplicity id="83" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="27" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="84">    
-    <bendpoint x="-102" y="324"/>    
-    <bendpoint x="-103" y="94"/>    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="85" name="customer">        
-        <position height="19" width="58" x="12" y="16"/>      
-      </attribute>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="87">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="88" name="ttr"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="90">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="91" name="rpr"/>      
-      <multiplicity id="92" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="93">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="94" name="ar"/>      
-      <multiplicity id="95" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="96">    
-    <bendpoint x="137" y="-94"/>    
-    <bendpoint x="253" y="-105"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="97" name="loanType">        
-        <position height="19" width="57" x="381" y="-95"/>      
-      </attribute>      
-      <multiplicity id="98" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="99">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="100" name="accounts">        
-        <position height="19" width="57" x="137" y="-71"/>      
-      </attribute>      
-      <multiplicity id="101" minimum="0" maximum="2147483647">        
-        <position height="17" width="24" x="155" y="-50"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="102">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="103" name="ar"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="105">    
-    <bendpoint x="332" y="13"/>    
-    <bendpoint x="772" y="10"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="106" name="accountType"/>      
-      <multiplicity id="107" minimum="0" maximum="1">        
-        <position height="17" width="26" x="947" y="-50"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="108">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="109" name="lr"/>      
-      <multiplicity id="110" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="111">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="112" name="rlpp"/>      
-      <multiplicity id="113" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="114">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="115" name="ar"/>      
-      <multiplicity id="116" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="117">    
+  <association id="38">    
     <bendpoint x="727" y="-75"/>    
     <bendpoint x="242" y="-75"/>    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="118" name="customer">        
+      <attribute id="39" name="customer">        
         <position height="19" width="58" x="645" y="-96"/>      
       </attribute>      
-      <multiplicity id="119" minimum="0" maximum="1">        
+      <multiplicity id="40" minimum="0" maximum="1">        
         <position height="17" width="26" x="710" y="-96"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="120">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="121" name="tr"/>      
-      <multiplicity id="122" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="123">    
-    <end type="SOURCE" refId="27" navigable="false">      
-      <attribute id="124" name="transactions">        
-        <position height="19" width="73" x="166" y="-195"/>      
+  <association id="41">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="42" name="atp">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="125" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="126">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="127" name="ar"/>      
-      <multiplicity id="128" minimum="0" maximum="1"/>    
+  <association id="44">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="45" name="ar">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="129">    
+  <association id="47">    
+    <bendpoint x="770" y="23"/>    
+    <bendpoint x="302" y="23"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="48" name="accounts">        
+        <position height="19" width="57" x="230" y="1"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="2147483647">        
+        <position height="17" width="24" x="253" y="14"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="51" name="accounts">        
+        <position height="19" width="57" x="137" y="-71"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="2147483647">        
+        <position height="17" width="24" x="155" y="-50"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="54" name="bpr"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="130" name="ttr"/>      
-      <multiplicity id="131" minimum="0" maximum="1"/>    
+      <attribute id="57" name="ar">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="60" name="transactionType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="63" name="billPayee"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="66" name="tr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <bendpoint x="-114" y="25"/>    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="69" name="accounts"/>      
+      <multiplicity id="70" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <bendpoint x="726" y="105"/>    
+    <bendpoint x="725" y="137"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="72" name="ttr"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="132">    
+  <association id="74">    
     <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="133" name="loans">        
+      <attribute id="75" name="loans">        
         <position height="19" width="37" x="-10" y="-59"/>      
       </attribute>      
-      <multiplicity id="134" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="76" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="135">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="136" name="ttr"/>      
-      <multiplicity id="137" minimum="0" maximum="1"/>    
+  <association id="77">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="78" name="tr"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="81" name="lr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="84" name="customer">        
+        <position height="19" width="58" x="-148" y="28"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="87" name="cr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <bendpoint x="332" y="13"/>    
+    <bendpoint x="772" y="10"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="90" name="accountType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="91" minimum="0" maximum="1">        
+        <position height="17" width="26" x="947" y="-50"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <bendpoint x="-122" y="81"/>    
+    <bendpoint x="-128" y="426"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="93" name="recurringPayments">        
+        <position height="19" width="109" x="-118" y="408"/>      
+      </attribute>      
+      <multiplicity id="94" minimum="0" maximum="2147483647">        
+        <position height="17" width="24" x="3" y="411"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="96" name="loan">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="97" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="99" name="bptr"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="102" name="ar"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="105" name="cr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="106" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="107">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="108" name="ttr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="109" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="138">    
+  <association id="110">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="111" name="transactions">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="112" minimum="0" maximum="2147483647">        
+        <position height="17" width="24" x="-19" y="-134"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <bendpoint x="-228" y="-118"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="114" name="billPayee"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <bendpoint x="137" y="-94"/>    
+    <bendpoint x="253" y="-105"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="117" name="loanType">        
+        <position height="19" width="57" x="381" y="-95"/>      
+      </attribute>      
+      <multiplicity id="118" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="120" name="account">        
+        <position height="19" width="51" x="98" y="-129"/>      
+      </attribute>      
+      <multiplicity id="121" minimum="0" maximum="1">        
+        <position height="17" width="26" x="113" y="-110"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="139" name="lr"/>      
-      <multiplicity id="140" minimum="0" maximum="1"/>    
+      <attribute id="123" name="lr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="124" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <bendpoint x="-102" y="324"/>    
+    <bendpoint x="-103" y="94"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="126" name="customer">        
+        <position height="19" width="58" x="12" y="16"/>      
+      </attribute>      
+      <multiplicity id="127" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <bendpoint x="252" y="-123"/>    
+    <bendpoint x="101" y="-92"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="129" name="loans">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="130" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="132" name="ar">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="133" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="135" name="ar">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="136" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="137">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="138" name="rpr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="139" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="141" name="customer">        
+        <position height="19" width="58" x="141" y="6"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1">        
+        <position height="17" width="26" x="162" y="-7"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <bendpoint x="-86" y="33"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="144" name="billPayee">        
+        <position height="19" width="57" x="-244" y="104"/>      
+      </attribute>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="147" name="tr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="148" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="150" name="transactions">        
+        <position height="19" width="73" x="142" y="-164"/>      
+      </attribute>      
+      <multiplicity id="151" minimum="0" maximum="2147483647">        
+        <position height="17" width="24" x="155" y="-146"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <bendpoint x="-201" y="-114"/>    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="153" name="transactions"/>      
+      <multiplicity id="154" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="156" name="tr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="157" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="158">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="159" name="ttr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="160" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="161">    
+    <bendpoint x="-144" y="442"/>    
+    <bendpoint x="-139" y="62"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="162" name="customer">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="163" minimum="0" maximum="1">        
+        <position height="17" width="26" x="-129" y="56"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="164">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="165" name="transactions">        
+        <position height="19" width="73" x="166" y="-195"/>      
+      </attribute>      
+      <multiplicity id="166" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="167">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="168" name="tr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="169" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="170">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="171" name="rbpr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="172" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="173">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="174" name="rlpp">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="175" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

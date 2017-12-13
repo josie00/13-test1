@@ -9,9 +9,8 @@ INSERT INTO customer VALUES(3, 'Pittsburgh', '1993-05-01', 'abcd', 'yuhan@gmail.
 INSERT INTO account_type VALUES(1, 'Checking', 0.1);
 INSERT INTO account_type VALUES(2, 'Saving', 0.2);
 
-INSERT INTO bill_payee VALUES(1, 'Verizon', 'active', 1);
-
 INSERT INTO bill_payee_type VALUES(1, 'Telecommunication');
+INSERT INTO bill_payee VALUES(1, 'Verizon', 'active', 1);
 
 INSERT INTO account VALUES(1, '123443211123', 800,'2017-01-02','234213453', 'active','323453012', 1, NULL, 1);
 INSERT INTO account VALUES(2, '584022343768',1300, '2016-04-23', '012902033','active', '234513450', 2, NULL, 1);
