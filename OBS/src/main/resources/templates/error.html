@@ -298,8 +298,8 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"></h4>
-                                        <form th:action="@{/logout}" method="get">
+                                       <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
+                                       <form th:action="@{/logout}" method="get">
                                             <span class="country" th:text="${customer.city} +', '+ ${customer.state}"></span>&nbsp;&nbsp;<span><input type="submit" value="Logout"></span>
                                         </form>
                                     </div>
@@ -324,16 +324,7 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Within Devonshire Lending</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">To Other Banks</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">To Third Party</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Recurring Payment</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Confirmation</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -342,259 +333,12 @@
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
                                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                            <ul id="withinDL" class="nav nav-pills" style="padding-left: 5px">
-                                                <li class="active">
-                                                    <a href="#mine" style="width:180px; height: 35px; font-size: 15px; color: black" data-toggle="tab">Within My Accounts</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#others" data-toggle="tab" style="width:180px; height: 35px; font-size: 15px; color: black">To Other Account</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade in active" id="mine">
-                                                <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
-                                                    <div class="container">
-                                                        <input type="hidden" th:attr="name='type'" value="withinMyAccounts" >
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>From:</label>
-                                                            <select th:field="*{fromAccountId}" class="form-control" id="account1">
-                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
-                                                                 </option>
-                                                            </select>
-                                                        </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>To:</label>
-                                                            <select th:field="*{toAccountId}" class="form-control" id="account2">
-                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
-                                                                 </option>
-                                                            </select>
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>Amount: $</label>
-                                                            <input type="text" th:field="*{amount}" class="form-control">
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>Frequency:</label>
-                                                            <select th:field="*{frequency}" class="form-control" id="frequency">
-                                                            <option value="One time, immediately">One time, immediately</option>
-                                                            <option value="Weekly">Weekly</option>
-                                                            <option value="Monthly">Monthly</option>
-                                                            <option value="Every six months">Every six months</option>
-                                                            <option value="Annually">Annually</option>
-                                                            </select>
-<!--                                                             <input type="date" th:field="*{dateOfTransfer}" class="form-control"> -->
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
-                                                        </div>
-                                                        </div>
-                                                        <br>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                                </form>
-                                                <div class="tab-pane fade in" id="others">
-                                                <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
-                                                    <div class="container">
-                                                        <input type="hidden" th:attr="name='type'" value="toOtherAccount" >
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>From:</label>
-                                                            <select th:field="*{fromAccountId}" class="form-control" id="account1">
-                                                                 <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
-                                                                 </option>
-                                                            </select>
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>To (Account No.):</label>
-                                                            <input type="text" class="form-control" th:field="*{toAccountNum}">
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>Amount: $</label>
-                                                            <input type="text" th:field="*{amount}" class="form-control">
-                                                        </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <button type="submit" class="btn btn-success">Continue Transfer</button>
-                                                        </div>
-                                                        </div>
-                                                        <br>
-                                                        <br>
-                                                     </div>
-                                                </form>
-                                                </div>
+                                            <div class = "container">
+                                                <h3>There is an error</h3>
+                                                
                                             </div>
                                         </div>
                                         <!-- tab-Item-1-->
-
-                                        <!-- tab-Item-2-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                        <form th:action="@{/confirm}" th:object="${transferForm}" method="post">
-                                            <div class="container">
-                                                <input type="hidden" th:attr="name='type'" value="toOtherBank" >
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                    <label>From:</label>
-                                                    <select th:field="*{fromAccountId}" class="form-control" id="account1">
-                                                        <option th:each="account:${accounts}" th:value="${account.accountId}"><span th:text="${account.accountType}"></span>&nbsp;-<span th:text="${#strings.substring(account.accountNumber,8,12)}"></span>
-                                                        </option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>To (Account No.):</label>
-                                                        <input type="text" class="form-control" th:field="*{toAccountNum}">
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>Routing Number :</label>
-                                                        <input type="text" class="form-control" th:field="*{routingNumber}">
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>SWIFT Code:</label>
-                                                        <input type="text" class="form-control" th:field="*{swiftCode}">
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>IBAN:</label>
-                                                        <input type="text" class="form-control" th:field="*{iban}">
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label>Amount: $</label>
-                                                        <input type="text" th:field="*{amount}" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <button type="submit" class="btn btn-success">Continue Transfer</button>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                            </div>
-                                        </form>
-                                        </div>
-                                        <!-- tab-Item-2-->
-
-                                        <!-- tab-Item-3-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                            <form action="#" class="form-theme">
-                                                <br>
-                                                <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label><b>Third Parties:</b></label>
-                                                </div>
-                                                </div>
-                                                <br>
-                                                <br>
-
-                                                <div class="row">
-                                                <div class="col-sm-4">
-                                                    <a href="https://venmo.com/">
-                                                        <img src="img/venmo.jpg" alt="venmo" height="80px" width="80px">
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <a href="https://www.chase.com/digital/digital-payments/chase-pay">
-                                                        <img src="img/chasepay.jpg" alt="chasepay" height="80px" width="80px">
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <a href="https://www.paypal.com/us/home">
-                                                        <img src="img/paypal.png" alt="paypal" height="80px" width="160px">
-                                                    </a>
-                                                </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                        <!-- tab-Item-3-->
-                                        
-                                        <!-- tab-Item-4-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab4">
-                                            <div class = "container">
-                                            <form action="#">
-                                                <div class = "row">
-                                                    <div class="col-sm-2"><b><label>From</label></b></div>
-                                                    <div class="col-sm-2"><b><label>To</label></b></div>
-                                                    <div class="col-sm-1"><b><label>Amount</label></b></div>
-                                                    <div class="col-sm-1"><b><label>Frequency</label></b></div>
-                                                    <div class="col-sm-1"><b><label>Action</label></b></div>
-                                                </div>
-                                                <br>
-                                                <div class = "row" th:each="payment : ${recurringPayments}">
-                                                    <div class="col-sm-2">
-                                                        <b><span th:text="${payment.fromAccountType}"></span></b><span th:if="${payment}" th:text="' -'+${#strings.substring(payment.fromAccountNum,8,12)}"></span>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <b><span th:text="${payment.toAccountType}"></span></b><span th:if="${payment}" th:text="' -'+${#strings.substring(payment.toAccountNum,8,12)}"></span>
-                                                    </div>
-                                                    <div class="col-sm-1">
-                                                        <span th:if="${payment}" th:text="'$' + ${#numbers.formatDecimal(payment.amount, 0, 'COMMA', 2, 'POINT')}"></span>
-                                                    </div>
-                                                    <div class="col-sm-1" th:text="${payment.frequency}"></div>
-                                                    <div class="col-sm-1">
-                                                        <button type="submit" class="btn btn-warning">Cancel</button>
-                                                    </div>
-                                                    <br>
-                                                    <br>
-                                                </div>
-      <!--                                       <div th:each="payment : ${recurringPayments}">
-	                                            from:<b><span th:text="${payment.fromAccountType}"></span> Account</b>-<span th:if="${payment}" th:text="${#strings.substring(payment.fromAccountNum,8,12)}"></span><br>
-	                                            amount: <span th:if="${payment}" th:text="'$' + ${#numbers.formatDecimal(payment.amount, 0, 'COMMA', 2, 'POINT')}"></span>
-	                                            <br><br>
-	                                            <a th:href="#"  type="button" class="btn btn-success">Cancel</a> -->
-	                                            <br><br>
-	                                        </form>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <!-- tab-Item-4-->
                                     </div>
                                     <!-- End tab-content -->
                                 </div>
