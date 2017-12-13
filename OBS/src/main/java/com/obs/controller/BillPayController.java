@@ -2,11 +2,13 @@ package com.obs.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +17,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.obs.databean.Account;
+import com.obs.databean.BillPayee;
+import com.obs.databean.BillPayeeType;
 import com.obs.databean.Customer;
 import com.obs.databean.RecurBillPay;
 import com.obs.databean.Transaction;
 import com.obs.databean.TransactionType;
 import com.obs.formbean.BillPayForm;
 import com.obs.repository.AccountRepository;
+import com.obs.repository.BillPayeeRepository;
+import com.obs.repository.BillPayeeTypeRepository;
 import com.obs.repository.RecurBillPayRepository;
 import com.obs.repository.TransactionRepository;
 import com.obs.repository.TransactionTypeRepository;
@@ -29,6 +35,12 @@ import com.obs.repository.TransactionTypeRepository;
 public class BillPayController {
     @Autowired
     AccountRepository ar;
+    
+    @Autowired
+    BillPayeeRepository bpr;
+    
+    @Autowired
+    BillPayeeTypeRepository bptr;
 
     @Autowired
     TransactionTypeRepository ttr;
@@ -46,6 +58,18 @@ public class BillPayController {
         
         List<Account> accounts = new ArrayList<>();
         List<RecurBillPay> recurBillPay = new ArrayList<>();
+        Iterable<BillPayee> billPayees = bpr.findAll();
+        
+//        Iterable<BillPayeeType> billPayeeTypes = new Iterable<BillPayeeType>() {
+//			
+//			@Override
+//			public Iterator<BillPayeeType> iterator() {
+//				int index = 0;
+//				boolean hasNext() {
+//					return (index < billPayeeTypes.)
+//				}
+//			}
+//		};
         
         accounts = ar.findByCustomer_CustomerId(customer.getCustomerId());
         recurBillPay = rbpr.findByCustomer_CustomerId(customer.getCustomerId());
@@ -62,6 +86,7 @@ public class BillPayController {
         model.addAttribute("accounts", activeAccounts);
         model.addAttribute("billPayForm", new BillPayForm());
         model.addAttribute("recurBillPay", recurBillPay);
+        model.addAttribute("billPayees", billPayees);
         
         return "billPayment";   
     }
@@ -73,11 +98,12 @@ public class BillPayController {
         
         long fromId = Long.parseLong(billPayForm.getFromAccountId());
         Account from = ar.findOne(fromId);
-        String toName = billPayForm.getToAccountName();
+        long toPayeeId = Long.parseLong(billPayForm.getToAccountName());
+        BillPayee toPayee = bpr.findOne(toPayeeId);
         
         model.addAttribute("customer", c);
         model.addAttribute("from", from);
-        model.addAttribute("toName", toName);
+        model.addAttribute("toPayee", toPayee);
         model.addAttribute("confirmBillPay", new BillPayForm());
         
         return "confirm-bill-payment";
@@ -89,11 +115,12 @@ public class BillPayController {
         Customer c = (Customer) session.getAttribute("customer");
         
         long fromId = Long.parseLong(confirmBillPay.getFromAccountId());
-        String toAccountName = confirmBillPay.getToAccountName();
         Account from = ar.findOne(fromId);
+        long toPayeeId = Long.parseLong(confirmBillPay.getToAccountName());
+        BillPayee toPayee = bpr.findOne(toPayeeId);
         
         model.addAttribute("from", from);
-        model.addAttribute("toAccountName", toAccountName);
+        model.addAttribute("toPayee", toPayee);
         model.addAttribute("customer", c);
         model.addAttribute("confirmBillPay", confirmBillPay);
         
@@ -105,13 +132,14 @@ public class BillPayController {
                 from.setBalance(from.getBalance() - amount);
                 Date d = new Date();
                 String description = "Paid Bill " + amount + " from " + from.getAccountNumber() + " to "
-                        + toAccountName;
+                        + toPayee.getBillPayeeName();
                 TransactionType t = ttr.findByTransactionTypeName("Bill Pay").get(0);
-                Transaction transaction = new Transaction(d, -amount, from.getBalance(), t, from, null, description, "Clear");
+                Transaction transaction = new Transaction(d, -amount, from.getBalance(), t, from, null, toPayee, description, "Clear");
                 tr.save(transaction);
             } else {
                 Customer customer = from.getCustomer();
-                RecurBillPay recurBillPay = new RecurBillPay(customer, fromId, from.getAccountNumber(),
+                String toAccountName = toPayee.getBillPayeeName();
+                RecurBillPay recurBillPay = new RecurBillPay(customer, toPayee, fromId, from.getAccountNumber(),
                         from.getAccountType().toString(), toAccountName, amount, frequency);
                 rbpr.save(recurBillPay);
             }

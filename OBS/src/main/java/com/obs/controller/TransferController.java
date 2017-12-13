@@ -109,7 +109,7 @@ public class TransferController {
 				String description = "Transfer " + amount + " from " + from.getAccountNumber() + " to "
 						+ toAccountNum;
 				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
-				Transaction transaction = new Transaction(d, -amount, from.getBalance(), t, from, null, description,
+				Transaction transaction = new Transaction(d, -amount, from.getBalance(), t, from, null, null, description,
 						"Clear");
 				Transaction tran=tr.save(transaction);
 				if(tran == null) {
@@ -138,9 +138,9 @@ public class TransferController {
 				String description2 = "Receive " + amount + " from " + from.getAccountNumber() + " to "
 						+ to.getAccountNumber();
 				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
-				Transaction transaction1 = new Transaction(d, -amount, from.getBalance(), t, from, null, description1,
+				Transaction transaction1 = new Transaction(d, -amount, from.getBalance(), t, from, null, null, description1,
 						"Clear");
-				Transaction transaction2 = new Transaction(d, amount, to.getBalance(), t, to, null, description2,
+				Transaction transaction2 = new Transaction(d, amount, to.getBalance(), t, to, null, null, description2,
 						"Clear");
 				Transaction t1=tr.save(transaction1);
 				Transaction t2=tr.save(transaction2);

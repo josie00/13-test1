@@ -1,5 +1,6 @@
 package com.obs.databean;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,7 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class LoanType {
+public class LoanType implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long loanTypeId;

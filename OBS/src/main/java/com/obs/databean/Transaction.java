@@ -34,10 +34,13 @@ public class Transaction implements Serializable {
 	@JoinColumn(name = "account_id")
 	private Account account;
 
-    
 	@ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "loan_id")
 	private Loan loan;
+	
+	@ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "bill_payee_id")
+	private BillPayee billPayee;
 
 	private String description;
 	
@@ -49,13 +52,14 @@ public class Transaction implements Serializable {
 	
 
 	public Transaction(Date timeStamp, double amount, double timeStampBalance, TransactionType transactionType,
-			Account account, Loan loan, String description, String status) {
+			Account account, Loan loan, BillPayee billPayee, String description, String status) {
 		this.timeStamp = timeStamp;
 		this.amount = amount;
 		this.timeStampBalance = timeStampBalance;
 		this.transactionType = transactionType;
 		this.account = account;
 		this.loan = loan;
+		this.billPayee = billPayee;
 		this.description = description;
 		this.status = status;
 	}
@@ -120,6 +124,18 @@ public class Transaction implements Serializable {
 
 	public void setLoan(Loan loan) {
 		this.loan = loan;
+	}
+
+
+
+	public BillPayee getBillPayee() {
+		return billPayee;
+	}
+
+
+
+	public void setBillPayee(BillPayee billPayee) {
+		this.billPayee = billPayee;
 	}
 
 

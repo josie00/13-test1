@@ -1,5 +1,6 @@
 package com.obs.databean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,8 +15,12 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Loan {
+public class Loan implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long loanId;
@@ -34,13 +39,8 @@ public class Loan {
     @JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	
-	
-	
 	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
 	private Set<Transaction> transactions;
-	
-	
 	
 	public Loan(Date startDate, Date nextDueDate, String status, double duePayment, double totalAmount,
 			String loanNumber, LoanType loanType, Customer customer, Set<Transaction> transactions) {

@@ -1,5 +1,7 @@
 package com.obs.databean;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +11,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class RecurBillPay {
+public class RecurBillPay implements Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long recurBillPayId;
     
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
+    
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "bill_payee_id")
+    private BillPayee billPayee;
     
     private long fromAccountId;
     private String fromAccountNum;
@@ -26,9 +37,10 @@ public class RecurBillPay {
     private double amount;
     private String frequency;
     
-    public RecurBillPay(Customer customer, long fromAccountId, String fromAccountNum,
+    public RecurBillPay(Customer customer, BillPayee billPayee, long fromAccountId, String fromAccountNum,
             String fromAccountType, String toAccountName, double amount, String frequency) {
         this.customer = customer;
+        this.billPayee = billPayee;
         this.fromAccountId = fromAccountId;
         this.fromAccountNum = fromAccountNum;
         this.fromAccountType = fromAccountType;
@@ -50,6 +62,12 @@ public class RecurBillPay {
     }
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+    public BillPayee getBillPayee() {
+        return billPayee;
+    }
+    public void setBillPayee(BillPayee billPayee) {
+        this.billPayee = billPayee;
     }
     public long getFromAccountId() {
         return fromAccountId;
