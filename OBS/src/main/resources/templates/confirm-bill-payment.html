@@ -345,22 +345,22 @@
                                                 <br>
 
                                                 <div class = "row">
-                                                <input type="hidden" th:attr="name='toAccountName'" th:value="${billPayForm.toAccountName}">
+                                                <input type="hidden" th:attr="name='toAccountName'" th:value="${toPayee.billPayeeId}">
                                                     <div class="col-sm-4"><b>Pay To Company Name: </b></div>
                                                     <div class="col-sm-4">
-                                                    		<span th:text="${billPayForm.toAccountName}"></span>
+                                                    		<span th:text="${toPayee.billPayeeName}"></span>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 
-                                                <div class = "row">
-                                                	<input type="hidden" th:attr="name='toAccountId'" th:value="${billPayForm.toAccountId}">
-                                                    <div class="col-sm-4"><b>Pay To Account Number: </b></div>
-                                                    <div class="col-sm-4">
-                                                    		<span th:text="${billPayForm.toAccountId}"></span>
-                                                    </div>
-                                                </div>
-                                                <br>
+<!--                                                 <div class = "row"> -->
+<!--                                                 	<input type="hidden" th:attr="name='toAccountId'" th:value="${billPayForm.toAccountId}"> -->
+<!--                                                     <div class="col-sm-4"><b>Pay To Account Number: </b></div> -->
+<!--                                                     <div class="col-sm-4"> -->
+<!--                                                     		<span th:text="${billPayForm.toAccountId}"></span> -->
+<!--                                                     </div> -->
+<!--                                                 </div> -->
+<!--                                                 <br> -->
 
                                                 <div class = "row">
                                                 <input type="hidden" th:attr="name='amount'" th:value="${billPayForm.amount}">

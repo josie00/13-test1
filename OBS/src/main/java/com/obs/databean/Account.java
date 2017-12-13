@@ -37,11 +37,13 @@ public class Account implements Serializable {
     private String wireRoutingNumber;
     private Date openDate;
     
-    
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
 	private Customer customer;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bill_payee_id")
+	private BillPayee billPayee;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private Set<Transaction> transactions;
@@ -49,7 +51,7 @@ public class Account implements Serializable {
 	public Account() {}
 
 	public Account(double balance, String status, AccountType accountType, String accountNumber, String peRoutingNumber,
-			String wireRoutingNumber, Date openDate, Customer customer, Set<Transaction> transactions) {
+			String wireRoutingNumber, Date openDate, Customer customer, BillPayee billPayee, Set<Transaction> transactions) {
 		super();
 		this.balance = balance;
 		this.status = status;
@@ -59,6 +61,7 @@ public class Account implements Serializable {
 		this.wireRoutingNumber = wireRoutingNumber;
 		this.openDate = openDate;
 		this.customer = customer;
+		this.billPayee = billPayee;
 		this.transactions = transactions;
 	}
 
@@ -132,6 +135,14 @@ public class Account implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public BillPayee getBillPayee() {
+		return billPayee;
+	}
+
+	public void setBillPayee(BillPayee billPayee) {
+		this.billPayee = billPayee;
 	}
 
 	public Set<Transaction> getTransactions() {

@@ -356,18 +356,22 @@
                                                         <div class="row">
                                                         <div class="col-sm-4">
                                                             <label>Pay To Company Name:</label>
-                                                            <input class="form-control" id="accountname" th:field="*{toAccountName}"></input>
+                                                            <select th:field="*{toAccountName}" class="form-control">
+                                                                 <option th:each="payee:${billPayees}" th:value="${payee.billPayeeId}">
+                                                                 <span th:text="${payee.billPayeeName}"></span>
+                                                                 </option>
+                                                            </select>
                                                         </div>
                                                         </div>
                                                         <br>
                                                         
-                                                        <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <label>Pay To Account Number:</label>
-                                                            <input class="form-control" id="account2" th:field="*{toAccountId}"></input>
-                                                        </div>
-                                                        </div>
-                                                        <br>
+<!--                                                         <div class="row"> -->
+<!--                                                         <div class="col-sm-4"> -->
+<!--                                                             <label>Pay To Account Number:</label> -->
+<!--                                                             <div class="col-sm-4" th:text="${payeeAccount}"></div> -->
+<!--                                                         </div> -->
+<!--                                                         </div> -->
+<!--                                                         <br> -->
 
                                                         <div class="row">
                                                         <div class="col-sm-4">

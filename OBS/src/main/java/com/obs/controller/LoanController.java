@@ -211,9 +211,9 @@ public class LoanController {
 						+ fromAccount.getAccountNumber();
 				TransactionType t = ttr.findByTransactionTypeName("Loan Pay").get(0);
 				Transaction transaction1 = new Transaction(dateOfLoanPay, -amount, fromAccount.getBalance(),
-						t, fromAccount, null, description1, "Clear");
+						t, fromAccount, null, null, description1, "Clear");
 				Transaction transaction2 = new Transaction(dateOfLoanPay, amount, toLoan.getDuePayment(), 
-						t, null, toLoan, description2, "Clear");
+						t, null, toLoan, null, description2, "Clear");
 				tr.save(transaction1);
 				tr.save(transaction2);
 			} else {
