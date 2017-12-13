@@ -111,7 +111,10 @@ public class TransferController {
 				TransactionType t = ttr.findByTransactionTypeName("Transfer").get(0);
 				Transaction transaction = new Transaction(d, -amount, from.getBalance(), t, from, null, description,
 						"Clear");
-				tr.save(transaction);
+				Transaction tran=tr.save(transaction);
+				if(tran == null) {
+					throw new IllegalArgumentException();
+				}
 				return "success-transfer";
 			}else {
 				model.addAttribute("error", "Not enough money");
@@ -139,8 +142,14 @@ public class TransferController {
 						"Clear");
 				Transaction transaction2 = new Transaction(d, amount, to.getBalance(), t, to, null, description2,
 						"Clear");
-				tr.save(transaction1);
-				tr.save(transaction2);
+				Transaction t1=tr.save(transaction1);
+				Transaction t2=tr.save(transaction2);
+				if(t1 == null) {
+					throw new IllegalArgumentException();
+				}
+				if(t2 == null) {
+					throw new IllegalArgumentException();
+				}
 			} else {
 				Customer customer = from.getCustomer();
 				RecurringPayment recurringPayment = new RecurringPayment(customer, fromId, toId, from.getAccountNumber(),

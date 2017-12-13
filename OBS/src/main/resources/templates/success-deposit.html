@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Basic -->
         <meta charset="utf-8">
@@ -251,7 +251,6 @@
               </nav>
               <!-- End Nav-->
 
-
                 <!-- Info Content - Section Title-->
                 <div class="content_info">
                     <!-- Info Section title-->
@@ -259,7 +258,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <h3>Personal Information</h3>
+                                    <h3>Transfer</h3>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +281,7 @@
                                 /
                             </li>
                             <li>
-                                Update Personal Info
+                                Transfers
                             </li>
                         </ul>
                     </div>
@@ -299,8 +298,10 @@
                                 <div class="col-md-4">
                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4>Federick Gordon</h4>
-                                        <span class="country"> Pittsburgh, US</span>
+                                       <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"> </h4>
+                                       <form th:action="@{/logout}" method="get">
+                                            <span class="country" th:text="${customer.city} +', '+ ${customer.state}"></span>&nbsp;&nbsp;<span><input type="submit" value="Logout"></span>
+                                        </form>
                                     </div>
 
                                     <div class="panel panel-default">
@@ -311,7 +312,7 @@
                                         <li class="list-group-item"><a href="billpay">Bill Payment</a></li>
                                         <li class="list-group-item"><a href="accounts">Mortgage/Loan Payment</a></li>
                                         <li class="list-group-item"><a href="transfer">Transfers</a></li>
-                                        <li class="list-group-item"><a href="#">Deposit</a></li>
+                                        <li class="list-group-item"><a href="deposit">Deposit</a></li>
                                         <li class="list-group-item"><a href="personal-info">Update Personal Info</a></li>
 
                                       </ul>
@@ -324,13 +325,7 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                       <li role="presentation" class="active">
-                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Account Settings</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Personal Information</a>
-                                      </li>
-                                      <li role="presentation">
-                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Change Password</a>
+                                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Confirmation</a>
                                       </li>
                                     </ul>
                                     <!-- End Nav tabs -->
@@ -338,125 +333,13 @@
                                     <!-- tab-content-->
                                     <div class="tab-content">
                                         <!-- tab-Item-1-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab2">
-                                            <form action="#" class="form-theme">
-                                                <div class="row">
-                                                    <p class="col-md-6"><input type="text" placeholder="First Name" name="firstName" id="firstName"></p>
-                                                    <p class="col-md-6"><input type="text" placeholder="Last Name" name="lastName" id="lastName"></p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="col-md-6"><input type="text" placeholder="Phone Number" name="phone" id="phone"></p>
-                                                    <p class="col-md-6"><input type="date" placeholder="Date of Birth" name="dateOfBirth" id="dateOfBirth"></p>
-                                                </div>
-
-                                                <div class="row">
-                                                    <p class="col-md-6"><input type="text" placeholder="Email" name="email" id="email" required=""></p>
-                                                    <p class="col-md-6"><input type="text" placeholder="Driver's License" name="driverLicense" id="driverLicense" required=""></p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="col-md-6"><input type="text"  placeholder="SSN" name="ssn" id="ssn"></p>
-                                                    <p class="col-md-6"><input type="text" placeholder="Street" name="street" id="street"></p>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-4"><input type="text" placeholder="City" name="city" id="city"></div>
-                                                    <div class="col-md-4"><input type="text" placeholder="State" name="state" id="state"></div>
-                                                    <!-- <p class="col-md-4 gender-wrap">
-                                                    <select style="width: 100px;">
-                                                     
-                                                        <option value="PA">PA</option>
-                                                        <option value="CA">CA</option>
-                                                        <option value="NY">NY</option>
-                                                    </select> -->
-                                                    
-                                                    <div class="col-md-4"><input type="text" placeholder="Zip" name="zip" id="zip"></div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <input type="submit" class="btn" value="Save Changes">
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        <div role="tabpanel" class="tab-pane fade in active" id="tab1">
+                                            <div class = "container">
+                                                <h3> You have made a deposit successfully.</h3>
+                                                
+                                            </div>
                                         </div>
                                         <!-- tab-Item-1-->
-
-                                        <!-- tab-Item-2-->
-                                        <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                            <form action="#" class="form-theme">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Add Account</label>
-                                                        <input type="text" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Limits for Transfer</label>
-                                                        <input type="text" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Limits for BillPayment</label>
-                                                        <input type="text" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>E-statement Subscription &nbsp;&nbsp;</label>
-                                                        <select>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <input type="submit" class="btn" value="Save Changes">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- tab-Item-2-->
-
-                                        <!-- tab-Item-3-->
-                                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                                            <form action="#" class="form-theme">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Current Password</label>
-                                                        <input type="password" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>New Password</label>
-                                                        <input type="password" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <label>Re-type New Password</label>
-                                                        <input type="password" class="input">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <input type="submit" class="btn" value="Save Changes">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <!-- tab-Item-3-->
                                     </div>
                                     <!-- End tab-content -->
                                 </div>

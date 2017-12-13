@@ -82,7 +82,10 @@ public class CustomerController {
 				                       registerForm.getFirstName(), registerForm.getLastName(),registerForm.getStreet(),
 				                       registerForm.getCity(), registerForm.getState(), registerForm.getZip(),registerForm.getPhone(),
 				                       dateOfBirth, registerForm.getSsn(),registerForm.getDriverLicense(), null);
-		cr.save(customer);
+		Customer newCustomer=cr.save(customer);
+		if(newCustomer==null) {
+			throw new IllegalArgumentException();
+		}
 		session.setAttribute("customer", customer);
 		return "redirect:accounts";
 	}
@@ -100,6 +103,13 @@ public class CustomerController {
 		HttpSession session = request.getSession(false);
 		session.setAttribute("customer", null);
 		return "redirect:home";
+	}
+	
+	@GetMapping("/personal-info")
+	public String personal(Model model, HttpSession session) {
+		Customer c = (Customer) session.getAttribute("customer");
+		model.addAttribute("customer", c);
+		return "personal-info";
 	}
 
 }
