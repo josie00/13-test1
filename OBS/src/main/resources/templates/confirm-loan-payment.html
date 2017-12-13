@@ -179,7 +179,7 @@
 
                                     <!-- Contact Us Nav Item -->
                                     <li class="dropdown">
-                                      <a href="template-contact.html" class="dropdown-toggle">
+                                      <a href="#" class="dropdown-toggle">
                                         Checking
                                       </a>
                                     </li>
@@ -187,7 +187,7 @@
 
                                     <!-- Contact Us Nav Item -->
                                     <li class="dropdown">
-                                      <a href="template-contact.html" class="dropdown-toggle">
+                                      <a href="#" class="dropdown-toggle">
                                         Savings
                                       </a>
                                     </li>
@@ -195,7 +195,7 @@
 
                                     <!-- Contact Us Nav Item -->
                                     <li class="dropdown">
-                                      <a href="template-contact.html" class="dropdown-toggle">
+                                      <a href="#" class="dropdown-toggle">
                                         Mortgage
                                       </a>
                                     </li>
@@ -203,7 +203,7 @@
 
                                     <!-- Contact Us Nav Item -->
                                     <li class="dropdown">
-                                      <a href="template-contact.html" class="dropdown-toggle">
+                                      <a href="#" class="dropdown-toggle">
                                         Auto Loans
                                       </a>
                                     </li>
@@ -212,7 +212,7 @@
 
                                       <!-- Contact Us Nav Item -->
                                       <li class="dropdown">
-                                        <a href="template-contact.html" class="dropdown-toggle">
+                                        <a href="#" class="dropdown-toggle">
                                           Contact Us
                                         </a>
                                       </li>
@@ -296,22 +296,23 @@
                             <div class="row user-area">
                                 <!-- Left User Area-->
                                 <div class="col-md-4">
-                                    <div class="item-team">
+                                     <div class="item-team">
                                         <img src="img/team/2.jpg" alt="">
-                                        <h4>Federick Gordon</h4>
-                                        <span class="country"> Pittsburgh, US</span>
+                                        <h4 th:text="${customer.firstName} +' '+ ${customer.lastName}"></h4>
+                                        <form th:action="@{/logout}" method="get">
+                                            <span class="country" th:text="${customer.city} +', '+ ${customer.state}"></span>&nbsp;&nbsp;<span><input type="submit" value="Logout"></span>
+                                        </form>
+      
                                     </div>
 
                                     <div class="panel panel-default">
                                       <!-- List group -->
                                       <ul class="list-group">
-                                        <li class="list-group-item"><a href="accounts.html">Accounts</a></li>
-                                        <li class="list-group-item"><a href="billPayment.html">Bill Payment</a></li>
-                                        <li class="list-group-item"><a href="loan-payment.html">Mortgage/Loan Payment</a></li>
-                                        <li class="list-group-item"><a href="transfer.html">Transfers</a></li>
-                                        <li class="list-group-item"><a href="#">Deposit</a></li>
-                                        <li class="list-group-item"><a href="personal-info.html">Update Personal Info</a></li>
-
+                                        <li class="list-group-item"><a href="accounts">Accounts</a></li>
+                                        <li class="list-group-item"><a href="billpay">Bill Payment</a></li>
+                                        <li class="list-group-item"><a href="transfer">Transfers</a></li>
+                                        <li class="list-group-item"><a href="deposit">Deposit</a></li>
+                                        <li class="list-group-item"><a href="personal-info">Update Personal Info</a></li>
                                       </ul>
                                     </div>
                                 </div>
