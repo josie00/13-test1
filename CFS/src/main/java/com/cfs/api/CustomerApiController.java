@@ -22,10 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfs.databean.Customer;
+import com.cfs.databean.Employee;
 import com.cfs.databean.Fund;
 import com.cfs.databean.Position;
 import com.cfs.repository.CustomerRepository;
+
 import com.cfs.repository.FundPriceHistoryRepository;
+
+import com.cfs.repository.EmployeeRepository;
 import com.cfs.repository.FundRepository;
 import com.cfs.repository.PositionRepository;
 import com.cfs.repository.TransactionRepository;
@@ -41,15 +45,13 @@ public class CustomerApiController {
 	CustomerRepository cr;
 	
 	@Autowired
+
 	TransactionRepository tr;
 	
 	@Autowired
 	PositionRepository pr;
-	
-	
-	
-	
-	
+
+	EmployeeRepository er;
 
 	// A get example
 	@RequestMapping(value = "/oneFund", method = RequestMethod.GET)
@@ -67,25 +69,37 @@ public class CustomerApiController {
 		String username = map.get("username");
 		String password = map.get("password");
 		
+		
 		List<Customer> customers = cr.findByUserName(username);
+		List<Employee> employees = er.findByUserName(username);
 		Map<String, String> res = new HashMap<String,String>();
 		if (customers.size() != 0) {
 			Customer c = customers.get(0);
 			if (password.equals(c.getPassword())) {
-				session.setAttribute("customer", c);
+				session.setAttribute("user", c);
+				session.setAttribute("type", "customer");
 				res.put("message", "Welcome " + c.getFirstName());
-			} else {
-				res.put("message", "There seems to be an issue with the username/password combination that you entered");
-			}
+				return res;
+			} 
 
-		} else {
-			res.put("message", "There seems to be an issue with the username/password combination that you entered");
+		} 
+		
+		if (employees.size()!= 0) {
+			System.out.println("employee");
+			Employee e = employees.get(0);
+			if(password.equals(e.getPassword())) {
+				session.setAttribute("user", e);
+				session.setAttribute("type", "employee");
+				res.put("message", "Welcome " + e.getFirstName());
+				return res;
+			} 
 		}
 		
+		res.put("message", "There seems to be an issue with the username/password combination that you entered");
 		return res;
-
 	}
 	
+
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
@@ -174,9 +188,23 @@ public class CustomerApiController {
 		cr.save(c);
 		p.setShares(p.getShares()-shares);
 		pr.save(p);
-		
+
 		return res;
 	}
 	
 
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public @ResponseBody Map<String, String> logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Map<String, String> res = new HashMap<String,String>();	
+		String type = (String)session.getAttribute("type");
+		if(type == null) {
+			res.put("message", "You are not currently logged in");
+		}
+		session.setAttribute("type", null);
+		session.setAttribute("user", null);
+		res.put("message", "You have been successfully logged out");
+	
+		return res;
+	}
 }
