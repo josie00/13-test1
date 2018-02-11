@@ -53,7 +53,7 @@ public class Customer implements Serializable {
 		this.positions = positions;
 	}
 
-	protected Customer() {
+	public Customer() {
 	}
 
 	public long getCustomerId() {
