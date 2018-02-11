@@ -23,8 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cfs.databean.Customer;
 import com.cfs.databean.Fund;
+import com.cfs.databean.Position;
+import com.cfs.formbean.FundForm;
+import com.cfs.formbean.PortfolioForm;
 import com.cfs.repository.CustomerRepository;
 import com.cfs.repository.FundRepository;
+import com.cfs.repository.PositionRepository;
 
 
 @RestController
@@ -35,6 +39,9 @@ public class CustomerApiController {
 	
 	@Autowired
 	CustomerRepository cr;
+	
+	@Autowired
+	PositionRepository pr;
 
 	// A get example
 	@RequestMapping(value = "/oneFund", method = RequestMethod.GET)
@@ -71,4 +78,30 @@ public class CustomerApiController {
 
 	}
 
+	@RequestMapping(value = "/viewPortfolio", method = RequestMethod.GET)
+	public @ResponseBody Object viewPortfolio(@RequestBody Map<String, String> map, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Map<String, String> res = new HashMap<String,String>();
+		String type = (String) session.getAttribute("type");
+		if (type == null) {
+			res.put("message", "You are not currently logged in”}");
+			return res;
+		}else if (type.equals("employee")) {
+			res.put("message", "You must be a customer to perform this action");
+			return res;
+		}
+		Customer c = (Customer)session.getAttribute("customer");
+		PortfolioForm portfolio = new PortfolioForm();
+		List<Position> positions = pr.findByCustomer_CustomerId(c.getCustomerId());
+		for (Position p: positions) {
+			FundForm f = new FundForm();
+			f.setName(p.getFund().getName());
+			f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
+			f.setShares(String.valueOf(p.getShares()));
+			portfolio.addFund(f);
+		}
+		portfolio.setMessage("The action was successful");
+		portfolio.setCash(String.valueOf(c.getCash()));
+		return portfolio;
+	}
 }

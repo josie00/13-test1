@@ -21,11 +21,11 @@ public class Customer implements Serializable {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String addrLine1;
-	private String addrLine2;
+	private String address;
 	private String city;
 	private String state;
 	private String zip;
+	private String email;
 	private double cash;
 	private double tempCash;
 
@@ -33,26 +33,24 @@ public class Customer implements Serializable {
 	private Set<Transaction> transactions;
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-	private Set<Position> positions;
+	private Set<Position> positions;	
 
-	public Customer(String userName, String password, String firstName, String lastName, String addrLine1,
-			String addrLine2, String city, String state, String zip, double cash, double tempCash,
-			Set<Transaction> transactions, Set<Position> positions) {
-
+	public Customer(String userName, String password, String firstName, String lastName, String address, String city,
+			String state, String zip, String email, double cash, double tempCash, Set<Transaction> transactions,
+			Set<Position> positions) {
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.addrLine1 = addrLine1;
-		this.addrLine2 = addrLine2;
+		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
+		this.email = email;
 		this.cash = cash;
 		this.tempCash = tempCash;
 		this.transactions = transactions;
 		this.positions = positions;
-		this.transactions = transactions;
 	}
 
 	protected Customer() {
@@ -97,21 +95,21 @@ public class Customer implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public String getAddrLine1() {
-		return addrLine1;
+	
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddrLine1(String addrLine1) {
-		this.addrLine1 = addrLine1;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getAddrLine2() {
-		return addrLine2;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAddrLine2(String addrLine2) {
-		this.addrLine2 = addrLine2;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCity() {
@@ -146,14 +144,6 @@ public class Customer implements Serializable {
 		this.cash = cash;
 	}
 
-	public double getTempCash() {
-		return tempCash;
-	}
-
-	public void setTempCash(double tempCash) {
-		this.tempCash = tempCash;
-	}
-
 	public Set<Transaction> getTransactions() {
 		return transactions;
 	}
@@ -168,6 +158,14 @@ public class Customer implements Serializable {
 
 	public void setPositions(Set<Position> positions) {
 		this.positions = positions;
+	}
+
+	public double getTempCash() {
+		return tempCash;
+	}
+
+	public void setTempCash(double tempCash) {
+		this.tempCash = tempCash;
 	}
 
 }
