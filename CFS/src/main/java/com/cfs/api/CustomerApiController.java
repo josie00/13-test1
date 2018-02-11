@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.cfs.databean.Customer;
 import com.cfs.databean.Fund;
@@ -22,8 +23,9 @@ import com.cfs.repository.FundRepository;
 
 
 
-@Controller
+@RestController
 public class CustomerApiController {
+
 	@Autowired
 	FundRepository fr;
 
@@ -49,4 +51,5 @@ public class CustomerApiController {
 		
 		return res;
 	}
+
 }
