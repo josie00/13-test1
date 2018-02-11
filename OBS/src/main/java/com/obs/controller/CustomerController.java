@@ -111,5 +111,6 @@ public class CustomerController {
 		model.addAttribute("customer", c);
 		return "personal-info";
 	}
+	
 
 }
