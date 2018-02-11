@@ -228,7 +228,7 @@ public class CustomerApiController {
 
 
 	@RequestMapping(value = "/viewPortfolio", method = RequestMethod.GET)
-	public @ResponseBody Object viewPortfolio(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public @ResponseBody Object viewPortfolio(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
@@ -239,15 +239,17 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return res;
 		}
-		Customer c = (Customer)session.getAttribute("customer");
+		Customer c = (Customer)session.getAttribute("user");
 		PortfolioForm portfolio = new PortfolioForm();
 		List<Position> positions = pr.findByCustomer_CustomerId(c.getCustomerId());
-		for (Position p: positions) {
-			FundForm f = new FundForm();
-			f.setName(p.getFund().getName());
-			f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
-			f.setShares(String.valueOf(p.getShares()));
-			portfolio.addFund(f);
+		if (positions.size() == 0) {
+			for (Position p: positions) {
+				FundForm f = new FundForm();
+				f.setName(p.getFund().getName());
+				f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
+				f.setShares(String.valueOf(p.getShares()));
+				portfolio.addFund(f);
+			}
 		}
 		portfolio.setMessage("The action was successful");
 		portfolio.setCash(String.valueOf(c.getCash()));
