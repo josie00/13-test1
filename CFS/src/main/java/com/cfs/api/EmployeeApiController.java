@@ -46,14 +46,14 @@ public class EmployeeApiController {
 	public @ResponseBody Map<String, String> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
-		/*String type = (String) session.getAttribute("type");
+		String type = (String) session.getAttribute("type");
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			return res;
 		}else if (type.equals("customer")) {
 			res.put("message", "You must be an employee to perform this action");
 			return res;
-		}*/
+		}
 		String username = map.get("username");
 		if (username == null || username.length() == 0) {
 			res.put("message", "missing value");
