@@ -55,7 +55,7 @@ public class Customer implements Serializable {
 		this.transactions = transactions;
 	}
 
-	protected Customer() {
+	public Customer() {
 	}
 
 	public long getCustomerId() {
