@@ -134,11 +134,16 @@ public class EmployeeApiController {
 			res.put("message", "You must be an employee to perform this action");
 			return ResponseEntity.ok(res);
 		}
-		
+
 		String name = map.get("name");
 		String symbol = map.get("symbol");
 		String initial_value = map.get("initial_value");
 		
+		List<Fund> funds = fr.findBySymbolAndName(symbol, name);
+		if (funds.size() != 0) {
+			res.put("message", "The fund was successfully created");
+			return ResponseEntity.ok(res);
+		}
 		// what message to send if failed parse / less than 0?
 		double value = 0;
 		try {
@@ -153,7 +158,6 @@ public class EmployeeApiController {
 		Fund fund = new Fund(name, symbol, value, null, null);
 		fr.save(fund);
 		res.put("message", "The fund was successfully created");
-		
 		return ResponseEntity.ok(res);
 	}
 	

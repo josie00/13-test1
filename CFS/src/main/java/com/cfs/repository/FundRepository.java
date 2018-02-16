@@ -18,6 +18,9 @@ public interface FundRepository extends CrudRepository<Fund, Long> {
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	List<Fund> findBySymbol(String symbol);
 	
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	List<Fund> findBySymbolAndName(String symbol, String name);
+	
 	@Transactional
 	@Modifying
 //	@Lock(LockModeType.PESSIMISTIC_WRITE)
