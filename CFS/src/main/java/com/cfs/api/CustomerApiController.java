@@ -288,6 +288,7 @@ public class CustomerApiController {
             res.put("message", "You don’t have sufficient funds in your account to cover the requested check");
         } else {
             c.setCash(c.getCash() - amount);
+            session.setAttribute("user", c);
             res.put("message", "The check was successfully requested");
         }      
         return ResponseEntity.ok(res);
