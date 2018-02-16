@@ -57,7 +57,7 @@ public class EmployeeApiController {
 		}
 		String username = map.get("username");
 		if (username == null || username.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		List<Customer> customers = cr.findByUserName(username);
@@ -76,35 +76,35 @@ public class EmployeeApiController {
 		String cash = map.get("cash");
 		double value;
 		if (fname == null || fname.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (lname == null || lname.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (address == null || address.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (city == null || city.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (state == null || state.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (zip == null || zip.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (email == null || email.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (password == null || password.length() == 0) {
-			res.put("message", "missing value");
+			res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
 		}
 		if (cash == null || cash.length() == 0) {
@@ -114,7 +114,7 @@ public class EmployeeApiController {
 		}
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
-		res.put("message", "fname was registered successfully");
+		res.put("message", c.getFirstName()+" was registered successfully");
 		return ResponseEntity.ok(res);
 	}
 	
