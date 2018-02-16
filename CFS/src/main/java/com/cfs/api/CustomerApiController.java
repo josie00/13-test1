@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfs.databean.Customer;
@@ -68,9 +71,10 @@ public class CustomerApiController {
 
 		return map;
 	}
-
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> login(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String username = map.get("username");
 		String password = map.get("password");
@@ -85,7 +89,7 @@ public class CustomerApiController {
 				session.setAttribute("user", c);
 				session.setAttribute("type", "customer");
 				res.put("message", "Welcome " + c.getFirstName());
-				return res;
+				return ResponseEntity.ok(res);
 			} 
 
 		} 
@@ -97,17 +101,17 @@ public class CustomerApiController {
 				session.setAttribute("user", e);
 				session.setAttribute("type", "employee");
 				res.put("message", "Welcome " + e.getFirstName());
-				return res;
+				return ResponseEntity.ok(res);
 			} 
 		}
 		
 		res.put("message", "There seems to be an issue with the username/password combination that you entered");
-		return res;
+		return ResponseEntity.ok(res);
 	}
 	
 
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
 		HttpSession session = request.getSession();
 		String type = (String) session.getAttribute("type");
@@ -116,21 +120,21 @@ public class CustomerApiController {
 		double amount = Double.parseDouble(cashValue);
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
-			return res;
+			return ResponseEntity.ok(res);
 		} else if (type.equals("employee")) {
 			res.put("message", "You must be a customer to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer) session.getAttribute("user");
 		if (c.getCash() < amount) {
 			System.out.println("cash : " +c.getCash());
 			res.put("message", "You don’t have enough cash in your account to make this purchase");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
 			res.put("message", "The fund you provided does not exist");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		Fund fund  = funds.get(0);
@@ -138,7 +142,7 @@ public class CustomerApiController {
 		if (price > amount) {
 			
 			res.put("message", "You didn’t provide enough cash to make this purchase");
-			return res;
+			return ResponseEntity.ok(res);
 		}	
 		int mod = ((int)(amount*100)) % ((int)(price*100));
 		if (mod > 0) {
@@ -159,11 +163,11 @@ public class CustomerApiController {
 			pr.save(p);
 		}
 		res.put("message", "The fund has been successfully purchased");	
-		return res;	
+		return ResponseEntity.ok(res);
 	}
 	
 	@RequestMapping(value = "/sellFund", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> sellFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> sellFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
 		HttpSession session = request.getSession();
 		String type = (String) session.getAttribute("type");
@@ -172,17 +176,17 @@ public class CustomerApiController {
 		double shares = Double.parseDouble(numShares);
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
-			return res;
+			return ResponseEntity.ok(res);
 		} else if (type.equals("employee")) {
 			res.put("message", "You must be a customer to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer) session.getAttribute("user");
 		
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
 			res.put("message", "The fund you provided does not exist");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		Fund fund  = funds.get(0);
@@ -190,7 +194,7 @@ public class CustomerApiController {
 		
 		if (pos.size() == 0 || pos.get(0).getShares() < shares) {
 			res.put("message", "You don’t have that many shares in your portfolio");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		Position p = pos.get(0);
 		double amount = shares * fund.getCurrPrice();
@@ -199,11 +203,11 @@ public class CustomerApiController {
 		p.setShares(p.getShares()-shares);
 		pr.save(p);
 
-		return res;
+		return ResponseEntity.ok(res);
 	}
 
 	@RequestMapping(value = "/depositCheck", method = RequestMethod.POST)
-    public @ResponseBody Map<String, String> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
+    public @ResponseBody ResponseEntity<Map<String, String>> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String username = map.get("username");
         String cash = map.get("cash");
@@ -227,7 +231,7 @@ public class CustomerApiController {
                 res.put("message", "The check was successfully deposited");
             }
         }
-            return res;
+        return ResponseEntity.ok(res);
 	}
 
 
@@ -238,10 +242,10 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		if (type == null) {
 			res.put("message", "You are not currently logged in”}");
-			return res;
+			return ResponseEntity.ok(res);
 		}else if (type.equals("employee")) {
 			res.put("message", "You must be a customer to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer)session.getAttribute("user");
 		PortfolioForm portfolio = new PortfolioForm();
@@ -257,11 +261,11 @@ public class CustomerApiController {
 		}
 		portfolio.setMessage("The action was successful");
 		portfolio.setCash(String.valueOf(c.getCash()));
-		return portfolio;
+		return ResponseEntity.ok(portfolio);
 	}
 	
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
-    public @ResponseBody Map<String, String> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
+    public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String cashValue = map.get("cashvalue");
         Double amount = Double.parseDouble(cashValue);
@@ -279,11 +283,11 @@ public class CustomerApiController {
             c.setCash(c.getCash() - amount);
             res.put("message", "The check was successfully requested");
         }      
-        return res;
+        return ResponseEntity.ok(res);
     }
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> logout(HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();	
 		String type = (String)session.getAttribute("type");
@@ -294,6 +298,6 @@ public class CustomerApiController {
 		session.setAttribute("user", null);
 		res.put("message", "You have been successfully logged out");
 	
-		return res;
+		return ResponseEntity.ok(res);
 	}
 }
