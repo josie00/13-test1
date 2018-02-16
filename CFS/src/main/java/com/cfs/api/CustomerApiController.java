@@ -110,7 +110,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
-	@Transactional
+
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
@@ -209,7 +209,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 
-	@Transactional
+	
 	@RequestMapping(value = "/depositCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -270,7 +270,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(portfolio);
 	}
 	
-	@Transactional
+
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
