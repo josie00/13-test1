@@ -274,7 +274,7 @@ public class CustomerApiController {
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        String cashValue = map.get("cashvalue");
+        String cashValue = map.get("cashValue");
         Double amount = Double.parseDouble(cashValue);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = (Customer) session.getAttribute("user");
