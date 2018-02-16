@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
@@ -109,7 +110,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
-
+	@Transactional
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
@@ -166,6 +167,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
+	@Transactional
 	@RequestMapping(value = "/sellFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> sellFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		Map<String, String> res = new HashMap<String,String>();
@@ -206,6 +208,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 
+	@Transactional
 	@RequestMapping(value = "/depositCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -264,6 +267,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(portfolio);
 	}
 	
+	@Transactional
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();

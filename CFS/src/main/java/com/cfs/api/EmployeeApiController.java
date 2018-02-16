@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,26 +44,26 @@ public class EmployeeApiController {
 	FundPriceHistoryRepository fphr;
 
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
-			return res;
+			return ResponseEntity.ok(res);
 		}else if (type.equals("customer")) {
 			res.put("message", "You must be an employee to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		String username = map.get("username");
 		if (username == null || username.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		List<Customer> customers = cr.findByUserName(username);
 		if (customers.size() != 0) {
 			res.put("message", "The input you provided is not valid");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		String fname = map.get("fname");
 		String lname = map.get("lname");
@@ -76,35 +77,35 @@ public class EmployeeApiController {
 		double value;
 		if (fname == null || fname.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (lname == null || lname.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (address == null || address.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (city == null || city.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (state == null || state.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (zip == null || zip.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (email == null || email.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (password == null || password.length() == 0) {
 			res.put("message", "missing value");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		if (cash == null || cash.length() == 0) {
 			value = 0;
@@ -114,24 +115,24 @@ public class EmployeeApiController {
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", "fname was registered successfully");
-		return res;
+		return ResponseEntity.ok(res);
 	}
 	
 	@RequestMapping(value = "/createFund", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
 		// Check session
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		// Check if employee
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		String name = map.get("name");
@@ -153,24 +154,24 @@ public class EmployeeApiController {
 		fr.save(fund);
 		res.put("message", "The fund was successfully created");
 		
-		return res;
+		return ResponseEntity.ok(res);
 	}
 	
 	@RequestMapping(value = "/transitionDay", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> transitionDay(HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
 		// Check session
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		// Check if employee
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
-			return res;
+			return ResponseEntity.ok(res);
 		}
 		
 		// Update fund price
@@ -185,6 +186,6 @@ public class EmployeeApiController {
 			fr.save(fund);
 		}
 		res.put("message", "The fund prices have been successfully recalculated");
-		return res;
+		return ResponseEntity.ok(res);
 	}
 }
