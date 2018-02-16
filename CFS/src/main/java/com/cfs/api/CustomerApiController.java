@@ -256,11 +256,13 @@ public class CustomerApiController {
 		List<Position> positions = pr.findByCustomer_CustomerId(c.getCustomerId());
 		if (positions.size() != 0) {
 			for (Position p: positions) {
-				FundForm f = new FundForm();
-				f.setName(p.getFund().getName());
-				f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
-				f.setShares(String.valueOf(p.getShares()));
-				portfolio.addFund(f);
+				if (p.getShares() > 0) {
+					FundForm f = new FundForm();
+					f.setName(p.getFund().getName());
+					f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
+					f.setShares(String.valueOf(p.getShares()));
+					portfolio.addFund(f);
+				}
 			}
 		}
 		portfolio.setMessage("The action was successful");
