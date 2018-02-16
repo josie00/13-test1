@@ -34,9 +34,8 @@ public class Position implements Serializable {
 	private Fund fund;
 	
 	protected Position() {}
-	
-	
 
+	
 	public Position(double shares, double tempShares, Customer customer, Fund fund) {
 		this.shares = shares;
 		this.tempShares = tempShares;
