@@ -200,9 +200,10 @@ public class CustomerApiController {
 		double amount = shares * fund.getCurrPrice();
 		c.setCash(c.getCash()+amount);	
 		cr.save(c);
+		session.setAttribute("user", c);
 		p.setShares(p.getShares()-shares);
 		pr.save(p);
-
+		res.put("message", "The shares have been successfully sold");
 		return ResponseEntity.ok(res);
 	}
 
