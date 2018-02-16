@@ -32,7 +32,7 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.MERGE)
 	private Set<Transaction> transactions;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.MERGE)
 	private Set<Position> positions;	
 
 	public Customer(String userName, String password, String firstName, String lastName, String address, String city,

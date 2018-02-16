@@ -40,7 +40,7 @@ import com.cfs.repository.PositionRepository;
 
 import com.cfs.repository.TransactionRepository;
 
-
+@Controller
 @RestController
 public class CustomerApiController {
 
@@ -121,8 +121,9 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return res;
 		}
-		Customer c = (Customer) session.getAttribute("customer");
+		Customer c = (Customer) session.getAttribute("user");
 		if (c.getCash() < amount) {
+			System.out.println("cash : " +c.getCash());
 			res.put("message", "You don’t have enough cash in your account to make this purchase");
 			return res;
 		}
@@ -135,6 +136,7 @@ public class CustomerApiController {
 		Fund fund  = funds.get(0);
 		double price = fund.getCurrPrice();
 		if (price > amount) {
+			
 			res.put("message", "You didn’t provide enough cash to make this purchase");
 			return res;
 		}	
@@ -151,10 +153,11 @@ public class CustomerApiController {
 			p.setShares(p.getShares()+shares);	
 			pr.save(p);
 		} else {
+			System.out.println("tests");	
 			Position p = new Position(shares, 0, c, fund);
 			pr.save(p);
 		}
-		res.put("message", "The fundhas been successfully purchased");	
+		res.put("message", "The fund has been successfully purchased");	
 		return res;	
 	}
 	
@@ -173,7 +176,7 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return res;
 		}
-		Customer c = (Customer) session.getAttribute("customer");
+		Customer c = (Customer) session.getAttribute("user");
 		
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {

@@ -25,11 +25,11 @@ public class Position implements Serializable {
 	
 	private double tempShares;
 	
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "fund_id")
 	private Fund fund;
 	
