@@ -147,6 +147,7 @@ public class CustomerApiController {
 		int shares = (int)(amount/price);
 		c.setCash(c.getCash()-amount);	
 		cr.save(c);
+		session.setAttribute("user", c);
 		List<Position> pos = pr.findByFund_FundIdAndCustomer_CustomerId(fund.getFundId(), c.getCustomerId());
 		if (pos.size() > 0) {
 			Position p = pos.get(0);
@@ -245,7 +246,7 @@ public class CustomerApiController {
 		Customer c = (Customer)session.getAttribute("user");
 		PortfolioForm portfolio = new PortfolioForm();
 		List<Position> positions = pr.findByCustomer_CustomerId(c.getCustomerId());
-		if (positions.size() == 0) {
+		if (positions.size() != 0) {
 			for (Position p: positions) {
 				FundForm f = new FundForm();
 				f.setName(p.getFund().getName());
