@@ -80,10 +80,13 @@ public class CustomerApiController {
 		String username = map.get("username");
 		String password = map.get("password");
 		
+		Map<String, String> res = new HashMap<String,String>();
+		
+		// Missing input
+		if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
 		
 		List<Customer> customers = cr.findByUserName(username);
 		List<Employee> employees = er.findByUserName(username);
-		Map<String, String> res = new HashMap<String,String>();
 		if (customers.size() != 0) {
 			Customer c = customers.get(0);
 			if (password.equals(c.getPassword())) {
@@ -118,7 +121,11 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		String symbol = map.get("symbol");
 		String cashValue = map.get("cashValue");
-		double amount = Double.parseDouble(cashValue);
+		
+		// Missing input
+		if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
+		if (cashValue == null || cashValue.trim().equals("")) return ResponseEntity.badRequest().body(res);
+
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			return ResponseEntity.ok(res);
@@ -126,6 +133,8 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return ResponseEntity.ok(res);
 		}
+		
+		double amount = Double.parseDouble(cashValue);
 		Customer c = (Customer) session.getAttribute("user");
 		if (c.getCash() < amount) {
 			System.out.println("cash : " +c.getCash());
@@ -175,7 +184,11 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		String symbol = map.get("symbol");
 		String numShares = map.get("numShares");
-		double shares = Double.parseDouble(numShares);
+		
+		// Missing input
+		if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
+		if (numShares == null || numShares.trim().equals("")) return ResponseEntity.badRequest().body(res);
+				
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			return ResponseEntity.ok(res);
@@ -183,8 +196,10 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return ResponseEntity.ok(res);
 		}
+				
 		Customer c = (Customer) session.getAttribute("user");
-		
+		double shares = Double.parseDouble(numShares);
+
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
 			res.put("message", "The fund you provided does not exist");
@@ -215,11 +230,15 @@ public class CustomerApiController {
         HttpSession session = request.getSession();
         String username = map.get("username");
         String cash = map.get("cash");
-        Double amount = Double.parseDouble(cash);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = null;
         Employee e = (Employee) session.getAttribute("user");
         
+        // Missing input
+     	if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
+     	if (cash == null || cash.trim().equals("")) return ResponseEntity.badRequest().body(res);
+     	
+        Double amount = Double.parseDouble(cash);
         List<Customer> customers = cr.findByUserName(username);
         if (customers.size() == 0) {
             res.put("message", "There seems to be an issue with the username that you entered");
@@ -275,9 +294,12 @@ public class CustomerApiController {
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String cashValue = map.get("cashValue");
-        Double amount = Double.parseDouble(cashValue);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = (Customer) session.getAttribute("user");
+        
+        // Missing input
+     	if (cashValue == null || cashValue.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        Double amount = Double.parseDouble(cashValue);
 
         String type = (String) session.getAttribute("type");
         if (type == null) {
