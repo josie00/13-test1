@@ -56,10 +56,8 @@ public class EmployeeApiController {
 			return ResponseEntity.ok(res);
 		}
 		String username = map.get("username");
-		if (username == null || username.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
+		if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
+		
 		List<Customer> customers = cr.findByUserName(username);
 		if (customers.size() != 0) {
 			res.put("message", "The input you provided is not valid");
@@ -74,82 +72,17 @@ public class EmployeeApiController {
 		String email = map.get("email");
 		String password = map.get("password");
 		String cash = map.get("cash");
-		double value;
-		if (fname == null || fname.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (lname == null || lname.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (address == null || address.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (city == null || city.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (state == null || state.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (zip == null || zip.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (email == null || email.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (password == null || password.length() == 0) {
-			res.put("message", "The input you provided is not valid");
-			return ResponseEntity.ok(res);
-		}
-		if (cash == null || cash.length() == 0) {
-			value = 0;
-		}else {
-			value = Double.parseDouble(cash);
-		}
-//		if (fname == null || fname.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (lname == null || lname.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (address == null || address.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (city == null || city.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (state == null || state.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (zip == null || zip.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (email == null || email.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (password == null || password.length() == 0) {
-//			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
-//		}
-//		if (cash == null || cash.length() == 0) {
-//			value = 0;
-//		}else {
-//			value = Double.parseDouble(cash);
-//		}
-		value = Double.parseDouble(cash);
+		if (fname == null || fname.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (lname == null || lname.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (address == null || address.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (city == null || city.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (state == null || state.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (zip == null || zip.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (email == null || email.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (password == null || password.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (cash == null || cash.trim().equals("")) return ResponseEntity.badRequest().body(res);
+		
+        double value = Double.parseDouble(cash);
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", c.getFirstName()+" was registered successfully");
@@ -176,22 +109,18 @@ public class EmployeeApiController {
 		String name = map.get("name");
 		String symbol = map.get("symbol");
 		String initial_value = map.get("initial_value");
+		if (name == null || name.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (initial_value == null || initial_value.trim().equals("")) return ResponseEntity.badRequest().body(res);
 		
-		List<Fund> funds = fr.findBySymbolAndName(symbol, name);
-		if (funds.size() != 0) {
-			res.put("message", "The fund was successfully created");
+        List<Fund> funds = fr.findBySymbolAndName(symbol, name);
+        if (funds.size() != 0) {
+        		res.put("message", "The input you provided is not valid");
 			return ResponseEntity.ok(res);
-		}
-		// what message to send if failed parse / less than 0?
-		double value = 0;
-		try {
-			value = Double.parseDouble(initial_value);
-			if (value < 0.005) {
-				res.put("message", "????");
-			}
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		}
+        }
+
+        double value =  Double.parseDouble(initial_value);
+        if (value < 0.005) return ResponseEntity.badRequest().body(res);
 		
 		Fund fund = new Fund(name, symbol, value, null, null);
 		fr.save(fund);
