@@ -77,35 +77,35 @@ public class EmployeeApiController {
 		double value;
 //		if (fname == null || fname.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (lname == null || lname.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (address == null || address.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (city == null || city.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (state == null || state.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (zip == null || zip.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (email == null || email.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (password == null || password.length() == 0) {
 //			res.put("message", "The input you provided is not valid");
-//			return ResponseEntity.ok(res);
+//			return ResponseEntity.badRequest().body(res);
 //		}
 //		if (cash == null || cash.length() == 0) {
 //			value = 0;
