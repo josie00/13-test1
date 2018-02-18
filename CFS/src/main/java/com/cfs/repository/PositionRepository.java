@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.cfs.databean.Position;
 
 
-@Transactional
+//@Transactional
 public interface PositionRepository extends CrudRepository<Position, Long>{
 //	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	List<Position> findByCustomer_CustomerId(long customerId);
