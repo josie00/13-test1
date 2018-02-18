@@ -44,7 +44,7 @@ public class EmployeeApiController {
 	FundPriceHistoryRepository fphr;
 
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
-	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
@@ -91,7 +91,7 @@ public class EmployeeApiController {
 	}
 	
 	@RequestMapping(value = "/createFund", method = RequestMethod.POST)
-	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
@@ -130,7 +130,7 @@ public class EmployeeApiController {
 	}
 	
 	@RequestMapping(value = "/transitionDay", method = RequestMethod.POST)
-	public synchronized @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
