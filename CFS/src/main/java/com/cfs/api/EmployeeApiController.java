@@ -112,6 +112,44 @@ public class EmployeeApiController {
 		}else {
 			value = Double.parseDouble(cash);
 		}
+//		if (fname == null || fname.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (lname == null || lname.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (address == null || address.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (city == null || city.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (state == null || state.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (zip == null || zip.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (email == null || email.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (password == null || password.length() == 0) {
+//			res.put("message", "The input you provided is not valid");
+//			return ResponseEntity.ok(res);
+//		}
+//		if (cash == null || cash.length() == 0) {
+//			value = 0;
+//		}else {
+//			value = Double.parseDouble(cash);
+//		}
+		value = Double.parseDouble(cash);
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", c.getFirstName()+" was registered successfully");

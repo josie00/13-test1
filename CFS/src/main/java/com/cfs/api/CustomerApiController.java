@@ -223,19 +223,22 @@ public class CustomerApiController {
         List<Customer> customers = cr.findByUserName(username);
         if (customers.size() == 0) {
             res.put("message", "There seems to be an issue with the username that you entered");
+            return ResponseEntity.ok(res);
         } else {
             c = customers.get(0);   
             String type = (String) session.getAttribute("type");
             if (type == null) {
                 res.put("message", "You are not currently logged in");
+                return ResponseEntity.ok(res);
             } else if (e == null) {
                 res.put("message", "You must be an employee to perform this action");
+                return ResponseEntity.ok(res);
             } else {
                 c.setCash(c.getCash() + amount);
                 res.put("message", "The check was successfully deposited");
+                return ResponseEntity.ok(res);
             }
         }
-        return ResponseEntity.ok(res);
 	}
 
 
@@ -273,25 +276,29 @@ public class CustomerApiController {
 
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
+		
+		HttpSession session = request.getSession();
         String cashValue = map.get("cashValue");
         Double amount = Double.parseDouble(cashValue);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = (Customer) session.getAttribute("user");
-
         String type = (String) session.getAttribute("type");
         if (type == null) {
             res.put("message", "You are not currently logged in");
+            return ResponseEntity.ok(res);
         } else if (c == null) {
-                res.put("message", "You must be a customer to perform this action");
+             res.put("message", "You must be a customer to perform this action");
+             return ResponseEntity.ok(res);
         } else if (c.getCash() < amount) {
-            res.put("message", "You don’t have sufficient funds in your account to cover the requested check");
+            res.put("message", "You don't have sufficient funds in your account to cover the requested check");
+            return ResponseEntity.ok(res);
         } else {
             c.setCash(c.getCash() - amount);
             session.setAttribute("user", c);
             res.put("message", "The check was successfully requested");
+            return ResponseEntity.ok(res);
         }      
-        return ResponseEntity.ok(res);
+        
     }
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
@@ -301,6 +308,7 @@ public class CustomerApiController {
 		String type = (String)session.getAttribute("type");
 		if(type == null) {
 			res.put("message", "You are not currently logged in");
+			return ResponseEntity.ok(res);
 		}
 		session.setAttribute("type", null);
 		session.setAttribute("user", null);
