@@ -44,7 +44,7 @@ public class EmployeeApiController {
 	FundPriceHistoryRepository fphr;
 
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
@@ -91,7 +91,7 @@ public class EmployeeApiController {
 	}
 	
 	@RequestMapping(value = "/createFund", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
@@ -116,7 +116,7 @@ public class EmployeeApiController {
 		
         List<Fund> funds = fr.findBySymbolAndName(symbol, name);
         if (funds.size() != 0) {
-        		res.put("message", "The input you provided is not valid");
+        		res.put("message", "The fund was successfully created");
 			return ResponseEntity.ok(res);
         }
 
@@ -130,7 +130,7 @@ public class EmployeeApiController {
 	}
 	
 	@RequestMapping(value = "/transitionDay", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
+	public synchronized @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
