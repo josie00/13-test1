@@ -83,6 +83,7 @@ public class EmployeeApiController {
         if (cash == null || cash.trim().equals("")) return ResponseEntity.badRequest().body(res);
 		
         double value = Double.parseDouble(cash);
+
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", c.getFirstName()+" was registered successfully");
