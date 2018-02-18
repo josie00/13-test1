@@ -80,13 +80,10 @@ public class CustomerApiController {
 		String username = map.get("username");
 		String password = map.get("password");
 		
-		Map<String, String> res = new HashMap<String,String>();
-		
-		// Missing input
-		if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
 		
 		List<Customer> customers = cr.findByUserName(username);
 		List<Employee> employees = er.findByUserName(username);
+		Map<String, String> res = new HashMap<String,String>();
 		if (customers.size() != 0) {
 			Customer c = customers.get(0);
 			if (password.equals(c.getPassword())) {
@@ -121,11 +118,7 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		String symbol = map.get("symbol");
 		String cashValue = map.get("cashValue");
-		
-		// Missing input
-		if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
-		if (cashValue == null || cashValue.trim().equals("")) return ResponseEntity.badRequest().body(res);
-
+		double amount = Double.parseDouble(cashValue);
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			return ResponseEntity.ok(res);
@@ -133,8 +126,6 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return ResponseEntity.ok(res);
 		}
-		
-		double amount = Double.parseDouble(cashValue);
 		Customer c = (Customer) session.getAttribute("user");
 		if (c.getCash() < amount) {
 			System.out.println("cash : " +c.getCash());
@@ -184,11 +175,7 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		String symbol = map.get("symbol");
 		String numShares = map.get("numShares");
-		
-		// Missing input
-		if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
-		if (numShares == null || numShares.trim().equals("")) return ResponseEntity.badRequest().body(res);
-				
+		double shares = Double.parseDouble(numShares);
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			return ResponseEntity.ok(res);
@@ -196,10 +183,8 @@ public class CustomerApiController {
 			res.put("message", "You must be a customer to perform this action");
 			return ResponseEntity.ok(res);
 		}
-				
 		Customer c = (Customer) session.getAttribute("user");
-		double shares = Double.parseDouble(numShares);
-
+		
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
 			res.put("message", "The fund you provided does not exist");
@@ -230,31 +215,30 @@ public class CustomerApiController {
         HttpSession session = request.getSession();
         String username = map.get("username");
         String cash = map.get("cash");
+        Double amount = Double.parseDouble(cash);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = null;
         Employee e = (Employee) session.getAttribute("user");
         
-        // Missing input
-     	if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
-     	if (cash == null || cash.trim().equals("")) return ResponseEntity.badRequest().body(res);
-     	
-        Double amount = Double.parseDouble(cash);
         List<Customer> customers = cr.findByUserName(username);
         if (customers.size() == 0) {
             res.put("message", "There seems to be an issue with the username that you entered");
+            return ResponseEntity.ok(res);
         } else {
             c = customers.get(0);   
             String type = (String) session.getAttribute("type");
             if (type == null) {
                 res.put("message", "You are not currently logged in");
+                return ResponseEntity.ok(res);
             } else if (e == null) {
                 res.put("message", "You must be an employee to perform this action");
+                return ResponseEntity.ok(res);
             } else {
                 c.setCash(c.getCash() + amount);
                 res.put("message", "The check was successfully deposited");
+                return ResponseEntity.ok(res);
             }
         }
-        return ResponseEntity.ok(res);
 	}
 
 
@@ -292,28 +276,29 @@ public class CustomerApiController {
 
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
+		
+		HttpSession session = request.getSession();
         String cashValue = map.get("cashValue");
+        Double amount = Double.parseDouble(cashValue);
         Map<String, String> res = new HashMap<String,String>();
         Customer c = (Customer) session.getAttribute("user");
-        
-        // Missing input
-     	if (cashValue == null || cashValue.trim().equals("")) return ResponseEntity.badRequest().body(res);
-        Double amount = Double.parseDouble(cashValue);
-
         String type = (String) session.getAttribute("type");
         if (type == null) {
             res.put("message", "You are not currently logged in");
+            return ResponseEntity.ok(res);
         } else if (c == null) {
-                res.put("message", "You must be a customer to perform this action");
+             res.put("message", "You must be a customer to perform this action");
+             return ResponseEntity.ok(res);
         } else if (c.getCash() < amount) {
-            res.put("message", "You don’t have sufficient funds in your account to cover the requested check");
+            res.put("message", "You don't have sufficient funds in your account to cover the requested check");
+            return ResponseEntity.ok(res);
         } else {
             c.setCash(c.getCash() - amount);
             session.setAttribute("user", c);
             res.put("message", "The check was successfully requested");
+            return ResponseEntity.ok(res);
         }      
-        return ResponseEntity.ok(res);
+        
     }
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
@@ -323,6 +308,7 @@ public class CustomerApiController {
 		String type = (String)session.getAttribute("type");
 		if(type == null) {
 			res.put("message", "You are not currently logged in");
+			return ResponseEntity.ok(res);
 		}
 		session.setAttribute("type", null);
 		session.setAttribute("user", null);
