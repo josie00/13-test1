@@ -2,12 +2,12 @@
   "config": {
     "target": "http://localhost:8080",
     "phases": [
-      {"duration": 15, "arrivalCount": 2000}
+      {"duration": 5, "arrivalCount": 20}
     ],
     "payload": [
     {
       "path": "UserData.csv",
-      "fields": ["fname","lname","address","city","state","zip","email","cash","username", "password"],
+      "fields": ["fname","lname","address","city","state","zip","email","username", "password"],
       "order": "sequence"
     },
     {
@@ -66,7 +66,16 @@
              }
            }
          },
-       {"post": {
+         {"post": {
+           "url": "/createCustomerAccount",
+           "json": {"fname":"{{{fname}}}", "lname":"{{lname}}", "address":"{{{address}}}","city":"{{{city}}}","state":"{{{state}}}", "zip":"{{{zip}}}"},
+           "match":{
+             "json":"$.message",
+             "value":"The input you provided is not valid"
+           }
+          }
+        },
+        {"post": {
          "url": "/createCustomerAccount",
          "json": {"fname":"{{{fname}}}", "lname":"{{lname}}", "address":"{{{address}}}","city":"{{{city}}}","state":"{{{state}}}", "zip":"{{{zip}}}", "email":"{{{email}}}","cash":"0","username":"{{{username}}}","password":"{{password}}"},
          "match":{
@@ -124,7 +133,7 @@
           "json": {"cashValue":"{{{cash}}}"},
           "match":{
             "json":"$.message",
-            "value":"You don't have sufficient funds in your account to cover the requested check"
+            "value":"You don’t have sufficient funds in your account to cover the requested check"
              }
            }
         }
