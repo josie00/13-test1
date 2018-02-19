@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,8 +44,9 @@ public class EmployeeApiController {
 	@Autowired
 	FundPriceHistoryRepository fphr;
 
+	@Transactional
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
-	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		System.out.println("----------------Starting create customer-------------------");
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
@@ -133,6 +135,7 @@ public class EmployeeApiController {
 		return ResponseEntity.ok(res);
 	}
 	
+	@Transactional
 	@RequestMapping(value = "/createFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		System.out.println("---------------------Starting createFund------------------");
@@ -194,6 +197,7 @@ public class EmployeeApiController {
 		return ResponseEntity.ok(res);
 	}
 	
+	@Transactional
 	@RequestMapping(value = "/transitionDay", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
 		System.out.println("----------------Starting transitionDay----------------");

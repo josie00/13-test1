@@ -128,7 +128,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
-
+	@Transactional
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		System.out.println("---------------Starting buyFund---------------");
@@ -285,7 +285,7 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 
-	
+	@Transactional
 	@RequestMapping(value = "/depositCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         System.out.println("-----------------Starting depositCheck--------------------");
@@ -337,7 +337,7 @@ public class CustomerApiController {
         }
 	}
 
-
+	@Transactional
 	@RequestMapping(value = "/viewPortfolio", method = RequestMethod.GET)
 	public @ResponseBody Object viewPortfolio(HttpServletRequest request){
 		System.out.println("-----------------Starting viewPortfolio------------------");
@@ -381,6 +381,7 @@ public class CustomerApiController {
 	}
 	
 
+	@Transactional
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
 		System.out.println("-------------------Starting requestCheck---------------------");
