@@ -238,10 +238,12 @@ public class CustomerApiController {
 		if (type == null) {
 			System.out.println("not logged in");
 			res.put("message", "You are not currently logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		} else if (type.equals("employee")) {
 			System.out.println("logged in as employee");
 			res.put("message", "You must be a customer to perform this action");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer) session.getAttribute("user");
@@ -250,15 +252,23 @@ public class CustomerApiController {
 		if (funds == null || funds.size() == 0) {
 			System.out.println("fund not exist");
 			res.put("message", "The fund you provided does not exist");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		
 		Fund fund  = funds.get(0);
 		List<Position> pos = pr.findByFund_FundIdAndCustomer_CustomerId(fund.getFundId(), c.getCustomerId());
 		
-		if (pos.size() == 0 || pos.get(0).getShares() < shares) {
-			System.out.println("no such fund in account or no enough shares");
+		if (pos.size() == 0) {
+			System.out.println("no such fund in account");
 			res.put("message", "You don’t have that many shares in your portfolio");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}
+		if (pos.get(0).getShares() < shares) {
+			System.out.println("no enough shares");
+			res.put("message", "You don’t have that many shares in your portfolio");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		Position p = pos.get(0);
@@ -270,6 +280,7 @@ public class CustomerApiController {
 		p.setShares(p.getShares()-shares);
 		pr.save(p);
 		res.put("message", "The shares have been successfully sold");
+		System.out.println(res.get("message"));
 		System.out.println("sell fund success");
 		return ResponseEntity.ok(res);
 	}
@@ -301,6 +312,7 @@ public class CustomerApiController {
         if (customers.size() == 0) {
             res.put("message", "There seems to be an issue with the username that you entered");
             System.out.println("no such user");
+            System.out.println(res.get("message"));
             return ResponseEntity.ok(res);
         } else {
             c = customers.get(0);   
@@ -308,14 +320,17 @@ public class CustomerApiController {
             if (type == null) {
                 res.put("message", "You are not currently logged in");
                 System.out.println("not logged in");
+                System.out.println(res.get("message"));
                 return ResponseEntity.ok(res);
             } else if (e == null) {
                 res.put("message", "You must be an employee to perform this action");
                 System.out.println("not an employee");
+                System.out.println(res.get("message"));
                 return ResponseEntity.ok(res);
             } else {
                 c.setCash(c.getCash() + amount);
                 res.put("message", "The check was successfully deposited");
+                System.out.println(res.get("message"));
                 System.out.println("Deposit success");
                 return ResponseEntity.ok(res);
             }
@@ -333,10 +348,12 @@ public class CustomerApiController {
 		if (type == null) {
 			res.put("message", "You are not currently logged in”}");
 			System.out.println("not logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}else if (type.equals("employee")) {
 			res.put("message", "You must be a customer to perform this action");
 			System.out.println("logged in as employee");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 
@@ -358,6 +375,7 @@ public class CustomerApiController {
 		}
 		portfolio.setMessage("The action was successful");
 		portfolio.setCash(String.valueOf(c.getCash()));
+		System.out.println(res.get("message"));
 		System.out.println("view portfolio success");
 		return ResponseEntity.ok(portfolio);
 	}
@@ -383,19 +401,23 @@ public class CustomerApiController {
         if (type == null) {
             res.put("message", "You are not currently logged in");
             System.out.println("not logged in");
+            System.out.println(res.get("message"));
             return ResponseEntity.ok(res);
         } else if (c == null) {
              res.put("message", "You must be a customer to perform this action");
              System.out.println("not a customer");
+             System.out.println(res.get("message"));
              return ResponseEntity.ok(res);
         } else if (c.getCash() < amount) {
             res.put("message", "You don't have sufficient funds in your account to cover the requested check");
             System.out.println("no sufficient fund to request check");
+            System.out.println(res.get("message"));
             return ResponseEntity.ok(res);
         } else {
             c.setCash(c.getCash() - amount);
             session.setAttribute("user", c);
             res.put("message", "The check was successfully requested");
+            System.out.println(res.get("message"));
             System.out.println("request check success");
             return ResponseEntity.ok(res);
         }      
@@ -411,12 +433,13 @@ public class CustomerApiController {
 		if(type == null) {
 			res.put("message", "You are not currently logged in");
 			System.out.println("not logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		session.setAttribute("type", null);
 		session.setAttribute("user", null);
 		res.put("message", "You have been successfully logged out");
-		
+		System.out.println(res.get("message"));
 		System.out.println("Logout success");
 		return ResponseEntity.ok(res);
 	}

@@ -52,10 +52,12 @@ public class EmployeeApiController {
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
 			System.out.println("not logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}else if (type.equals("customer")) {
 			res.put("message", "You must be an employee to perform this action");
 			System.out.println("not an employee");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		String username = map.get("username");
@@ -69,6 +71,7 @@ public class EmployeeApiController {
 		if (customers.size() != 0) {
 			res.put("message", "The input you provided is not valid");
 			System.out.println("username already exist");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		String fname = map.get("fname");
@@ -113,16 +116,19 @@ public class EmployeeApiController {
         	System.out.println("password is null or empty");
         	return ResponseEntity.badRequest().body(res);
         }
-        if (cash == null || cash.trim().equals("")) {
-        	System.out.println("cash is null or empty");
+        if (cash == null) {
+        	System.out.println("cash is null");
         	return ResponseEntity.badRequest().body(res);
         }
-		
-        double value = Double.parseDouble(cash);
-        System.out.println("parse cash: " + cash);
+        double value = 0;
+		if (!cash.trim().equals("")) {
+			value = Double.parseDouble(cash);
+			System.out.println("parse cash: " + value);
+		}
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", c.getFirstName()+" was registered successfully");
+		System.out.println(res.get("message"));
 		System.out.println("create customer success");
 		return ResponseEntity.ok(res);
 	}
@@ -137,6 +143,7 @@ public class EmployeeApiController {
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
 			System.out.println("not logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		
@@ -144,6 +151,7 @@ public class EmployeeApiController {
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
 			System.out.println("not an employee");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 
@@ -168,6 +176,7 @@ public class EmployeeApiController {
         if (funds.size() != 0) {
         	res.put("message", "The fund was successfully created");
         	System.out.println("fund exist, success");
+        	System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
         }
 
@@ -180,6 +189,7 @@ public class EmployeeApiController {
 		Fund fund = new Fund(name, symbol, value, null, null);
 		fr.save(fund);
 		res.put("message", "The fund was successfully created");
+		System.out.println(res.get("message"));
 		System.out.println("fund created successfully");
 		return ResponseEntity.ok(res);
 	}
@@ -194,6 +204,7 @@ public class EmployeeApiController {
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
 			System.out.println("not logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		
@@ -201,12 +212,14 @@ public class EmployeeApiController {
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
 			System.out.println("not an employee");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		
 		// Update fund price
 		Iterable<Fund> funds = fr.findAll();
 		for (Fund fund : funds) {
+			System.out.println("---fund name: " + fund.getName());
 			double oldPrice = fund.getCurrPrice();
 			System.out.println("old price: " + oldPrice);
 			double newPrice = ThreadLocalRandom.current().nextDouble(oldPrice * 0.9, oldPrice * 1.1);
@@ -220,6 +233,7 @@ public class EmployeeApiController {
 			fr.save(fund);
 		}
 		res.put("message", "The fund prices have been successfully recalculated");
+		System.out.println(res.get("message"));
 		System.out.println("transition day success");
 		return ResponseEntity.ok(res);
 	}
