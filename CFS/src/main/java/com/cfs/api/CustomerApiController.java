@@ -83,16 +83,24 @@ public class CustomerApiController {
 		Map<String, String> res = new HashMap<String,String>();
         
         // Missing input
-        if (username == null || username.trim().equals("")) return ResponseEntity.badRequest().body(res);
-        if (password == null || password.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (username == null || username.trim().equals("")) {
+        	System.out.println("username is null or empty");
+        	return ResponseEntity.badRequest().body(res);
+        }
+        if (password == null || password.trim().equals("")) {
+        	System.out.println("password is null or empty");
+        	return ResponseEntity.badRequest().body(res);
+        }
 		
 		List<Customer> customers = cr.findByUserName(username);
 		List<Employee> employees = er.findByUserName(username);
 		if (customers.size() != 0) {
 			Customer c = customers.get(0);
+			System.out.println("found customer named" + c.getUserName());
 			if (password.equals(c.getPassword())) {
 				session.setAttribute("user", c);
 				session.setAttribute("type", "customer");
+				System.out.println("customer put in session");
 				res.put("message", "Welcome " + c.getFirstName());
 				return ResponseEntity.ok(res);
 			} 
@@ -100,16 +108,17 @@ public class CustomerApiController {
 		} 
 		
 		if (employees.size()!= 0) {
-			System.out.println("employee");
 			Employee e = employees.get(0);
+			System.out.println("found employee named" + e.getUserName());
 			if(password.equals(e.getPassword())) {
 				session.setAttribute("user", e);
 				session.setAttribute("type", "employee");
+				System.out.println("employee put in session");
 				res.put("message", "Welcome " + e.getFirstName());
 				return ResponseEntity.ok(res);
 			} 
 		}
-		
+		System.out.println("username/password is wrong");
 		res.put("message", "There seems to be an issue with the username/password combination that you entered");
 		return ResponseEntity.ok(res);
 	}
@@ -122,40 +131,54 @@ public class CustomerApiController {
 		String type = (String) session.getAttribute("type");
 		String symbol = map.get("symbol");
 		String cashValue = map.get("cashValue");
+		System.out.println("cashValue is" + cashValue);
 		
 		// Missing input
-        if (symbol == null || symbol.trim().equals("")) return ResponseEntity.badRequest().body(res);
-        if (cashValue == null || cashValue.trim().equals("")) return ResponseEntity.badRequest().body(res);
+        if (symbol == null || symbol.trim().equals("")) {
+        	System.out.println("symbol is null or empty");
+        	return ResponseEntity.badRequest().body(res);
+        }
+        if (cashValue == null || cashValue.trim().equals("")) {
+        	System.out.println("cashValue is null or empty");
+        	return ResponseEntity.badRequest().body(res);
+        }
 		
 		double amount = Double.parseDouble(cashValue);
+		System.out.println("amount is" + amount);
 		if (type == null) {
+			System.out.println("not logged in");
 			res.put("message", "You are not currently logged in");
 			return ResponseEntity.ok(res);
 		} else if (type.equals("employee")) {
+			System.out.println("logged in as employee");
 			res.put("message", "You must be a customer to perform this action");
 			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer) session.getAttribute("user");
+		System.out.println("user is" + c.getUserName());
 		if (c.getCash() < amount) {
-			System.out.println("cash : " +c.getCash());
+			System.out.println("cash is less than amount: " +c.getCash());
 			res.put("message", "You don’t have enough cash in your account to make this purchase");
 			return ResponseEntity.ok(res);
 		}
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
+			System.out.println("fund not exist");
 			res.put("message", "The fund you provided does not exist");
 			return ResponseEntity.ok(res);
 		}
 		
 		Fund fund  = funds.get(0);
 		double price = fund.getCurrPrice();
+		System.out.println("fund price is" + price);
 		if (price > amount) {
-			
-			res.put("message", "You didn’t provide enough cash to make this purchase");
+			System.out.println("price is larger than amount provided");
+			res.put("message", "You didn't provide enough cash to make this purchase");
 			return ResponseEntity.ok(res);
 		}	
 		int mod = ((int)(amount*100)) % ((int)(price*100));
 		if (mod > 0) {
+			System.out.println("amount mod price > 0");
 			amount = amount - ((double)mod)/100;
 		}
 		int shares = (int)(amount/price);
