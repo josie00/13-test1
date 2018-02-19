@@ -45,14 +45,17 @@ public class EmployeeApiController {
 
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
 	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+		System.out.println("starting create customer");
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
 		if (type == null) {
 			res.put("message", "You are not currently logged in");
+			System.out.println("not logged in. Exit createCustomer");
 			return ResponseEntity.ok(res);
 		}else if (type.equals("customer")) {
 			res.put("message", "You must be an employee to perform this action");
+			System.out.println("not an employee. Exit createCustomer");
 			return ResponseEntity.ok(res);
 		}
 		String username = map.get("username");
@@ -61,6 +64,7 @@ public class EmployeeApiController {
 		List<Customer> customers = cr.findByUserName(username);
 		if (customers.size() != 0) {
 			res.put("message", "The input you provided is not valid");
+			System.out.println("invalid input. Exit createCustomer");
 			return ResponseEntity.ok(res);
 		}
 		String fname = map.get("fname");
@@ -87,23 +91,27 @@ public class EmployeeApiController {
 		Customer c = new Customer(username, password, fname, lname, address, city, state, zip, email, value, 0, null, null);
 		cr.save(c);
 		res.put("message", c.getFirstName()+" was registered successfully");
+		System.out.println("success. exit createCustomer");
 		return ResponseEntity.ok(res);
 	}
 	
 	@RequestMapping(value = "/createFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> createFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
+		System.out.println("starting createFund");
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
 		// Check session
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
+			System.out.println("not logged in. Exit createFund");
 			return ResponseEntity.ok(res);
 		}
 		
 		// Check if employee
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
+			System.out.println("not an employee. Exit createFund");
 			return ResponseEntity.ok(res);
 		}
 
@@ -117,32 +125,40 @@ public class EmployeeApiController {
         List<Fund> funds = fr.findBySymbolAndName(symbol, name);
         if (funds.size() != 0) {
         		res.put("message", "The fund was successfully created");
+        		System.out.println("success. Exit createFund");
 			return ResponseEntity.ok(res);
         }
 
         double value =  Double.parseDouble(initial_value);
-        if (value < 0.005) return ResponseEntity.badRequest().body(res);
+        if (value < 0.005) {
+        	System.out.println("Insufficient input value. Bad request");
+        	return ResponseEntity.badRequest().body(res);
+        }
 		
 		Fund fund = new Fund(name, symbol, value, null, null);
 		fr.save(fund);
 		res.put("message", "The fund was successfully created");
+		System.out.println("First fund created successfully. Exit createFund");
 		return ResponseEntity.ok(res);
 	}
 	
 	@RequestMapping(value = "/transitionDay", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> transitionDay(HttpServletRequest request) {
+		System.out.println("starting transitionDay");
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
 		// Check session
 		if (session.getAttribute("type") == null) {
 			res.put("message", "You are not currently logged in");
+			System.out.println("not logged in. Exit transitionDay");
 			return ResponseEntity.ok(res);
 		}
 		
 		// Check if employee
 		if (! ((String) session.getAttribute("type")).equals("employee")) {
 			res.put("message", "You must be an employee to perform this action");
+			System.out.println("not an employee. Exit transitionDay");
 			return ResponseEntity.ok(res);
 		}
 		
@@ -158,6 +174,7 @@ public class EmployeeApiController {
 			fr.save(fund);
 		}
 		res.put("message", "The fund prices have been successfully recalculated");
+		System.out.println("success. Exit transitionDay");
 		return ResponseEntity.ok(res);
 	}
 }
