@@ -80,7 +80,7 @@ public class CustomerApiController {
 		HttpSession session = request.getSession();
 		String username = map.get("username");
 		String password = map.get("password");
-		System.out.println("Input: username = "+username+", password = "+password);
+		System.out.println("Input: username = " + username + " password = " + password);
 
 		Map<String, String> res = new HashMap<String,String>();
         
@@ -104,6 +104,7 @@ public class CustomerApiController {
 				session.setAttribute("type", "customer");
 				System.out.println("customer put in session");
 				res.put("message", "Welcome " + c.getFirstName());
+				System.out.println(res.get("message"));
 				return ResponseEntity.ok(res);
 			} 
 
@@ -111,17 +112,19 @@ public class CustomerApiController {
 		
 		if (employees.size()!= 0) {
 			Employee e = employees.get(0);
-			System.out.println("found employee named" + e.getUserName());
+			System.out.println("found employee: " + e.getUserName());
 			if(password.equals(e.getPassword())) {
 				session.setAttribute("user", e);
 				session.setAttribute("type", "employee");
 				System.out.println("employee put in session");
 				res.put("message", "Welcome " + e.getFirstName());
+				System.out.println(res.get("message"));
 				return ResponseEntity.ok(res);
 			} 
 		}
 		System.out.println("username/password is wrong");
 		res.put("message", "There seems to be an issue with the username/password combination that you entered");
+		System.out.println(res.get("message"));
 		return ResponseEntity.ok(res);
 	}
 	
@@ -143,6 +146,7 @@ public class CustomerApiController {
         }
         if (cashValue == null || cashValue.trim().equals("")) {
         	System.out.println("cashValue is null or empty");
+        	return ResponseEntity.badRequest().body(res);
         }
 
 		double amount = Double.parseDouble(cashValue);
@@ -150,23 +154,27 @@ public class CustomerApiController {
 		if (type == null) {
 			System.out.println("not logged in");
 			res.put("message", "You are not currently logged in");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		} else if (type.equals("employee")) {
 			System.out.println("logged in as employee");
 			res.put("message", "You must be a customer to perform this action");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		Customer c = (Customer) session.getAttribute("user");
 		System.out.println("user is" + c.getUserName());
 		if (c.getCash() < amount) {
-			System.out.println("cash is less than amount: " +c.getCash());
+			System.out.println("cash is less than amount: " + c.getCash());
 			res.put("message", "You don’t have enough cash in your account to make this purchase");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		List<Fund> funds = fr.findBySymbol(symbol);
 		if (funds == null || funds.size() == 0) {
 			System.out.println("fund not exist");
 			res.put("message", "The fund you provided does not exist");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}
 		
@@ -176,6 +184,7 @@ public class CustomerApiController {
 		if (price > amount) {
 			System.out.println("price is larger than amount provided");
 			res.put("message", "You didn't provide enough cash to make this purchase");
+			System.out.println(res.get("message"));
 			return ResponseEntity.ok(res);
 		}	
 		int mod = ((int)(amount*100)) % ((int)(price*100));
@@ -199,6 +208,7 @@ public class CustomerApiController {
 			pr.save(p);
 		}
 		res.put("message", "The fund has been successfully purchased");	
+		System.out.println(res.get("message"));
 		return ResponseEntity.ok(res);
 	}
 	
