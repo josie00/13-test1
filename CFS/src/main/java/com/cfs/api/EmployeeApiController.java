@@ -44,7 +44,7 @@ public class EmployeeApiController {
 	FundPriceHistoryRepository fphr;
 
 	@RequestMapping(value = "/createCustomerAccount", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
+	public synchronized @ResponseBody ResponseEntity<Map<String, String>> createCustomer(@RequestBody Map<String, String> map, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
