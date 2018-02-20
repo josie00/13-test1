@@ -67,14 +67,7 @@ public class EmployeeApiController {
 			System.out.println("username is null or empty");
 			return ResponseEntity.badRequest().body(res);
 		}
-		
-		List<Customer> customers = cr.findByUserName(username);
-		if (customers.size() != 0) {
-			res.put("message", "The input you provided is not valid");
-			System.out.println("username already exist");
-			System.out.println(res.get("message"));
-			return ResponseEntity.ok(res);
-		}
+
 		String fname = map.get("fname");
 		String lname = map.get("lname");
 		String address = map.get("address");
@@ -121,6 +114,14 @@ public class EmployeeApiController {
         	System.out.println("cash is null");
         	return ResponseEntity.badRequest().body(res);
         }
+
+        List<Customer> customers = cr.findByUserName(username);
+		if (customers.size() != 0) {
+			res.put("message", "The input you provided is not valid");
+			System.out.println("username already exist");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}
         double value = 0;
 		if (!cash.trim().equals("")) {
 			value = Double.parseDouble(cash);

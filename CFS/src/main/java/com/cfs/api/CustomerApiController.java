@@ -320,7 +320,7 @@ public class CustomerApiController {
                 System.out.println("not logged in");
                 System.out.println(res.get("message"));
                 return ResponseEntity.ok(res);
-            } else if (e == null) {
+            } else if (type.equals("customer")) {
                 res.put("message", "You must be an employee to perform this action");
                 System.out.println("not an employee");
                 System.out.println(res.get("message"));
@@ -374,7 +374,6 @@ public class CustomerApiController {
 		}
 		portfolio.setMessage("The action was successful");
 		portfolio.setCash(df.format(c.getCash()));
-		System.out.println(res.get("message"));
 		System.out.println("view portfolio success");
 		return ResponseEntity.ok(portfolio);
 	}
@@ -402,7 +401,7 @@ public class CustomerApiController {
             System.out.println("not logged in");
             System.out.println(res.get("message"));
             return ResponseEntity.ok(res);
-        } else if (c == null) {
+        } else if (type.equals("employee")) {
              res.put("message", "You must be a customer to perform this action");
              System.out.println("not a customer");
              System.out.println(res.get("message"));
