@@ -50,17 +50,7 @@ public class EmployeeApiController {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 		String type = (String) session.getAttribute("type");
-		if (type == null) {
-			res.put("message", "You are not currently logged in");
-			System.out.println("not logged in");
-			System.out.println(res.get("message"));
-			return ResponseEntity.ok(res);
-		}else if (type.equals("customer")) {
-			res.put("message", "You must be an employee to perform this action");
-			System.out.println("not an employee");
-			System.out.println(res.get("message"));
-			return ResponseEntity.ok(res);
-		}
+		
 		String username = map.get("username");
 		System.out.println("Input: username = " + username);
 		if (username == null || username.trim().equals("")) {
@@ -115,6 +105,18 @@ public class EmployeeApiController {
         	return ResponseEntity.badRequest().body(res);
         }
 
+        if (type == null) {
+			res.put("message", "You are not currently logged in");
+			System.out.println("not logged in");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}else if (type.equals("customer")) {
+			res.put("message", "You must be an employee to perform this action");
+			System.out.println("not an employee");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}
+        
         List<Customer> customers = cr.findByUserName(username);
 		if (customers.size() != 0) {
 			res.put("message", "The input you provided is not valid");
@@ -141,22 +143,6 @@ public class EmployeeApiController {
 		HttpSession session = request.getSession();
 		Map<String, String> res = new HashMap<String,String>();
 
-		// Check session
-		if (session.getAttribute("type") == null) {
-			res.put("message", "You are not currently logged in");
-			System.out.println("not logged in");
-			System.out.println(res.get("message"));
-			return ResponseEntity.ok(res);
-		}
-		
-		// Check if employee
-		if (! ((String) session.getAttribute("type")).equals("employee")) {
-			res.put("message", "You must be an employee to perform this action");
-			System.out.println("not an employee");
-			System.out.println(res.get("message"));
-			return ResponseEntity.ok(res);
-		}
-
 		String name = map.get("name");
 		String symbol = map.get("symbol");
 		String initial_value = map.get("initial_value");
@@ -174,6 +160,22 @@ public class EmployeeApiController {
         	return ResponseEntity.badRequest().body(res);
         }
 		
+		// Check session
+		if (session.getAttribute("type") == null) {
+			res.put("message", "You are not currently logged in");
+			System.out.println("not logged in");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}
+		
+		// Check if employee
+		if (! ((String) session.getAttribute("type")).equals("employee")) {
+			res.put("message", "You must be an employee to perform this action");
+			System.out.println("not an employee");
+			System.out.println(res.get("message"));
+			return ResponseEntity.ok(res);
+		}
+
         List<Fund> funds = fr.findBySymbolAndName(symbol, name);
         if (funds.size() != 0) {
         	res.put("message", "The fund was successfully created");
