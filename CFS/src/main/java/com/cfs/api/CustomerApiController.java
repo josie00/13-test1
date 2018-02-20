@@ -292,7 +292,7 @@ public class CustomerApiController {
         String cash = map.get("cash");
         Map<String, String> res = new HashMap<String,String>();
         Customer c = null;
-        Employee e = (Employee) session.getAttribute("user");
+
         System.out.println("Input: username = " + username + " cash = " + cash);
         // Missing input
         if (username == null || username.trim().equals("")) {
@@ -303,7 +303,20 @@ public class CustomerApiController {
         	System.out.println("cash is null or empty");
         	return ResponseEntity.badRequest().body(res);
         }
-        
+        String type = (String) session.getAttribute("type");
+        if (type == null) {
+            res.put("message", "You are not currently logged in");
+            System.out.println("not logged in");
+            System.out.println(res.get("message"));
+            return ResponseEntity.ok(res);
+        } else if (type.equals("customer")) {
+            res.put("message", "You must be an employee to perform this action");
+            System.out.println("not an employee");
+            System.out.println(res.get("message"));
+            return ResponseEntity.ok(res);
+        }
+        Employee e = (Employee) session.getAttribute("user");
+
         Double amount = Double.parseDouble(cash);
         System.out.println("parse cash: " + cash);
         List<Customer> customers = cr.findByUserName(username);
@@ -314,24 +327,11 @@ public class CustomerApiController {
             return ResponseEntity.ok(res);
         } else {
             c = customers.get(0);   
-            String type = (String) session.getAttribute("type");
-            if (type == null) {
-                res.put("message", "You are not currently logged in");
-                System.out.println("not logged in");
-                System.out.println(res.get("message"));
-                return ResponseEntity.ok(res);
-            } else if (type.equals("customer")) {
-                res.put("message", "You must be an employee to perform this action");
-                System.out.println("not an employee");
-                System.out.println(res.get("message"));
-                return ResponseEntity.ok(res);
-            } else {
-                c.setCash(c.getCash() + amount);
-                res.put("message", "The check was successfully deposited");
-                System.out.println(res.get("message"));
-                System.out.println("Deposit success");
-                return ResponseEntity.ok(res);
-            }
+            c.setCash(c.getCash() + amount);
+            res.put("message", "The check was successfully deposited");
+            System.out.println(res.get("message"));
+            System.out.println("Deposit success");
+            return ResponseEntity.ok(res);
         }
 	}
 
@@ -385,7 +385,6 @@ public class CustomerApiController {
 		HttpSession session = request.getSession();
         String cashValue = map.get("cashValue");
         Map<String, String> res = new HashMap<String,String>();
-        Customer c = (Customer) session.getAttribute("user");
         System.out.println("Input: cash = " + cashValue);
         
         // Missing input
@@ -406,7 +405,9 @@ public class CustomerApiController {
              System.out.println("not a customer");
              System.out.println(res.get("message"));
              return ResponseEntity.ok(res);
-        } else if (c.getCash() < amount) {
+        }
+        Customer c = (Customer) session.getAttribute("user");
+        if (c.getCash() < amount) {
             res.put("message", "You don't have sufficient funds in your account to cover the requested check");
             System.out.println("no sufficient fund to request check");
             System.out.println(res.get("message"));
