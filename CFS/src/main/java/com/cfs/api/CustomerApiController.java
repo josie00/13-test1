@@ -1,5 +1,6 @@
 package com.cfs.api;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -128,7 +129,6 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
-	@Transactional
 	@RequestMapping(value = "/buyFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> buyFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		System.out.println("---------------Starting buyFund---------------");
@@ -212,7 +212,6 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 	
-	@Transactional
 	@RequestMapping(value = "/sellFund", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Map<String, String>> sellFund(@RequestBody Map<String, String> map, HttpServletRequest request) {
 		System.out.println("----------------Starting sellFund-----------------");
@@ -285,7 +284,6 @@ public class CustomerApiController {
 		return ResponseEntity.ok(res);
 	}
 
-	@Transactional
 	@RequestMapping(value = "/depositCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> depositCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
         System.out.println("-----------------Starting depositCheck--------------------");
@@ -337,7 +335,6 @@ public class CustomerApiController {
         }
 	}
 
-	@Transactional
 	@RequestMapping(value = "/viewPortfolio", method = RequestMethod.GET)
 	public @ResponseBody Object viewPortfolio(HttpServletRequest request){
 		System.out.println("-----------------Starting viewPortfolio------------------");
@@ -359,6 +356,7 @@ public class CustomerApiController {
 
 		Customer c = (Customer)session.getAttribute("user");
 		PortfolioForm portfolio = new PortfolioForm();
+		DecimalFormat df = new DecimalFormat("#.##");
 		List<Position> positions = pr.findByCustomer_CustomerId(c.getCustomerId());
 		if (positions.size() != 0) {
 			System.out.println("have funds in account");
@@ -367,21 +365,21 @@ public class CustomerApiController {
 					System.out.println("shares of this fund > 0");
 					FundForm f = new FundForm();
 					f.setName(p.getFund().getName());
-					f.setPrice(String.valueOf(p.getFund().getCurrPrice()));
-					f.setShares(String.valueOf(p.getShares()));
+					double fundPrice = p.getFund().getCurrPrice();
+					f.setPrice(df.format(fundPrice));
+					f.setShares(df.format(p.getShares()));
 					portfolio.addFund(f);
 				}
 			}
 		}
 		portfolio.setMessage("The action was successful");
-		portfolio.setCash(String.valueOf(c.getCash()));
+		portfolio.setCash(df.format(c.getCash()));
 		System.out.println(res.get("message"));
 		System.out.println("view portfolio success");
 		return ResponseEntity.ok(portfolio);
 	}
 	
 
-	@Transactional
 	@RequestMapping(value = "/requestCheck", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<Map<String, String>> requestCheck(@RequestBody Map<String, String> map, HttpServletRequest request, Model model) {
 		System.out.println("-------------------Starting requestCheck---------------------");
